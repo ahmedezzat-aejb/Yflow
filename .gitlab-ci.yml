@@ -1,0 +1,12 @@
+pages:
+  stage: deploy
+  image: node:18
+  script:
+    - npm install
+    - npm run build
+    - mv public docs
+  artifacts:
+    paths:
+      - docs
+  only:
+    - main

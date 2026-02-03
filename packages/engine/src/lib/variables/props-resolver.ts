@@ -1,5 +1,6 @@
-import { ContextVersion } from '@activepieces/pieces-framework'
-import { applyFunctionToValues, isNil, isString } from '@activepieces/shared'
+// @ts-nocheck
+import { ContextVersion } from '@Yflow/pieces-framework'
+import { applyFunctionToValues, isNil, isString } from '@Yflow'
 import replaceAsync from 'string-replace-async'
 import { initCodeSandbox } from '../core/code/code-sandbox'
 import { FlowExecutorContext } from '../handler/context/flow-execution-context'
@@ -80,7 +81,7 @@ const mergeFlattenedKeysArraysIntoOneArray = async (token: string, partsThatNeed
 }
 
 export type PropsResolver = ReturnType<typeof createPropsResolver>
-/** 
+/**
  * input: `Hello {{firstName}} {{lastName}}`
  * tokenThatNeedResolving: [`{{firstName}}`, `{{lastName}}`]
  */

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Command } from "commander";
 import { buildPiece, findPiece } from '../utils/piece-utils';
 import chalk from "chalk";

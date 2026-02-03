@@ -29,11 +29,11 @@ The high-level steps are:
         - Create a global connection for the project with certain naming convention.
 ```js
 const apiKey = 'YOUR_API_KEY';
-const instanceUrl = 'https://cloud.activepieces.com';
+const instanceUrl = 'https://cloud.Yflow.com';
 
 // The name of the user / organization in your SAAS
 const externalProjectId = 'org_1234';
-const pieceName = '@activepieces/piece-gelato';
+const pieceName = '@Yflow/piece-gelato';
 // This will depend on what your piece auth type is, can be one of this ['PLATFORM_OAUTH2','SECRET_TEXT','BASIC_AUTH','CUSTOM_AUTH']
 const pieceAuthType = "CUSTOM_AUTH"
 const connectionProps = {
@@ -112,7 +112,7 @@ async function getOrCreateProject({
         id: newProject.id,
         externalId: newProject.externalId
     };
-} 
+}
 
 async function createGlobalConnection({
     projectId,
@@ -157,7 +157,7 @@ async function createGlobalConnection({
     });
 }
 ```
-   
+
   </Step>
 </Steps>
 
@@ -176,13 +176,13 @@ import {
    ConnectionsManager,
    Property,
    TriggerStrategy
-} from "@activepieces/pieces-framework";
+} from "@Yflow/pieces-framework";
 import {
    createTrigger
-} from "@activepieces/pieces-framework";
+} from "@Yflow/pieces-framework";
 import {
    isNil
-} from "@activepieces/shared";
+} from "@Yflow/shared";
 // Add this import from the index.ts file, where it contains the definition of the auth object.
 import { auth } from '../..';
 

@@ -1,76 +1,65 @@
-import { createCustomApiCallAction } from '@activepieces/pieces-common';
-import {
-  OAuth2AuthorizationMethod,
-  OAuth2PropertyValue,
-  PieceAuth,
-  createPiece,
-} from '@activepieces/pieces-framework';
-import { PieceCategory } from '@activepieces/shared';
-import { appendToPage } from './lib/actions/append-to-page';
-import { createDatabaseItem } from './lib/actions/create-database-item';
-import { createPage } from './lib/actions/create-page';
-import { updateDatabaseItem } from './lib/actions/update-database-item';
-import { newDatabaseItem } from './lib/triggers/new-database-item';
-import { updatedDatabaseItem } from './lib/triggers/updated-database-item';
-import { newComment } from './lib/triggers/new-comment';
-import { updatedPage } from './lib/triggers/updated-page';
-import { findDatabaseItem } from './lib/actions/find-item';
-import { getPageOrBlockChildren } from './lib/actions/get-page-or-block-children';
-import { archiveDatabaseItem } from './lib/actions/archive-database-item';
-import { restoreDatabaseItem } from './lib/actions/restore-database-item';
-import { addComment } from './lib/actions/add-comment';
-import { retrieveDatabase } from './lib/actions/retrieve-database';
-import { getPageComments } from './lib/actions/get-page-comments';
-import { findPage } from './lib/actions/find-page';
+import { PieceAuthHelpers, createPiece, PieceAction, PieceContext } from '../../../framework/src/lib/piece-framework';
 
-export const notionAuth = PieceAuth.OAuth2({
-  authUrl: 'https://api.notion.com/v1/oauth/authorize',
-  tokenUrl: 'https://api.notion.com/v1/oauth/token',
-  scope: [],
-  extra: {
-    owner: 'user',
-  },
-  authorizationMethod: OAuth2AuthorizationMethod.HEADER,
-  required: true,
-});
-
-export const notion = createPiece({
+export const notionPiece = createPiece({
   displayName: 'Notion',
-  description: 'The all-in-one workspace',
-  logoUrl: 'https://cdn.activepieces.com/pieces/notion.png',
-  categories: [PieceCategory.PRODUCTIVITY],
-  minimumSupportedRelease: '0.30.0',
-  authors: [
-    'ShayPunter',
-    'kishanprmr',
-    'MoShizzle',
-    'khaledmashaly',
-    'abuaboud',
-    'AdamSelene',
-    'ezhil56x',
-    'onyedikachi-david',
-  ],
-  auth: notionAuth,
+  description: 'Create and update pages in Notion',
+  logoUrl: 'https://cdn.yflow.com/pieces/notion.png',
+  authors: ['yflow'],
+  categories: ['PRODUCTIVITY'],
+  auth: PieceAuthHelpers.ApiKey({
+    apiKey: 'NOTION_API_KEY',
+    headerName: 'Authorization',
+  }),
   actions: [
-    createDatabaseItem,
-    updateDatabaseItem,
-    findDatabaseItem,
-    createPage,
-    appendToPage,
-    getPageOrBlockChildren,
-    archiveDatabaseItem,
-    restoreDatabaseItem,
-    addComment,
-    retrieveDatabase,
-    getPageComments,
-    findPage,
-    createCustomApiCallAction({
-      baseUrl: () => 'https://api.notion.com/v1',
-      auth: notionAuth,
-      authMapping: async (auth) => ({
-        Authorization: `Bearer ${(auth as OAuth2PropertyValue).access_token}`,
-      }),
-    }),
+    {
+      name: 'create_page',
+      displayName: 'Create Page',
+      description: 'Create a new page in Notion',
+      props: {
+        databaseId: {
+          type: 'text',
+          displayName: 'Database ID',
+          required: true,
+        },
+        properties: {
+          type: 'json',
+          displayName: 'Properties',
+          required: true,
+          description: 'Page properties in Notion format',
+        },
+      },
+      async run(context: PieceContext) {
+        const { databaseId, properties } = context.propsValue;
+        const apiKey = context.auth.apiKey;
+
+        const response = await fetch('https://api.notion.com/v1/pages', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json',
+            'Notion-Version': '2022-06-28',
+          },
+          body: JSON.stringify({
+            parent: {
+              database_id: databaseId,
+            },
+            properties,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.status !== 200) {
+          throw new Error(`Notion API error: ${data.message}`);
+        }
+
+        return {
+          pageId: data.id,
+          url: data.url,
+          properties: data.properties,
+        };
+      },
+    },
   ],
-  triggers: [newDatabaseItem, updatedDatabaseItem, newComment, updatedPage],
+  triggers: [],
 });

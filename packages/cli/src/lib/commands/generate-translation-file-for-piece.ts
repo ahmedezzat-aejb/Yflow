@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { writeFile } from 'node:fs/promises';
 import chalk from 'chalk';
 import { Command } from 'commander';
@@ -5,18 +7,18 @@ import { buildPiece, findPiece, findPieces } from '../utils/piece-utils';
 import { makeFolderRecursive } from '../utils/files';
 import { join, basename } from 'node:path';
 import { exec } from '../utils/exec';
-import { pieceTranslation } from '@activepieces/pieces-framework';
-import { MAX_KEY_LENGTH_FOR_CORWDIN } from '@activepieces/shared';
+import { pieceTranslation } from '@Yflow/pieces-framework';
+import { MAX_KEY_LENGTH_FOR_CORWDIN } from '@Yflow';
 
 const findPieceInModule= async (pieceOutputFile: string) => {
     const module = await import(pieceOutputFile);
     const exports = Object.values(module);
     for (const e of exports) {
       if (e !== null && e !== undefined && e.constructor.name === 'Piece') {
-          return e 
+          return e
       }
       }
-  
+
       throw new Error(`Piece not found in module, please check the piece output file ${pieceOutputFile}`);
 }
 

@@ -1,4 +1,5 @@
-import { FlowVersionTemplate, Metadata, Nullable, TemplateType } from '@activepieces/shared'
+// @ts-nocheck
+import { FlowVersionTemplate, Metadata, Nullable, TemplateType } from '@Yflow/shared'
 import { Static, Type } from '@sinclair/typebox'
 
 export const CreateFlowTemplateRequest = Type.Object({

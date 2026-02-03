@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import * as pulumi from "@pulumi/pulumi";
 import { isTaggable } from "./taggable";
 

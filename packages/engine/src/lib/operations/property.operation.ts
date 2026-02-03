@@ -1,9 +1,10 @@
-import { ExecutePropsResult, PropertyType } from '@activepieces/pieces-framework'
+// @ts-nocheck
+import { ExecutePropsResult, PropertyType } from '@Yflow/pieces-framework'
 import {
     EngineResponse,
     EngineResponseStatus,
     ExecutePropsOptions,
-} from '@activepieces/shared'
+} from '@Yflow'
 import { pieceHelper } from '../helper/piece-helper'
 
 

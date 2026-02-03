@@ -31,14 +31,14 @@ inkeepScript.addEventListener("load", function () {
       apiKey: "9b77dccb6cacb770614645da24b68c168dc213967b015a6f",
       integrationId: "clt6g42dh0008hl8duk922fjd",
       organizationId: "org_hCC6MgTLBCh3juv4",
-      primaryBrandColor: "#8143E3",
+      primaryBrandColor: "#0066FF",
     },
     aiChatSettings: {
-      chatSubjectName: "Activepieces",
+      chatSubjectName: "Yflow",
       botAvatarSrcUrl:
-        "https://storage.googleapis.com/organization-image-assets/activepieces-botAvatarSrcUrl-1709136841325.svg",
+        "https://storage.googleapis.com/organization-image-assets/YflowtarSrcUrl-1709136841325.svg",
       botAvatarDarkSrcUrl:
-        "https://storage.googleapis.com/organization-image-assets/activepieces-botAvatarDarkSrcUrl-1709136840372.svg",
+        "https://storage.googleapis.com/organization-image-assets/YflowtarDarkSrcUrl-1709136840372.svg",
       getHelpCallToActions: [
         {
           name: "Discord",
@@ -49,14 +49,14 @@ inkeepScript.addEventListener("load", function () {
         },
         {
           name: "Community",
-          url: "https://community.activepieces.com/",
+          url: "https://community.Yflow",
           icon: {
             builtIn: "IoPeopleOutline",
           },
         },
         {
           name: "GitHub",
-          url: "https://github.com/activepieces/activepieces",
+          url: "https://github.com/Yflow,Yflow",
           icon: {
             builtIn: "FaGithub",
           },

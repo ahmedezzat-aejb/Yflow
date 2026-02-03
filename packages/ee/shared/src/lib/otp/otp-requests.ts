@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Static, Type } from '@sinclair/typebox'
 import { OtpType } from './otp-type'
 

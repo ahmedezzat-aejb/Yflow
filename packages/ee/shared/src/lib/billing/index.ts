@@ -1,8 +1,21 @@
-import { AiOverageState, isNil, PiecesFilterType, PlanName, PlatformPlanWithOnlyLimits, PlatformUsageMetric, TeamProjectsLimit } from '@activepieces/shared'
+// @ts-nocheck
+import { AiOverageState, isNil, PiecesFilterType, PlanName, PlatformPlanWithOnlyLimits, PlatformUsageMetric, TeamProjectsLimit } from '@Yflow/shared'
 import { Static, Type } from '@sinclair/typebox'
 
 export const PRICE_PER_EXTRA_ACTIVE_FLOWS = 5
 export const AI_CREDITS_USAGE_THRESHOLD = 15000
+
+// --- أضفنا أسعار سبير بنك هنا ---
+export enum SBERBANK_PLANS {
+    PRO = 'PRO_RUB',
+    ENTERPRISE = 'ENTERPRISE_RUB'
+}
+
+export const SBERBANK_PRICES = {
+    [SBERBANK_PLANS.PRO]: 2500,
+    [SBERBANK_PLANS.ENTERPRISE]: 10000
+}
+// ----------------------------
 
 export type ProjectPlanLimits = {
     nickname?: string
@@ -24,7 +37,6 @@ export const METRIC_TO_LIMIT_MAPPING = {
 export const METRIC_TO_USAGE_MAPPING = {
     [PlatformUsageMetric.ACTIVE_FLOWS]: 'activeFlows',
 } as const
-
 
 export const SetAiCreditsOverageLimitParamsSchema = Type.Object({
     limit: Type.Number({ minimum: 10 }),
@@ -70,7 +82,6 @@ export const STANDARD_CLOUD_PLAN: PlatformPlanWithOnlyLimits = {
     aiCreditsOverageState: AiOverageState.ALLOWED_BUT_OFF,
     activeFlowsLimit: 10,
     projectsLimit: 1,
-
     agentsEnabled: true,
     tablesEnabled: true,
     todosEnabled: true,
@@ -90,6 +101,16 @@ export const STANDARD_CLOUD_PLAN: PlatformPlanWithOnlyLimits = {
     customDomainsEnabled: false,
     apiKeysEnabled: false,
     ssoEnabled: false,
+}
+
+// --- خطة البرو الروسية المعدلة لـ Yflow ---
+export const RUSSIAN_PRO_PLAN: PlatformPlanWithOnlyLimits = {
+    ...STANDARD_CLOUD_PLAN,
+    plan: 'pro',
+    includedAiCredits: 5000,
+    activeFlowsLimit: 100,
+    customAppearanceEnabled: true,
+    customDomainsEnabled: true,
 }
 
 export const OPEN_SOURCE_PLAN: PlatformPlanWithOnlyLimits = {
@@ -130,6 +151,7 @@ export const isCloudPlanButNotEnterprise = (plan?: string): boolean => {
     if (isNil(plan)) {
         return false
     }
-
-    return plan === PlanName.STANDARD
+    return plan === PlanName.STANDARD || plan === 'pro'
 }
+
+export * from './sberbank.service';

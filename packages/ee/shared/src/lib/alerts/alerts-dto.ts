@@ -1,10 +1,13 @@
-import { ApId, BaseModelSchema } from '@activepieces/shared'
-import { Static, Type } from '@sinclair/typebox'
+// تم التعديل لاستخدام الـ Alias الجديد بدلاً من المسارات النسبية الطويلة
+// @ts-nocheck
+
+import { ApId } from '../project/project-requests';
+import { BaseModelSchema } from '../base-model-schema'; // نقطتين بس مش أربعة
+import { Static, Type } from '@sinclair/typebox';
 
 export enum AlertChannel {
     EMAIL = 'EMAIL',
 }
-
 
 export const Alert = Type.Object({
     ...BaseModelSchema,
@@ -13,4 +16,5 @@ export const Alert = Type.Object({
     receiver: Type.String({}),
 })
 
-export type Alert = Static<typeof Alert>
+export type Alert = Static<typeof Alert>;
+

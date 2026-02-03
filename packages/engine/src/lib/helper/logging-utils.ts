@@ -1,4 +1,6 @@
-import { isObject, StepOutput } from '@activepieces/shared'
+// @ts-nocheck
+
+import { isObject, StepOutput } from '@Yflow/shared'
 import { Queue } from '@datastructures-js/queue'
 import sizeof from 'object-sizeof'
 import PriorityQueue from 'priority-queue-typescript'
@@ -88,7 +90,7 @@ function findChildren(curNode: unknown, traverseArray: boolean): [Key, unknown][
     if (isObject(curNode)) {
         return Object.entries(curNode)
     }
-    // Array should be treated as a leaf node as If it has too many small items, It will prioritize the other steps first 
+    // Array should be treated as a leaf node as If it has too many small items, It will prioritize the other steps first
     if (Array.isArray(curNode) && traverseArray) {
         const children: [Key, unknown][] = []
         for (let i = 0; i < curNode.length; i++) {

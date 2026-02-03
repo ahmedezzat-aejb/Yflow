@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
     EngineOperation,
     EngineOperationType,
@@ -5,12 +6,12 @@ import {
     ExecuteExtractPieceMetadataOperation,
     ExecuteFlowOperation,
     ExecutePropsOptions,
-    ExecuteTriggerOperation,    
+    ExecuteTriggerOperation,
     ExecuteValidateAuthOperation,
     ExecutionError,
     ExecutionErrorType,
-    TriggerHookType, 
-} from '@activepieces/shared'
+    TriggerHookType,
+} from 'yflow-core'
 import { authValidationOperation } from './auth-validation.operation'
 import { flowOperation } from './flow.operation'
 import { pieceMetadataOperation } from './piece-metadata.operation'

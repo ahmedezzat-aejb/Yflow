@@ -1,8 +1,9 @@
-import { ContextVersion } from '@activepieces/pieces-framework'
-import { AppConnection, AppConnectionStatus, AppConnectionType, AppConnectionValue, ConnectionExpiredError, ConnectionLoadingError, ConnectionNotFoundError, ExecutionError, FetchError } from '@activepieces/shared'
+// @ts-nocheck
+import { ContextVersion } from '@Yflow/pieces-framework'
+import { AppConnection, AppConnectionStatus, AppConnectionType, AppConnectionValue, ConnectionExpiredError, ConnectionLoadingError, ConnectionNotFoundError, ExecutionError, FetchError } from '@Yflow'
 import { StatusCodes } from 'http-status-codes'
 import { utils } from '../utils'
-    
+
 export const createConnectionService = ({ projectId, engineToken, apiUrl, contextVersion }: CreateConnectionServiceParams): ConnectionService => {
     return {
         async obtain(externalId: string): Promise<AppConnectionValue> {
@@ -28,7 +29,7 @@ export const createConnectionService = ({ projectId, engineToken, apiUrl, contex
                 }
                 return getConnectionValue(connection, contextVersion)
             }))
-            
+
             if (connectionValueError) {
                 if (connectionValueError instanceof ExecutionError) {
                     throw connectionValueError

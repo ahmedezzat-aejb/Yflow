@@ -1,5 +1,7 @@
 {
-  "name": "ee-shared",
+  "name": "@Yflow/shared",
+  "version": "0.0.1",
+  "main": "src/index.ts",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ee/shared/src",
   "projectType": "library",

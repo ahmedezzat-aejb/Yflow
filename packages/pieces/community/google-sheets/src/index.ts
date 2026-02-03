@@ -1,77 +1,106 @@
-import { createCustomApiCallAction } from '@activepieces/pieces-common';
-import {
-  createPiece,
-} from '@activepieces/pieces-framework';
-import { PieceCategory } from '@activepieces/shared';
-import { clearSheetAction } from './lib/actions/clear-sheet';
-import { deleteRowAction } from './lib/actions/delete-row.action';
-import { findRowByNumAction } from './lib/actions/find-row-by-num';
-import { findRowsAction } from './lib/actions/find-rows';
-import { getRowsAction } from './lib/actions/get-rows';
-import { insertRowAction } from './lib/actions/insert-row.action';
-import { updateRowAction } from './lib/actions/update-row';
-import { getAccessToken, googleSheetsAuth, GoogleSheetsAuthValue, googleSheetsCommon } from './lib/common/common';
-import { newRowAddedTrigger } from './lib/triggers/new-row-added-webhook';
-import { newOrUpdatedRowTrigger } from './lib/triggers/new-or-updated-row.trigger';
-import { insertMultipleRowsAction } from './lib/actions/insert-multiple-rows.action';
-import { createWorksheetAction } from './lib/actions/create-worksheet';
-import { createSpreadsheetAction } from './lib/actions/create-spreadsheet';
-import { findSpreadsheets } from './lib/actions/find-spreadsheets';
-import { newSpreadsheetTrigger } from './lib/triggers/new-spreadsheet';
-import { newWorksheetTrigger } from './lib/triggers/new-worksheet';
-import { findWorksheetAction } from './lib/actions/find-worksheet';
-import { copyWorksheetAction } from './lib/actions/copy-worksheet';
-import { updateMultipleRowsAction } from './lib/actions/update-multiple-rows';
-import { createColumnAction } from './lib/actions/create-column';
-import { exportSheetAction } from './lib/actions/export-sheet';
+import { PieceAuthHelpers, createPiece, PieceAction, PieceContext } from '../../../framework/src/lib/piece-framework';
 
-export const googleSheets = createPiece({
-  minimumSupportedRelease: '0.71.4',
-  logoUrl: 'https://cdn.activepieces.com/pieces/google-sheets.png',
-  categories: [PieceCategory.PRODUCTIVITY],
-  authors: [
-    'ShayPunter',
-    'Ozak93',
-    'Abdallah-Alwarawreh',
-    'Salem-Alaa',
-    'kishanprmr',
-    'MoShizzle',
-    'AbdulTheActivePiecer',
-    'khaledmashaly',
-    'abuaboud',
-    'geekyme',
-  ],
+export const googleSheetsPiece = createPiece({
+  displayName: 'Google Sheets',
+  description: 'Read and write data to Google Sheets',
+  logoUrl: 'https://cdn.yflow.com/pieces/google-sheets.png',
+  authors: ['yflow'],
+  categories: ['PRODUCTIVITY'],
+  auth: PieceAuthHelpers.OAuth2({
+    clientId: process.env.GOOGLE_CLIENT_ID || '',
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+    authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
+    tokenUrl: 'https://oauth2.googleapis.com/token',
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  }),
   actions: [
-    insertRowAction,
-    insertMultipleRowsAction,
-    deleteRowAction,
-    updateRowAction,
-    findRowsAction,
-    createSpreadsheetAction,
-    createWorksheetAction,
-    clearSheetAction,
-    findRowByNumAction,
-    getRowsAction,
-    findSpreadsheets,
-    findWorksheetAction,
-    copyWorksheetAction,
-    updateMultipleRowsAction,
-    createColumnAction,
-    exportSheetAction,
-    createCustomApiCallAction({
-      auth: googleSheetsAuth,
-      baseUrl: () => {
-        return googleSheetsCommon.baseUrl;
+    {
+      name: 'read_rows',
+      displayName: 'Read Rows',
+      description: 'Read rows from a Google Sheet',
+      props: {
+        spreadsheetId: {
+          type: 'text',
+          displayName: 'Spreadsheet ID',
+          required: true,
+        },
+        range: {
+          type: 'text',
+          displayName: 'Range',
+          required: true,
+          description: 'e.g., Sheet1!A1:C10',
+        },
       },
-      authMapping: async (auth) => {
+      async run(context: PieceContext) {
+        const { spreadsheetId, range } = context.propsValue;
+        const accessToken = context.auth.access_token;
+
+        const response = await fetch(
+          `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        const data = await response.json();
+
         return {
-          Authorization: `Bearer ${(await getAccessToken(auth as GoogleSheetsAuthValue))}`,
+          values: data.values || [],
+          range: data.range,
         };
       },
-    }),
+    },
+    {
+      name: 'append_row',
+      displayName: 'Append Row',
+      description: 'Append a new row to a Google Sheet',
+      props: {
+        spreadsheetId: {
+          type: 'text',
+          displayName: 'Spreadsheet ID',
+          required: true,
+        },
+        range: {
+          type: 'text',
+          displayName: 'Range',
+          required: true,
+          description: 'e.g., Sheet1!A1',
+        },
+        values: {
+          type: 'json',
+          displayName: 'Values',
+          required: true,
+          description: 'Array of values to append',
+        },
+      },
+      async run(context: PieceContext) {
+        const { spreadsheetId, range, values } = context.propsValue;
+        const accessToken = context.auth.access_token;
+
+        const response = await fetch(
+          `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append`,
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              values: Array.isArray(values) ? values : [values],
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        return {
+          updatedRange: data.updates?.updatedRange,
+          updatedRows: data.updates?.updatedRows,
+        };
+      },
+    },
   ],
-  displayName: 'Google Sheets',
-  description: 'Create, edit, and collaborate on spreadsheets online',
-  triggers: [newOrUpdatedRowTrigger,newRowAddedTrigger,newSpreadsheetTrigger,newWorksheetTrigger],
-  auth: googleSheetsAuth,
+  triggers: [],
 });

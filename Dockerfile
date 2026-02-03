@@ -104,7 +104,7 @@ COPY --from=build /usr/src/app/packages ./packages
 # Copy frontend files to Nginx document root
 COPY --from=build /usr/src/app/dist/packages/react-ui /usr/share/nginx/html/
 
-LABEL service=activepieces
+LABEL service=Yflow
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
 EXPOSE 80

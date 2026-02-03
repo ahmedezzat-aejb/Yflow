@@ -1,4 +1,4 @@
-import { ActionErrorHandlingOptions, BranchCondition, BranchExecutionType, CodeAction, FlowAction, FlowActionType, FlowVersionState, LoopOnItemsAction, PieceAction, ProgressUpdateType, PropertyExecutionType, RouterExecutionType, RunEnvironment } from '@activepieces/shared'
+import { ActionErrorHandlingOptions, BranchCondition, BranchExecutionType, CodeAction, FlowAction, ActionType, FlowVersionState, LoopOnItemsAction, PieceAction, ProgressUpdateType, PropertyExecutionType, RouterExecutionType, RunEnvironment } from '@Yflow/shared'
 import { EngineConstants } from '../../src/lib/handler/context/engine-constants'
 
 export const generateMockEngineConstants = (params?: Partial<EngineConstants>): EngineConstants => {
@@ -43,7 +43,7 @@ export function buildSimpleLoopAction({
     return {
         name,
         displayName: 'Loop',
-        type: FlowActionType.LOOP_ON_ITEMS,
+        type: ActionType.LOOP_ON_ITEMS,
         skip: skip ?? false,
         settings: {
             items: loopItems,
@@ -57,7 +57,7 @@ export function buildRouterWithOneCondition({ children, conditions, executionTyp
     return {
         name: 'router',
         displayName: 'Your Router Name',
-        type: FlowActionType.ROUTER,
+        type: ActionType.ROUTER,
         skip: skip ?? false,
         settings: {
             branches: conditions.map((condition) => {
@@ -84,7 +84,7 @@ export function buildCodeAction({ name, input, skip, nextAction, errorHandlingOp
     return {
         name,
         displayName: 'Your Action Name',
-        type: FlowActionType.CODE,
+        type: ActionType.CODE,
         skip: skip ?? false,
         settings: {
             input,
@@ -103,7 +103,7 @@ export function buildPieceAction({ name, input, skip, pieceName, actionName, nex
     return {
         name,
         displayName: 'Your Action Name',
-        type: FlowActionType.PIECE,
+        type: ActionType.PIECE,
         skip: skip ?? false,
         settings: {
             input,

@@ -1,6 +1,6 @@
-//Client ==> Activepieces
+//Client ==> Yflow
 //Vendor ==> Customers using our embed sdk
-export enum ActivepiecesClientEventName {
+export enum YflowventName {
   CLIENT_INIT = 'CLIENT_INIT',
   CLIENT_ROUTE_CHANGED = 'CLIENT_ROUTE_CHANGED',
   CLIENT_NEW_CONNECTION_DIALOG_CLOSED = 'CLIENT_NEW_CONNECTION_DIALOG_CLOSED',
@@ -12,53 +12,53 @@ export enum ActivepiecesClientEventName {
   CLIENT_CONNECTION_PIECE_NOT_FOUND = 'CLIENT_CONNECTION_PIECE_NOT_FOUND',
   CLIENT_BUILDER_HOME_BUTTON_CLICKED = 'CLIENT_BUILDER_HOME_BUTTON_CLICKED',
 }
-export interface ActivepiecesClientInit {
-  type: ActivepiecesClientEventName.CLIENT_INIT;
+export interface Yflownit {
+  type: YflowventName.CLIENT_INIT;
   data: Record<string, never>;
 }
-export interface ActivepiecesClientAuthenticationSuccess {
-  type: ActivepiecesClientEventName.CLIENT_AUTHENTICATION_SUCCESS;
+export interface YflowuthenticationSuccess {
+  type: YflowventName.CLIENT_AUTHENTICATION_SUCCESS;
   data: Record<string, never>;
 }
-export interface ActivepiecesClientAuthenticationFailed {
-  type: ActivepiecesClientEventName.CLIENT_AUTHENTICATION_FAILED;
+export interface YflowuthenticationFailed {
+  type: YflowventName.CLIENT_AUTHENTICATION_FAILED;
   data: unknown;
 }
 // Added this event so in the future if we add another step between authentication and configuration finished, we can use this event to notify the parent
-export interface ActivepiecesClientConfigurationFinished {
-  type: ActivepiecesClientEventName.CLIENT_CONFIGURATION_FINISHED;
+export interface YflowonfigurationFinished {
+  type: YflowventName.CLIENT_CONFIGURATION_FINISHED;
   data: Record<string, never>;
 }
-export interface ActivepiecesClientShowConnectionIframe {
-  type: ActivepiecesClientEventName.CLIENT_SHOW_CONNECTION_IFRAME;
+export interface YflowhowConnectionIframe {
+  type: YflowventName.CLIENT_SHOW_CONNECTION_IFRAME;
   data: Record<string, never>;
 }
-export interface ActivepiecesClientConnectionNameIsInvalid {
-  type: ActivepiecesClientEventName.CLIENT_CONNECTION_NAME_IS_INVALID;
+export interface YflowonnectionNameIsInvalid {
+  type: YflowventName.CLIENT_CONNECTION_NAME_IS_INVALID;
   data: {
     error: string;
   };
 }
 
-export interface ActivepiecesClientConnectionPieceNotFound {
-  type: ActivepiecesClientEventName.CLIENT_CONNECTION_PIECE_NOT_FOUND;
+export interface YflowonnectionPieceNotFound {
+  type: YflowventName.CLIENT_CONNECTION_PIECE_NOT_FOUND;
   data: {
     error: string
   };
 }
 
-export interface ActivepiecesClientRouteChanged {
-  type: ActivepiecesClientEventName.CLIENT_ROUTE_CHANGED;
+export interface YflowouteChanged {
+  type: YflowventName.CLIENT_ROUTE_CHANGED;
   data: {
     route: string;
   };
 }
-export interface ActivepiecesNewConnectionDialogClosed {
-  type: ActivepiecesClientEventName.CLIENT_NEW_CONNECTION_DIALOG_CLOSED;
+export interface YflowectionDialogClosed {
+  type: YflowventName.CLIENT_NEW_CONNECTION_DIALOG_CLOSED;
   data: { connection?: { id: string; name: string } };
 }
-export interface ActivepiecesBuilderHomeButtonClicked {
-  type: ActivepiecesClientEventName.CLIENT_BUILDER_HOME_BUTTON_CLICKED;
+export interface YflowHomeButtonClicked {
+  type: YflowventName.CLIENT_BUILDER_HOME_BUTTON_CLICKED;
   data: {
     route: string;
   };
@@ -72,24 +72,24 @@ export const NEW_CONNECTION_QUERY_PARAMS = {
   randomId: 'randomId'
 };
 
-export type ActivepiecesClientEvent =
-  | ActivepiecesClientInit
-  | ActivepiecesClientRouteChanged;
+export type Yflowvent =
+  | Yflownit
+  | YflowouteChanged;
 
-export enum ActivepiecesVendorEventName {
+export enum YflowventName {
   VENDOR_INIT = 'VENDOR_INIT',
   VENDOR_ROUTE_CHANGED = 'VENDOR_ROUTE_CHANGED',
 }
 
-export interface ActivepiecesVendorRouteChanged {
-  type: ActivepiecesVendorEventName.VENDOR_ROUTE_CHANGED;
+export interface YflowouteChanged {
+  type: YflowventName.VENDOR_ROUTE_CHANGED;
   data: {
     vendorRoute: string;
   };
 }
 
-export interface ActivepiecesVendorInit {
-  type: ActivepiecesVendorEventName.VENDOR_INIT;
+export interface Yflownit {
+  type: YflowventName.VENDOR_INIT;
   data: {
     hideSidebar: boolean;
     hideFlowNameInBuilder?: boolean;
@@ -97,7 +97,7 @@ export interface ActivepiecesVendorInit {
     hideFolders?: boolean;
     sdkVersion?: string;
     jwtToken: string;
-    initialRoute?: string 
+    initialRoute?: string
     fontUrl?: string;
     fontFamily?: string;
     hideExportAndImportFlow?: boolean;
@@ -155,14 +155,14 @@ type ConfigureParams = {
 }
 
 type RequestMethod = Required<Parameters<typeof fetch>>[1]['method'];
-class ActivepiecesEmbedded {
+class Yflowd {
   readonly _sdkVersion = "0.8.1";
   //used for  Automatically Sync URL feature i.e /org/1234
   _prefix = '/';
   _instanceUrl = '';
   //this is used to authenticate embedding for the first time
   _jwtToken = '';
-  _resolveNewConnectionDialogClosed?: (result: ActivepiecesNewConnectionDialogClosed['data']) => void;
+  _resolveNewConnectionDialogClosed?: (result: YflowectionDialogClosed['data']) => void;
   _dashboardAndBuilderIframeWindow?: Window;
   _rejectNewConnectionDialogClosed?: (error: unknown) => void;
   _handleVendorNavigation?: (data: { route: string }) => void;
@@ -195,7 +195,7 @@ class ActivepiecesEmbedded {
     return new Promise((resolve) => { resolve({ status: "success" }) });
   }
 
-  
+
   private _initializeBuilderAndDashboardIframe = ({
     containerSelector
   }: {
@@ -237,12 +237,12 @@ class ActivepiecesEmbedded {
   };
 
   private _setupInitialMessageHandler(targetWindow: Window, initialRoute: string, callbackAfterConfigurationFinished?: () => void) {
-    const initialMessageHandler = (event: MessageEvent<ActivepiecesClientEvent>) => {
+    const initialMessageHandler = (event: MessageEvent<Yflowvent>) => {
       if (event.source === targetWindow && event.origin === new URL(this._instanceUrl).origin) {
         switch (event.data.type) {
-          case ActivepiecesClientEventName.CLIENT_INIT: {
-            const apEvent: ActivepiecesVendorInit = {
-              type: ActivepiecesVendorEventName.VENDOR_INIT,
+          case YflowventName.CLIENT_INIT: {
+            const apEvent: Yflownit = {
+              type: YflowventName.VENDOR_INIT,
               data: {
                 hideSidebar: this._embeddingState?.dashboard?.hideSidebar ?? false,
                 hideFlowsPageNavbar: this._embeddingState?.dashboard?.hideFlowsPageNavbar ?? false,
@@ -291,8 +291,8 @@ class ActivepiecesEmbedded {
   }
 
   private _createConfigurationFinishedListener = (targetWindow: Window, callbackAfterConfigurationFinished?: () => void) => {
-    const configurationFinishedHandler = (event: MessageEvent<ActivepiecesClientConfigurationFinished>) => {
-      if (event.data.type === ActivepiecesClientEventName.CLIENT_CONFIGURATION_FINISHED && event.source === targetWindow) {
+    const configurationFinishedHandler = (event: MessageEvent<YflowonfigurationFinished>) => {
+      if (event.data.type === YflowventName.CLIENT_CONFIGURATION_FINISHED && event.source === targetWindow) {
         this._logger().log('Configuration finished')
         if (callbackAfterConfigurationFinished) {
           callbackAfterConfigurationFinished();
@@ -303,8 +303,8 @@ class ActivepiecesEmbedded {
   }
 
   private _createAuthenticationFailedListener = (targetWindow: Window) => {
-    const authenticationFailedHandler = (event: MessageEvent<ActivepiecesClientAuthenticationFailed>) => {
-        if (event.data.type === ActivepiecesClientEventName.CLIENT_AUTHENTICATION_FAILED && event.source === targetWindow) {
+    const authenticationFailedHandler = (event: MessageEvent<YflowuthenticationFailed>) => {
+        if (event.data.type === YflowventName.CLIENT_AUTHENTICATION_FAILED && event.source === targetWindow) {
            this._errorCreator('Authentication failed',event.data.data);
       }
     }
@@ -312,8 +312,8 @@ class ActivepiecesEmbedded {
   }
 
   private _createAuthenticationSuccessListener = (targetWindow: Window) => {
-    const authenticationSuccessHandler = (event: MessageEvent<ActivepiecesClientAuthenticationSuccess>) => {
-      if (event.data.type === ActivepiecesClientEventName.CLIENT_AUTHENTICATION_SUCCESS && event.source === targetWindow) {
+    const authenticationSuccessHandler = (event: MessageEvent<YflowuthenticationSuccess>) => {
+      if (event.data.type === YflowventName.CLIENT_AUTHENTICATION_SUCCESS && event.source === targetWindow) {
         this._logger().log('Authentication success')
         window.removeEventListener('message', authenticationSuccessHandler);
       }
@@ -341,7 +341,7 @@ class ActivepiecesEmbedded {
     })
     return `width=${windowFeats.width},height=${windowFeats.height},top=${windowFeats.top},left=${windowFeats.left}`
   }
-    
+
   private _addConnectionIframe({pieceName, connectionName}:{pieceName:string, connectionName?:string}) {
     const connectionsIframe = this.connectToEmbed({
       iframeContainer: document.body,
@@ -359,9 +359,9 @@ class ActivepiecesEmbedded {
     this._setupInitialMessageHandler(popup, `/embed/connections?${NEW_CONNECTION_QUERY_PARAMS.name}=${pieceName}&randomId=${Date.now()}&${NEW_CONNECTION_QUERY_PARAMS.connectionName}=${connectionName || ''}`);
     return popup;
   }
-  async connect({ pieceName, connectionName, newWindow }: { 
-    pieceName: string, 
-    connectionName?: string, 
+  async connect({ pieceName, connectionName, newWindow }: {
+    pieceName: string,
+    connectionName?: string,
     newWindow?:{
       height?: number,
       width?: number,
@@ -387,7 +387,7 @@ class ActivepiecesEmbedded {
             }
           }, 500);
         }
-        return new Promise<ActivepiecesNewConnectionDialogClosed['data']>((resolve, reject) => {
+        return new Promise<YflowectionDialogClosed['data']>((resolve, reject) => {
           this._resolveNewConnectionDialogClosed = resolve;
           this._rejectNewConnectionDialogClosed = reject;
           this._setConnectionIframeEventsListener(target);
@@ -403,8 +403,8 @@ class ActivepiecesEmbedded {
       this._logger().error('dashboard iframe not found');
       return;
     }
-    const event: ActivepiecesVendorRouteChanged = {
-      type: ActivepiecesVendorEventName.VENDOR_ROUTE_CHANGED,
+    const event: YflowouteChanged = {
+      type: YflowventName.VENDOR_ROUTE_CHANGED,
       data: {
         vendorRoute: this._prependForwardSlashToRoute(route),
       },
@@ -418,12 +418,12 @@ class ActivepiecesEmbedded {
   private _checkForClientRouteChanges = (source: Window) => {
     window.addEventListener(
       'message',
-      (event: MessageEvent<ActivepiecesClientRouteChanged>) => {
+      (event: MessageEvent<YflowouteChanged>) => {
         if (
           event.data.type ===
-          ActivepiecesClientEventName.CLIENT_ROUTE_CHANGED &&
-          event.source === source && 
-          this._embeddingState?.navigation?.handler         
+          YflowventName.CLIENT_ROUTE_CHANGED &&
+          event.source === source &&
+          this._embeddingState?.navigation?.handler
         ) {
           const routeWithPrefix =  this._prefix + this._prependForwardSlashToRoute(event.data.data.route);
           this._embeddingState.navigation.handler({ route: routeWithPrefix });
@@ -434,8 +434,8 @@ class ActivepiecesEmbedded {
   };
 
   private _checkForBuilderHomeButtonClicked = (source: Window) => {
-    window.addEventListener('message', (event: MessageEvent<ActivepiecesBuilderHomeButtonClicked>) => {
-      if (event.data.type === ActivepiecesClientEventName.CLIENT_BUILDER_HOME_BUTTON_CLICKED && event.source === source) {
+    window.addEventListener('message', (event: MessageEvent<YflowHomeButtonClicked>) => {
+      if (event.data.type === YflowventName.CLIENT_BUILDER_HOME_BUTTON_CLICKED && event.source === source) {
         this._embeddingState?.builder?.homeButtonClickedHandler?.(event.data.data);
       }
     });
@@ -445,8 +445,8 @@ class ActivepiecesEmbedded {
     return vendorUrl.split(parentOriginWithPrefix)[1];
   }
 
-  //used for  Automatically Sync URL feature 
-  extractActivepiecesRouteFromUrl({ vendorUrl }: { vendorUrl: string }) {
+  //used for  Automatically Sync URL feature
+  extractYflowomUrl({ vendorUrl }: { vendorUrl: string }) {
     return this._extractRouteAfterPrefix(vendorUrl, this._removeTrailingSlashes(this._parentOrigin) + this._prefix);
   }
 
@@ -459,10 +459,10 @@ class ActivepiecesEmbedded {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private _cleanConnectionIframe = () => { };
   private _setConnectionIframeEventsListener(target: Window | HTMLIFrameElement ) {
-    const connectionRelatedMessageHandler = (event: MessageEvent<ActivepiecesNewConnectionDialogClosed | ActivepiecesClientConnectionNameIsInvalid | ActivepiecesClientShowConnectionIframe | ActivepiecesClientConnectionPieceNotFound>) => {
+    const connectionRelatedMessageHandler = (event: MessageEvent<YflowectionDialogClosed | YflowClYflowonNameIsInvalid | YflowClientShoYflowframe | YflowClientConnectionYflowd>) => {
       if (event.data.type) {
         switch (event.data.type) {
-          case ActivepiecesClientEventName.CLIENT_NEW_CONNECTION_DIALOG_CLOSED: {
+          case YflowventName.CLIENT_NEW_CONNECTION_DIALOG_CLOSED: {
             if (this._resolveNewConnectionDialogClosed) {
               this._resolveNewConnectionDialogClosed(event.data.data);
             }
@@ -470,8 +470,8 @@ class ActivepiecesEmbedded {
             window.removeEventListener('message', connectionRelatedMessageHandler);
             break;
           }
-          case ActivepiecesClientEventName.CLIENT_CONNECTION_NAME_IS_INVALID:
-          case ActivepiecesClientEventName.CLIENT_CONNECTION_PIECE_NOT_FOUND: {
+          case YflowventName.CLIENT_CONNECTION_NAME_IS_INVALID:
+          case YflowventName.CLIENT_CONNECTION_PIECE_NOT_FOUND: {
             this._removeEmbedding(target);
             if (this._rejectNewConnectionDialogClosed) {
               this._rejectNewConnectionDialogClosed(event.data.data);
@@ -482,7 +482,7 @@ class ActivepiecesEmbedded {
             window.removeEventListener('message', connectionRelatedMessageHandler);
             break;
           }
-          case ActivepiecesClientEventName.CLIENT_SHOW_CONNECTION_IFRAME: {
+          case YflowventName.CLIENT_SHOW_CONNECTION_IFRAME: {
             if (target instanceof HTMLIFrameElement) {
               target.style.display = 'block';
             }
@@ -541,10 +541,10 @@ class ActivepiecesEmbedded {
     },);
   }
 
-  
+
   private _errorCreator(message: string,...args:any[]): never {
     this._logger().error(message,...args)
-    throw new Error(`Activepieces: ${message}`,);
+    throw new Error(`Yflowage}`,);
   }
   private _removeEmbedding(target:HTMLIFrameElement | Window) {
     if (target) {
@@ -561,13 +561,13 @@ class ActivepiecesEmbedded {
   private _logger() {
     return{
       log: (message: string, ...args: any[]) => {
-        console.log(`Activepieces: ${message}`, ...args)
+        console.log(`Yflowage}`, ...args)
       },
       error: (message: string, ...args: any[]) => {
-        console.error(`Activepieces: ${message}`, ...args)
+        console.error(`Yflowage}`, ...args)
       },
       warn: (message: string, ...args: any[]) => {
-        console.warn(`Activepieces: ${message}`, ...args)
+        console.warn(`Yflowage}`, ...args)
       }
     }
   }
@@ -614,5 +614,5 @@ class ActivepiecesEmbedded {
 }
 
 
-(window as any).activepieces = new ActivepiecesEmbedded();
-(window as any).ActivepiecesEmbedded = ActivepiecesEmbedded;
+(window as any).YflowYflowEmYflow
+(window as any).Yflowd = YflowEmYflow

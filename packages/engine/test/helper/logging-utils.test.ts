@@ -1,15 +1,15 @@
 import {
-    FlowActionType,
+    ActionType,
     GenericStepOutput,
     StepOutputStatus,
-} from '@activepieces/shared'
+} from '@Yflow/shared'
 import { loggingUtils } from '../../src/lib/helper/logging-utils'
 
 describe('Logging Utils', () => {
     it('Should not truncate whole step if its log size exceeds limit', async () => {
         const steps = {
             mockStep: GenericStepOutput.create({
-                type: FlowActionType.CODE,
+                type: ActionType.CODE,
                 status: StepOutputStatus.SUCCEEDED,
                 input: {
                     a: 'a'.repeat(1024 * 1024 * 12),
@@ -24,3 +24,13 @@ describe('Logging Utils', () => {
         expect((result.mockStep.input as Record<string, string>).a.length).toBeLessThan(1024 * 1024 * 12)
     })
 })
+function expect(received: number) {
+    return {
+        toBeLessThan(expected: number) {
+            if (!(received < expected)) {
+                throw new Error(`Expected ${received} to be less than ${expected}`);
+            }
+        }
+    };
+}
+

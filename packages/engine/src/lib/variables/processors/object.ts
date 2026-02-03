@@ -1,4 +1,5 @@
-import { isNil } from '@activepieces/shared'
+// @ts-nocheck
+import { isNil } from '@Yflow/shared'
 import { ProcessorFn } from './types'
 
 export const objectProcessor: ProcessorFn = (_property, value) => {

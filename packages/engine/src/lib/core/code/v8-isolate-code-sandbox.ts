@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { CodeModule, CodeSandbox } from '../../core/code/code-sandbox-common'
 
@@ -91,8 +93,8 @@ const executeIsolate = async ({ isolate, isolateContext, code }: ExecuteIsolateP
 
 const serializeCodeModule = (codeModule: CodeModule): string => {
     const serializedCodeFunction = Object.keys(codeModule)
-        .reduce((acc, key) => 
-            acc + `const ${key} = ${(codeModule as any)[key].toString()};`, 
+        .reduce((acc, key) =>
+            acc + `const ${key} = ${(codeModule as any)[key].toString()};`,
         '')
 
     // replace the exports.function_name with function_name

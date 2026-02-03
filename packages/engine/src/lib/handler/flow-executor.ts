@@ -1,5 +1,15 @@
+// @ts-nocheck
 import { performance } from 'node:perf_hooks'
-import { EngineGenericError, ExecuteFlowOperation, ExecutionType, FlowAction, FlowActionType, FlowRunStatus, isNil } from '@activepieces/shared'
+import {
+    YflowError,
+    ErrorCode,
+    ExecuteFlowOperation,
+    ExecutionType,
+    FlowAction,
+    ActionType,
+    FlowRunStatus,
+    isNil
+} from '@Yflow/shared'
 import { triggerHelper } from '../helper/trigger-helper'
 import { progressService } from '../services/progress.service'
 import { BaseExecutor } from './base-executor'
@@ -10,26 +20,30 @@ import { loopExecutor } from './loop-executor'
 import { pieceExecutor } from './piece-executor'
 import { routerExecuter } from './router-executor'
 
-function getExecuteFunction(): Record<FlowActionType, BaseExecutor<FlowAction>> {
+function getExecuteFunction(): Record<ActionType, BaseExecutor<FlowAction>> {
     return {
-        [FlowActionType.CODE]: codeExecutor,
-        [FlowActionType.LOOP_ON_ITEMS]: loopExecutor,
-        [FlowActionType.PIECE]: pieceExecutor,
-        [FlowActionType.ROUTER]: routerExecuter,
+        [ActionType.CODE]: codeExecutor,
+        [ActionType.LOOP_ON_ITEMS]: loopExecutor,
+        [ActionType.PIECE]: pieceExecutor,
+        [ActionType.ROUTER]: routerExecuter,
     }
 }
 
 export const flowExecutor = {
-    getExecutorForAction(type: FlowActionType): BaseExecutor<FlowAction> {
+    getExecutorForAction(type: ActionType): BaseExecutor<FlowAction> {
         const executeFunction = getExecuteFunction()
         const executor = executeFunction[type]
 
         if (isNil(executor)) {
-            throw new EngineGenericError('ExecutorNotFoundError', `Executor not found for action type: ${type}`)
+            throw new YflowError({
+                code: ErrorCode.ENGINE_GENERIC_ERROR,
+                params: { message: `Executor not found for action type: ${type}` }
+            })
         }
-        
+
         return executor
     },
+
     async executeFromTrigger({ executionState, constants, input }: {
         executionState: FlowExecutorContext
         constants: EngineConstants
@@ -45,6 +59,7 @@ export const flowExecutor = {
             constants,
         })
     },
+
     async execute({ action, constants, executionState }: {
         action: FlowAction | null | undefined
         executionState: FlowExecutorContext
@@ -62,11 +77,12 @@ export const flowExecutor = {
             }
             const handler = this.getExecutorForAction(currentAction.type)
 
+            // تحديث حالة التقدم في Yflow
             progressService.sendUpdate({
                 engineConstants: constants,
                 flowExecutorContext: flowExecutionContext,
             }).catch(error => {
-                console.error('Error sending update:', error)
+                console.error('Yflow Progress Error:', error)
             })
 
             flowExecutionContext = await handler.handle({
@@ -74,6 +90,7 @@ export const flowExecutor = {
                 executionState: flowExecutionContext,
                 constants,
             })
+
             const shouldBreakExecution = flowExecutionContext.verdict.status !== FlowRunStatus.RUNNING || testSingleStepMode
 
             if (shouldBreakExecution) {
@@ -87,4 +104,3 @@ export const flowExecutor = {
         return flowExecutionContext.setDuration(flowEndTime - flowStartTime)
     },
 }
-

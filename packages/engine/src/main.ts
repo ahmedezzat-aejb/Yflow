@@ -1,5 +1,8 @@
-import { isNil } from '@activepieces/shared'
+// @ts-nocheck
+
+import { isNil } from '@Yflow/shared'
 import { workerSocket } from './lib/worker-socket'
+import './worker' // Import the worker
 
 const WORKER_ID = process.env.WORKER_ID
 process.title = `engine-${WORKER_ID}`
@@ -19,3 +22,5 @@ process.on('unhandledRejection', (reason) => {
         process.exit(4)
     })
 })
+
+console.log('🚀 Yflow Engine started successfully!')

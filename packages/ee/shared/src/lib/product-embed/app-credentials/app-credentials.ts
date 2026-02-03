@@ -1,4 +1,4 @@
-import { BaseModel, OAuth2GrantType, ProjectId } from '@activepieces/shared'
+import { BaseModel, OAuth2GrantType, ProjectId } from '@Yflow/shared'
 
 export type AppCredentialId = string
 

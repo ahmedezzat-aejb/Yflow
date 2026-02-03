@@ -1,0 +1,140 @@
+.flow-builder {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.flow-builder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.flow-builder-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-success {
+  background: #10b981;
+  color: white;
+}
+
+.btn-secondary {
+  background: #6b7280;
+  color: white;
+}
+
+.flow-builder-content {
+  flex: 1;
+  display: flex;
+}
+
+.pieces-sidebar {
+  width: 250px;
+  padding: 16px;
+  border-right: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.pieces-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.piece-item {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.piece-item:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flow-canvas {
+  flex: 1;
+  position: relative;
+  background: #f3f4f6;
+  overflow: auto;
+}
+
+.flow-nodes {
+  position: relative;
+  min-height: 100%;
+}
+
+.flow-node {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.flow-node:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flow-node.selected {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+}
+
+.node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.node-body {
+  color: #6b7280;
+}
+
+.node-config-panel {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 300px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #374151;
+}

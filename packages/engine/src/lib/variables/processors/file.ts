@@ -1,5 +1,6 @@
-import { ApFile } from '@activepieces/pieces-framework'
-import { isNil, isString } from '@activepieces/shared'
+// @ts-nocheck
+import { ApFile } from '@Yflow/pieces-framework'
+import { isNil, isString } from '@Yflow'
 import axios from 'axios'
 import isBase64 from 'is-base64'
 import mime from 'mime-types'

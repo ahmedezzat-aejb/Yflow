@@ -16,7 +16,7 @@ env:
   AP_POSTGRES_PORT: 5432
   AP_POSTGRES_USERNAME: postgres
   AP_POSTGRES_PASSWORD: postgres
-  AP_POSTGRES_DATABASE: activepieces
+  AP_POSTGRES_DATABASE: Yflow
   AP_POSTGRES_USE_SSL: "false"
   AP_JWT_SECRET: "secret"
   AP_ENCRYPTION_KEY: "fdbe51af3678563560972e4a912aee6d"
@@ -31,14 +31,14 @@ jobs:
   test-e2e-ee:
     runs-on: depot-ubuntu-24.04
     timeout-minutes: 30
-    
+
     services:
       postgres:
         image: postgres:17
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: activepieces
+          POSTGRES_DB: Yflow
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -55,7 +55,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -82,16 +82,16 @@ jobs:
 
       - name: Install dependencies
         run: bun install
-        
+
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
-        
+
       - name: Run E2E tests
         run: |
           bun run test:e2e
         env:
           CI: true
-          
+
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         if: always()
@@ -99,7 +99,7 @@ jobs:
           name: playwright-report-ee
           path: packages/tests-e2e/playwright-report/
           retention-days: 30
-          
+
       - name: Upload Test Results
         uses: actions/upload-artifact@v4
         if: always()
@@ -107,7 +107,7 @@ jobs:
           name: test-results-ee
           path: packages/tests-e2e/test-results/
           retention-days: 30
-          
+
       - name: Notify on failure
         if: failure()
         run: |

@@ -1,17 +1,18 @@
 {
-  "extends": "../tsconfig.server.json",
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ],
+  "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "noImplicitThis": true
-  }
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "strictPropertyInitialization": false
+  },
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
 }

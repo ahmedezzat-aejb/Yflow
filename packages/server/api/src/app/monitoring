@@ -1,0 +1,39 @@
+import { Injectable } from '@nestjs/common';
+
+export interface SystemMetrics {
+  cpu: number;
+  memory: {
+    used: number;
+    total: number;
+    percentage: number;
+  };
+  uptime: number;
+  timestamp: Date;
+}
+
+@Injectable()
+export class MonitoringService {
+  getMetrics(): SystemMetrics {
+    const memUsage = process.memoryUsage();
+    
+    return {
+      cpu: 0, // Would need a library like 'systeminformation' for real CPU usage
+      memory: {
+        used: memUsage.heapUsed,
+        total: memUsage.heapTotal,
+        percentage: (memUsage.heapUsed / memUsage.heapTotal) * 100,
+      },
+      uptime: process.uptime(),
+      timestamp: new Date(),
+    };
+  }
+
+  getHealthStatus() {
+    return {
+      status: 'healthy',
+      timestamp: new Date(),
+      uptime: process.uptime(),
+      memory: process.memoryUsage(),
+    };
+  }
+}

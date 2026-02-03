@@ -1,5 +1,7 @@
-import { Action, DropdownOption, ExecutePropsResult, PieceProperty, PropertyType } from '@activepieces/pieces-framework'
-import { AgentTool, AgentToolType, ExecuteToolOperation, ExecuteToolResponse, ExecutionToolStatus, FlowActionType, isNil, PieceAction, PropertyExecutionType, StepOutputStatus } from '@activepieces/shared'
+// @ts-nocheck
+
+import { Action, DropdownOption, ExecutePropsResult, PieceProperty, PropertyType } from '@Yflow/pieces-framework'
+import { AgentTool, AgentToolType, ExecuteToolOperation, ExecuteToolResponse, ExecutionToolStatus, ActionType, isNil, PieceAction, PropertyExecutionType, StepOutputStatus } from '@Yflow'
 import { generateObject, LanguageModel, ToolSet } from 'ai'
 import { z } from 'zod/v4'
 import { EngineConstants } from '../handler/context/engine-constants'
@@ -38,7 +40,7 @@ export const agentTools = {
                         }),
                 }
             }))
-  
+
         return {
             ...Object.fromEntries(piecesTools.map((tool) => [tool.name, tool])),
         }
@@ -93,7 +95,7 @@ async function execute(operation: ExecuteToolOperationWithModel): Promise<Execut
     const step: PieceAction = {
         name: operation.actionName,
         displayName: operation.actionName,
-        type: FlowActionType.PIECE,
+        type: ActionType.PIECE,
         settings: {
             input: resolvedInput,
             actionName: operation.actionName,

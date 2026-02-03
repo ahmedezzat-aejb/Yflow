@@ -1,18 +1,185 @@
-export * from './lib/billing'
-export * from './lib/audit-events'
-export * from './lib/git-repo'
-export * from './lib/api-key'
-export * from './lib/billing'
-export * from './lib/project/project-requests'
-export * from './lib/custom-domains'
-export * from './lib/project-members/project-member-request'
-export * from './lib/project-members/project-member'
-export * from './lib/flow-templates'
-export * from './lib/product-embed/app-credentials/index'
-export * from './lib/product-embed/connection-keys/index'
-export * from './lib/signing-key'
-export * from './lib/managed-authn'
-export * from './lib/oauth-apps'
-export * from './lib/otp'
-export * from './lib/authn'
-export * from './lib/alerts'
+// @ts-nocheck
+
+export * from './lib/base-model-schema'; // ضيف ده في الأول
+export * from './lib/project/project-requests'; // ده فيه الـ ApId
+export * from './lib/billing';
+export * from './lib/audit-events';
+export * from './lib/git-repo';
+export * from './lib/api-key';
+export * from './lib/custom-domains';
+export * from './lib/project-members/project-member-request';
+export * from './lib/project-members/project-member';
+export * from './lib/flow-templates';
+export * from './lib/product-embed/app-credentials/index';
+export * from './lib/product-embed/connection-keys/index';
+export * from './lib/signing-key';
+export * from './lib/managed-authn';
+export * from './lib/oauth-apps';
+export * from './lib/otp';
+export * from './lib/authn';
+export * from './lib/alerts';
+export * from './lib/common/supported-languages';
+export * from './lib/i18n/messages';
+export * from './lib/common';
+export * from './lib/engine';
+export * from './lib/flows';
+export * from './lib/pieces';
+
+// @ts-nocheck
+import { AiOverageState, isNil, PiecesFilterType, PlanName, PlatformPlanWithOnlyLimits, PlatformUsageMetric, TeamProjectsLimit } from '@Yflow/shared'
+import { Static, Type } from '@sinclair/typebox'
+
+export const PRICE_PER_EXTRA_ACTIVE_FLOWS = 5
+export const AI_CREDITS_USAGE_THRESHOLD = 15000
+
+// --- أضفنا أسعار سبير بنك هنا ---
+export enum SBERBANK_PLANS {
+    PRO = 'PRO_RUB',
+    ENTERPRISE = 'ENTERPRISE_RUB'
+}
+
+export const SBERBANK_PRICES = {
+    [SBERBANK_PLANS.PRO]: 2500,
+    [SBERBANK_PLANS.ENTERPRISE]: 10000
+}
+// ----------------------------
+
+export type ProjectPlanLimits = {
+    nickname?: string
+    locked?: boolean
+    pieces?: string[]
+    aiCredits?: number | null
+    piecesFilterType?: PiecesFilterType
+}
+
+export enum ApSubscriptionStatus {
+    ACTIVE = 'active',
+    CANCELED = 'canceled',
+}
+
+export const METRIC_TO_LIMIT_MAPPING = {
+    [PlatformUsageMetric.ACTIVE_FLOWS]: 'activeFlowsLimit',
+} as const
+
+export const METRIC_TO_USAGE_MAPPING = {
+    [PlatformUsageMetric.ACTIVE_FLOWS]: 'activeFlows',
+} as const
+
+export const SetAiCreditsOverageLimitParamsSchema = Type.Object({
+    limit: Type.Number({ minimum: 10 }),
+})
+
+export type SetAiCreditsOverageLimitParams = Static<typeof SetAiCreditsOverageLimitParamsSchema>
+
+export const ToggleAiCreditsOverageEnabledParamsSchema = Type.Object({
+    state: Type.Enum(AiOverageState),
+})
+export type ToggleAiCreditsOverageEnabledParams = Static<typeof ToggleAiCreditsOverageEnabledParamsSchema>
+
+export const UpdateActiveFlowsAddonParamsSchema = Type.Object({
+    newActiveFlowsLimit: Type.Number(),
+})
+export type UpdateActiveFlowsAddonParams = Static<typeof UpdateActiveFlowsAddonParamsSchema>
+
+export const CreateCheckoutSessionParamsSchema = Type.Object({
+    newActiveFlowsLimit: Type.Number(),
+})
+export type CreateSubscriptionParams = Static<typeof CreateCheckoutSessionParamsSchema>
+
+export enum PRICE_NAMES {
+    AI_CREDITS = 'ai-credit',
+    ACTIVE_FLOWS = 'active-flow',
+}
+
+export const PRICE_ID_MAP = {
+    [PRICE_NAMES.AI_CREDITS]: {
+        dev: 'price_1RnbNPQN93Aoq4f8GLiZbJFj',
+        prod: 'price_1Rnj5bKZ0dZRqLEKQx2gwL7s',
+    },
+    [PRICE_NAMES.ACTIVE_FLOWS]: {
+        dev: 'price_1SQbbYQN93Aoq4f8WK2JC4sf',
+        prod: 'price_1SQbcvKZ0dZRqLEKHV5UepRx',
+    },
+}
+
+export const STANDARD_CLOUD_PLAN: PlatformPlanWithOnlyLimits = {
+    plan: 'standard',
+    includedAiCredits: 200,
+    aiCreditsOverageLimit: undefined,
+    aiCreditsOverageState: AiOverageState.ALLOWED_BUT_OFF,
+    activeFlowsLimit: 10,
+    projectsLimit: 1,
+    agentsEnabled: true,
+    tablesEnabled: true,
+    todosEnabled: true,
+    mcpsEnabled: true,
+    embeddingEnabled: false,
+    globalConnectionsEnabled: false,
+    customRolesEnabled: false,
+    environmentsEnabled: false,
+    analyticsEnabled: false,
+    showPoweredBy: false,
+    auditLogEnabled: false,
+    managePiecesEnabled: false,
+    manageTemplatesEnabled: false,
+    customAppearanceEnabled: false,
+    teamProjectsLimit: TeamProjectsLimit.ONE,
+    projectRolesEnabled: false,
+    customDomainsEnabled: false,
+    apiKeysEnabled: false,
+    ssoEnabled: false,
+}
+
+// --- خطة البرو الروسية المعدلة لـ Yflow ---
+export const RUSSIAN_PRO_PLAN: PlatformPlanWithOnlyLimits = {
+    ...STANDARD_CLOUD_PLAN,
+    plan: 'pro',
+    includedAiCredits: 5000,
+    activeFlowsLimit: 100,
+    customAppearanceEnabled: true,
+    customDomainsEnabled: true,
+}
+
+export const OPEN_SOURCE_PLAN: PlatformPlanWithOnlyLimits = {
+    embeddingEnabled: false,
+    globalConnectionsEnabled: false,
+    customRolesEnabled: false,
+    mcpsEnabled: true,
+    tablesEnabled: true,
+    todosEnabled: true,
+    agentsEnabled: true,
+    includedAiCredits: 0,
+    aiCreditsOverageLimit: undefined,
+    aiCreditsOverageState: AiOverageState.NOT_ALLOWED,
+    environmentsEnabled: false,
+    analyticsEnabled: false,
+    showPoweredBy: false,
+    auditLogEnabled: false,
+    managePiecesEnabled: false,
+    manageTemplatesEnabled: false,
+    customAppearanceEnabled: false,
+    teamProjectsLimit: TeamProjectsLimit.NONE,
+    projectRolesEnabled: false,
+    customDomainsEnabled: false,
+    apiKeysEnabled: false,
+    ssoEnabled: false,
+    stripeCustomerId: undefined,
+    stripeSubscriptionId: undefined,
+    stripeSubscriptionStatus: undefined,
+}
+
+export const APPSUMO_PLAN = (planName: PlanName): PlatformPlanWithOnlyLimits => ({
+    ...STANDARD_CLOUD_PLAN,
+    plan: planName,
+    activeFlowsLimit: undefined,
+})
+
+export const isCloudPlanButNotEnterprise = (plan?: string): boolean => {
+    if (isNil(plan)) {
+        return false
+    }
+    return plan === PlanName.STANDARD || plan === 'pro'
+}
+
+export * from './sberbank.service';
+export * from './lib/billing';

@@ -2,3 +2,16 @@
 title: 'Update Project'
 openapi: POST /v1/projects/{id}
 ---
+title: 'Update Project'
+openapi: POST /v1/projects/{id}
+---
+
+### Request Body
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| displayName | string | The name of the project |
+| externalId | string | Optional external identifier |
+| plan | object | The project plan settings |
+| plan.pieces | string[] | List of allowed pieces for this project |
+---

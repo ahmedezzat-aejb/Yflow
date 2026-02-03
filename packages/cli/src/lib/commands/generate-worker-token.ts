@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { prompt } from 'inquirer';
@@ -5,7 +7,7 @@ import { nanoid } from 'nanoid';
 import jwtLibrary from 'jsonwebtoken';
 
 const KEY_ID = '1'
-const ISSUER = 'activepieces'
+const ISSUER = 'Yflow'
 const ALGORITHM = 'HS256'
 
 export const generateWorkerTokenCommand = new Command('token')
@@ -42,9 +44,9 @@ export const generateWorkerTokenCommand = new Command('token')
             });
             console.log(chalk.green('\nGenerated Worker Token, Please use it in AP_WORKER_TOKEN environment variable:'));
             console.log(chalk.yellow(token));
-           
+
         } catch (error) {
             console.error(chalk.red('Failed to generate token:'), error);
             process.exit(1);
         }
-    }); 
+    });

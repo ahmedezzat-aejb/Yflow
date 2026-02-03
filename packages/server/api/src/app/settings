@@ -1,0 +1,39 @@
+export interface AppSettings {
+  appName: string;
+  version: string;
+  apiPrefix: string;
+  cors: {
+    enabled: boolean;
+    origins: string[];
+  };
+  database: {
+    host: string;
+    port: number;
+    name: string;
+  };
+  features: {
+    authentication: boolean;
+    webhooks: boolean;
+    logs: boolean;
+  };
+}
+
+export const defaultSettings: AppSettings = {
+  appName: 'Yflow API',
+  version: '1.0.0',
+  apiPrefix: 'api/v1',
+  cors: {
+    enabled: true,
+    origins: ['*'],
+  },
+  database: {
+    host: 'localhost',
+    port: 5432,
+    name: 'yflow',
+  },
+  features: {
+    authentication: true,
+    webhooks: true,
+    logs: true,
+  },
+};

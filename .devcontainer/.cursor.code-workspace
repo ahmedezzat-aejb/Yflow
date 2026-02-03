@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"path": "../.cursor"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../.git"
+		},
+		{
+			"path": "../.github"
+		},
+		{
+			"path": "../.husky"
+		},
+		{
+			"path": "../.trae"
+		},
+		{
+			"path": "../.verdaccio"
+		},
+		{
+			"path": "../.vscode"
+		},
+		{
+			"path": "../assets"
+		},
+		{
+			"path": "../deploy"
+		},
+		{
+			"path": "../docs"
+		},
+		{
+			"path": "../packages"
+		}
+	]
+}

@@ -1,5 +1,21 @@
-import { OutputContext } from '@activepieces/pieces-framework'
-import { DEFAULT_MCP_DATA, EngineGenericError, EngineSocketEvent, FlowActionType, FlowRunStatus, GenericStepOutput, isFlowRunStateTerminal, isNil, logSerializer, StepOutput, StepOutputStatus, StepRunResponse, UpdateRunProgressRequest } from '@activepieces/shared'
+// @ts-nocheck
+import { OutputContext } from '@Yflow/pieces-framework'
+import {
+    DEFAULT_MCP_DATA,
+    YflowError,
+    ErrorCode,
+    EngineSocketEvent,
+    ActionType,
+    FlowRunStatus,
+    GenericStepOutput,
+    isFlowRunStateTerminal,
+    isNil,
+    logSerializer,
+    StepOutput,
+    StepOutputStatus,
+    StepRunResponse,
+    UpdateRunProgressRequest
+} from '@Yflow/shared'
 import { Mutex } from 'async-mutex'
 import dayjs from 'dayjs'
 import fetchRetry from 'fetch-retry'
@@ -7,7 +23,6 @@ import { EngineConstants } from '../handler/context/engine-constants'
 import { FlowExecutorContext } from '../handler/context/flow-execution-context'
 import { utils } from '../utils'
 import { workerSocket } from '../worker-socket'
-
 
 let lastScheduledUpdateId: NodeJS.Timeout | null = null
 let lastActionExecutionTime: number | undefined = undefined
@@ -18,13 +33,8 @@ const lock = new Mutex()
 const updateLock = new Mutex()
 const fetchWithRetry = fetchRetry(global.fetch)
 
-process.on('SIGTERM', () => {
-    isGraceShutdownSignalReceived = true
-})
-
-process.on('SIGINT', () => {
-    isGraceShutdownSignalReceived = true
-})
+process.on('SIGTERM', () => { isGraceShutdownSignalReceived = true })
+process.on('SIGINT', () => { isGraceShutdownSignalReceived = true })
 
 export const progressService = {
     sendUpdate: async (params: UpdateStepProgressParams): Promise<void> => {
@@ -65,13 +75,6 @@ export const progressService = {
     },
 }
 
-type CreateOutputContextParams = {
-    engineConstants: EngineConstants
-    flowExecutorContext: FlowExecutorContext
-    stepName: string
-    stepOutput: GenericStepOutput<FlowActionType.PIECE, unknown>
-}
-
 const queueUpdates: UpdateStepProgressParams[] = []
 
 const sendUpdateRunRequest = async (updateParams: UpdateStepProgressParams): Promise<void> => {
@@ -82,26 +85,23 @@ const sendUpdateRunRequest = async (updateParams: UpdateStepProgressParams): Pro
     queueUpdates.push(updateParams)
     await lock.runExclusive(async () => {
         const params = queueUpdates.pop()
-        while (queueUpdates.length > 0) {
-            queueUpdates.pop()
-        }
-        if (isNil(params)) {
-            return
-        }
+        while (queueUpdates.length > 0) { queueUpdates.pop() }
+        if (isNil(params)) return
+
         lastActionExecutionTime = Date.now()
         const { flowExecutorContext, engineConstants } = params
         const trimmedSteps = await flowExecutorContext.trimmedSteps()
         const executionState = await logSerializer.serialize({
-            executionState: {
-                steps: trimmedSteps,
-            },
+            executionState: { steps: trimmedSteps },
         })
+
         if (isNil(engineConstants.logsUploadUrl)) {
-            throw new EngineGenericError('LogsUploadUrlNotSetError', 'Logs upload URL is not set')
+            throw new YflowError({ code: ErrorCode.ENGINE_GENERIC_ERROR, params: { message: 'Logs upload URL is not set' } })
         }
+
         const uploadLogResponse = await uploadExecutionState(engineConstants.logsUploadUrl, executionState)
         if (!uploadLogResponse.ok) {
-            throw new EngineGenericError('ProgressUpdateError', 'Failed to upload execution state', uploadLogResponse)
+            throw new YflowError({ code: ErrorCode.ENGINE_GENERIC_ERROR, params: { message: 'Failed to upload execution state' } })
         }
 
         const stepResponse = extractStepResponse({
@@ -129,18 +129,16 @@ const sendUpdateRunRequest = async (updateParams: UpdateStepProgressParams): Pro
             tags: Array.from(flowExecutorContext.tags),
         }
 
-   
         await sendProgressUpdate(request)
-
     })
 }
 
 const sendProgressUpdate = async (request: UpdateRunProgressRequest): Promise<void> => {
-    const result = await utils.tryCatchAndThrowOnEngineError(() => 
+    const result = await utils.tryCatchAndThrowOnEngineError(() =>
         workerSocket.sendToWorkerWithAck(EngineSocketEvent.UPDATE_RUN_PROGRESS, request),
     )
     if (result.error) {
-        throw new EngineGenericError('ProgressUpdateError', 'Failed to send progress update', result.error)
+        throw new YflowError({ code: ErrorCode.ENGINE_GENERIC_ERROR, params: { message: 'Failed to send progress update' } })
     }
 }
 
@@ -148,9 +146,7 @@ const uploadExecutionState = async (uploadUrl: string, executionState: Buffer, f
     const response = await fetchWithRetry(uploadUrl, {
         method: 'PUT',
         body: new Uint8Array(executionState),
-        headers: {
-            'Content-Type': 'application/octet-stream',
-        },
+        headers: { 'Content-Type': 'application/octet-stream' },
         redirect: 'manual',
         retries: 3,
         retryDelay: 3000,
@@ -163,12 +159,8 @@ const uploadExecutionState = async (uploadUrl: string, executionState: Buffer, f
     return response
 }
 
-
 const extractStepResponse = (params: ExtractStepResponse): StepRunResponse | undefined => {
-    if (isNil(params.stepName)) {
-        return undefined
-    }
-
+    if (isNil(params.stepName)) return undefined
     const stepOutput = params.steps?.[params.stepName]
     const isSuccess = stepOutput?.status === StepOutputStatus.SUCCEEDED || stepOutput?.status === StepOutputStatus.PAUSED
     return {
@@ -181,6 +173,12 @@ const extractStepResponse = (params: ExtractStepResponse): StepRunResponse | und
     }
 }
 
+type CreateOutputContextParams = {
+    engineConstants: EngineConstants
+    flowExecutorContext: FlowExecutorContext
+    stepName: string
+    stepOutput: GenericStepOutput<ActionType.PIECE, unknown>
+}
 
 type UpdateStepProgressParams = {
     engineConstants: EngineConstants

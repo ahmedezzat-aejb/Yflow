@@ -1,6 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": ["node"],
     "module": "commonjs",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -18,7 +20,7 @@
       "path": "./tsconfig.lib.json",
     },
     {
-      "path": "./tsconfig.spec.json"
+      "path": "./tsconfig.spec.json",
     }
   ]
 }

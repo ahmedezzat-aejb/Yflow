@@ -1,10 +1,10 @@
 ---
 title: "Database Migrations"
-description: "Guide for creating database migrations in Activepieces"
+description: "Guide for creating database migrations in Yflow"
 icon: "database"
 ---
 
-Activepieces uses TypeORM as its database driver in Node.js. We support two database types across different editions of our platform.
+Yflow uses TypeORM as its database driver in Node.js. We support two database types across different editions of our platform.
 
 The database migration files contain both what to do to migrate (up method) and what to do when rolling back (down method).
 
@@ -37,7 +37,7 @@ PGlite is a lightweight PostgreSQL implementation that runs embedded, so migrati
 
 <Steps>
   <Step title="Setup AP_DB_TYPE">
-    Set the `AP_DB_TYPE` environment variable to `POSTGRES` after making sure have latest state by running Activepieces first.
+    Set the `AP_DB_TYPE` environment variable to `POSTGRES` after making sure have latest state by running Yflow first.
   </Step>
 
   <Step title="Generate Migration">
@@ -60,7 +60,7 @@ PGlite is a lightweight PostgreSQL implementation that runs embedded, so migrati
 While PGlite is mostly PostgreSQL-compatible, some features are not supported. When using features like `CONCURRENTLY` for index operations, you need to conditionally handle PGlite:
 
 ```typescript
-import { AppSystemProp } from '@activepieces/server-shared'
+import { AppSystemProp } from '@Yflow/server-shared'
 import { MigrationInterface, QueryRunner } from 'typeorm'
 import { DatabaseType, system } from '../../../helper/system/system'
 

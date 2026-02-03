@@ -1,33 +1,22 @@
 services:
-  activepieces:
-    image: ghcr.io/activepieces/activepieces:0.73.0
-    container_name: activepieces
-    restart: unless-stopped
-    ## Enable the following line if you already use AP_EXECUTION_MODE with SANDBOX_PROCESS or old activepieces, checking the breaking change documentation for more info.
-    ## privileged: true
-    ports:
-      - '8080:80'
-    depends_on:
-      - postgres
-      - redis
-    env_file: .env
-    volumes:
-      - ./cache:/usr/src/app/cache
-    networks:
-      - activepieces
+  # خدمة الداتابيز
   postgres:
     image: 'postgres:14.4'
     container_name: postgres
     restart: unless-stopped
     env_file: .env
+    ports:
+      - "5432:5432"
     environment:
-      - 'POSTGRES_DB=${AP_POSTGRES_DATABASE}'
-      - 'POSTGRES_PASSWORD=${AP_POSTGRES_PASSWORD}'
-      - 'POSTGRES_USER=${AP_POSTGRES_USERNAME}'
+      - 'POSTGRES_DB=${AP_POSTGRES_DATABASE:-yflow}'
+      - 'POSTGRES_PASSWORD=${AP_POSTGRES_PASSWORD:-password}'
+      - 'POSTGRES_USER=${AP_POSTGRES_USERNAME:-postgres}'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - activepieces
+      - yflow_net
+
+  # خدمة الـ Redis
   redis:
     image: 'redis:7.0.7'
     container_name: redis
@@ -35,9 +24,27 @@ services:
     volumes:
       - 'redis_data:/data'
     networks:
-      - activepieces
+      - yflow_net
+
+  # خدمة التطبيق (تم تصحيح الحروف الكبيرة هنا)
+  yflow_app:
+    image: ghcr.io/yflow/yflow:0.73.0
+    container_name: yflow_app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    env_file: .env
+    volumes:
+      - ./cache:/usr/src/app/cache
+    networks:
+      - yflow_net
+
 volumes:
   postgres_data:
   redis_data:
+
 networks:
-  activepieces:
+  yflow_net:

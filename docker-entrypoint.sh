@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Set default values if not provided
-export AP_APP_TITLE="${AP_APP_TITLE:-Activepieces}"
-export AP_FAVICON_URL="${AP_FAVICON_URL:-https://cdn.activepieces.com/brand/favicon.ico}"
+export AP_APP_TITLE="${AP_APP_TITLE:-Yflow}"
+export AP_FAVICON_URL="${AP_FAVICON_URL:-https://cdn.Yflow.com/brand/favicon.ico}"
 
 # Debug: Print environment variables
 echo "AP_APP_TITLE: $AP_APP_TITLE"
@@ -19,7 +19,7 @@ nginx -g "daemon off;" &
 # Start backend server
 if [ "$AP_CONTAINER_TYPE" = "APP" ] && [ "$AP_PM2_ENABLED" = "true" ]; then
     echo "Starting backend server with PM2 (APP mode)"
-    pm2-runtime start dist/packages/server/api/main.cjs --name "activepieces-app" --node-args="--enable-source-maps" -i 0
+    pm2-runtime start dist/packages/server/api/main.cjs --name "Yflow-app" --node-args="--enable-source-maps" -i 0
 else
     echo "Starting backend server with Node.js (WORKER mode or default)"
     node --enable-source-maps dist/packages/server/api/main.cjs

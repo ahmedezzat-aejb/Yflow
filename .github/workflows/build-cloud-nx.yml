@@ -5,19 +5,19 @@ on:
 permissions:
   actions: read
   contents: read
-  
+
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
 jobs:
   main:
     runs-on: ubuntu-latest
-    if: github.repository == 'activepieces/activepieces'
+    if: github.repository == 'Yflow/Yflow'
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -26,20 +26,20 @@ jobs:
         with:
           bun-version: latest
 
-   
+
       - run: bun install
 
-      - run: npx nx reset 
+      - run: npx nx reset
 
       - uses: nrwl/nx-set-shas@v4
 
       - name: List all nx targets
         run: npx nx show projects --all
-      
+
       - name: Get changed files
         id: changed-files
         run: echo "files=$(git diff --name-only HEAD origin/main | tr '\n' ' ')" >> $GITHUB_OUTPUT
-      
+
       - name: Check if framework or common pieces are changed
         id: check-framework-common
         run: |
@@ -49,7 +49,7 @@ jobs:
           else
             echo "framework_or_common_changed=false" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Extract pieces projects from changed files
         id: extract-pieces
         run: |
@@ -58,26 +58,26 @@ jobs:
 
       - name: Lint affected projects excluding pieces
         run: npx nx affected --target=lint --exclude="pieces-*"
-      
+
       - name: Lint changed pieces projects
         if: steps.extract-pieces.outputs.pieces_projects != '' && steps.check-framework-common.outputs.framework_or_common_changed == 'false'
         run: npx nx run-many --target=lint --projects="${{ steps.extract-pieces.outputs.pieces_projects }}"
-      
+
       - name: Lint all pieces projects
         if: steps.check-framework-common.outputs.framework_or_common_changed == 'true'
         run: npx nx run-many --target=lint --projects="pieces-*"
-        
+
       - name: Build affected projects excluding pieces
         run: npx nx affected --target=build -c production --exclude="pieces-*"
-    
+
       - name: Build changed pieces projects
         if: steps.extract-pieces.outputs.pieces_projects != '' && steps.check-framework-common.outputs.framework_or_common_changed == 'false'
         run: npx nx run-many --target=build -c production --projects="${{ steps.extract-pieces.outputs.pieces_projects }}"
-      
+
       - name: Build all pieces projects
         if: steps.check-framework-common.outputs.framework_or_common_changed == 'true'
         run: npx nx run-many --target=build -c production --projects="pieces-*"
-      
+
       - name: Run all tests and migration check in parallel
         run: |
           set -euo pipefail

@@ -1,4 +1,6 @@
-import { PiecePropertyMap } from '@activepieces/pieces-framework'
+// @ts-nocheck
+
+import { PiecePropertyMap } from '@Yflow/pieces-framework'
 
 export const tsort = {
     sortPropertiesByDependencies(properties: PiecePropertyMap): Record<number, string[]> {

@@ -1,5 +1,5 @@
 
-import { FlowRunStatus } from '@activepieces/shared'
+import { FlowRunStatus } from '@Yflow/shared'
 import { codeExecutor } from '../../src/lib/handler/code-executor'
 import { FlowExecutorContext } from '../../src/lib/handler/context/flow-execution-context'
 import { pieceExecutor } from '../../src/lib/handler/piece-executor'
@@ -37,11 +37,11 @@ describe('piece with error handling', () => {
         const result = await pieceExecutor.handle({
             action: buildPieceAction({
                 name: 'send_http',
-                pieceName: '@activepieces/piece-http',
+                pieceName: '@Yflowhttp',
                 actionName: 'send_request',
                 input: {
                     'method': 'POST',
-                    'url': 'https://cloud.activepieces.com/api/v1/flags',
+                    'url': 'https://cloud.Yflowi/v1/flags',
                     'headers': {},
                     'queryParams': {},
                     'body_type': 'none',

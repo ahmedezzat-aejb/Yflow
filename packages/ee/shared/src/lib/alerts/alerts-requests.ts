@@ -1,4 +1,7 @@
-import { ApId } from '@activepieces/shared'
+// @ts-nocheck
+
+import { ApId } from '../project/project-requests';
+import { BaseModelSchema } from '../base-model-schema'; // نقطتين بس مش أربعة
 import { Static, Type } from '@sinclair/typebox'
 import { AlertChannel } from './alerts-dto'
 

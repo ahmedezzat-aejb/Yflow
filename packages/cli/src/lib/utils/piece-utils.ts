@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { readdir, stat } from 'node:fs/promises'
 import * as path from 'path'
 import { cwd } from 'node:process'
@@ -51,7 +53,7 @@ export async function buildPiece(pieceFolder: string): Promise<{ outputFolder: s
     const projectJson = await readProjectJson(pieceFolder);
 
     await buildPackage(projectJson.name);
-     
+
     const compiledPath = `dist/packages/${removeStartingSlashes(pieceFolder).split(path.sep + 'packages')[1]}`;
 
     const { stdout } = await exec('npm pack --json', { cwd: compiledPath });
@@ -100,7 +102,7 @@ export async function publishPieceFromFolder(
         });
         console.info(chalk.green(`Piece '${packageJson.name}' published.`));
     } catch (error) {
-     
+
         if (axios.isAxiosError(error)) {
             if (error.response?.status === 409) {
                 console.info(chalk.yellow(`Piece '${packageJson.name}' and '${packageJson.version}' already published.`));

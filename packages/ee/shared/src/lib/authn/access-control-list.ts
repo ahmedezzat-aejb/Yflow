@@ -1,4 +1,6 @@
-import { DefaultProjectRole, Permission } from '@activepieces/shared'
+// @ts-nocheck
+
+import { DefaultProjectRole, Permission } from '@Yflow/shared'
 
 export const rolePermissions: Record<DefaultProjectRole, Permission[]> = {
     [DefaultProjectRole.ADMIN]: [

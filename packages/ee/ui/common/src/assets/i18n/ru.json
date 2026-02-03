@@ -1,0 +1,35 @@
+{
+  "common": {
+    "dashboard": "Панель управления",
+    "settings": "Настройки",
+    "logout": "Выйти",
+    "save": "Сохранить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "cancel": "Отмена"
+  },
+  "branding": {
+    "name": "Yflow",
+    "welcome": "Добро пожаловать в Yflow",
+    "description": "Ваша автоматизация на русском языке"
+  },
+  "flows": {
+    "create": "Создать новый поток",
+    "import": "Импортировать",
+    "active": "Активен",
+    "draft": "Черновик"
+  },
+  "billing": {
+    "payment_method": "Способ оплаты",
+    "sberbank": "Сбербанк Онлайн",
+    "subscribe": "Подписаться"
+  },
+  "billing": {
+    "plans": {
+        "pro": "Тариф Про",
+        "enterprise": "Тариф Корпоративный",
+        "pay_with_sber": "Оплатить через Сбербанк",
+        "currency": "₽"
+    }
+}
+}

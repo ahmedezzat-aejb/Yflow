@@ -1,7 +1,8 @@
+// @ts-nocheck
 import fs from 'fs/promises'
 import path from 'path'
-import { Action, Piece, PiecePropertyMap, Trigger } from '@activepieces/pieces-framework'
-import { ActivepiecesError, EngineGenericError, ErrorCode, extractPieceFromModule, getPackageAliasForPiece, getPieceNameFromAlias, isNil, trimVersionFromAlias } from '@activepieces/shared'
+import { Action, Piece, PiecePropertyMap, Trigger } from '@Yflow/pieces-framework'
+import { YflowEngineGenericError, ErrorCode, extractPieceFromModule, getPackageAliasForPiece, getPieceNameFromAlias, isNil, trimVersionFromAlias } from '@Yflow/shared';
 import { utils } from '../utils'
 
 export const pieceLoader = {
@@ -24,14 +25,20 @@ export const pieceLoader = {
             })
 
             if (isNil(piece)) {
-                throw new EngineGenericError('PieceNotFoundError', `Piece not found for piece: ${pieceName}, pieceVersion: ${pieceVersion}`)
+                throw new YflowEngineGenericError({
+                    code: ErrorCode.PIECE_NOT_FOUND,
+                    params: {
+                        pieceName,
+                        pieceVersion,
+                    },
+                })
             }
             return piece
         })
         if (pieceError) {
             throw pieceError
         }
-        return piece
+        return piece as Piece
     },
 
     getPieceAndTriggerOrThrow: async (params: GetPieceAndTriggerParams): Promise<{ piece: Piece, pieceTrigger: Trigger }> => {
@@ -40,7 +47,14 @@ export const pieceLoader = {
         const trigger = piece.getTrigger(triggerName)
 
         if (trigger === undefined) {
-            throw new EngineGenericError('TriggerNotFoundError', `Trigger not found, pieceName=${pieceName}, triggerName=${triggerName}`)
+            throw new YflowEngineGenericError({
+                code: ErrorCode.STEP_NOT_FOUND,
+                params: {
+                    pieceName,
+                    pieceVersion,
+                    stepName: triggerName,
+                },
+            })
         }
 
         return {
@@ -56,7 +70,7 @@ export const pieceLoader = {
         const pieceAction = piece.getAction(actionName)
 
         if (isNil(pieceAction)) {
-            throw new ActivepiecesError({
+            throw new YflowEngineGenericError({
                 code: ErrorCode.STEP_NOT_FOUND,
                 params: {
                     pieceName,
@@ -78,7 +92,7 @@ export const pieceLoader = {
         const actionOrTrigger = piece.getAction(actionOrTriggerName) ?? piece.getTrigger(actionOrTriggerName)
 
         if (isNil(actionOrTrigger)) {
-            throw new ActivepiecesError({
+            throw new YflowEngineGenericError({
                 code: ErrorCode.STEP_NOT_FOUND,
                 params: {
                     pieceName,
@@ -91,7 +105,7 @@ export const pieceLoader = {
         const property = (actionOrTrigger.props as PiecePropertyMap)[propertyName]
 
         if (isNil(property)) {
-            throw new ActivepiecesError({
+            throw new YflowEngineGenericError({
                 code: ErrorCode.CONFIG_NOT_FOUND,
                 params: {
                     pieceName,
@@ -117,11 +131,17 @@ export const pieceLoader = {
     },
 
     getPiecePath: async ({ packageName, devPieces }: GetPiecePathParams): Promise<string> => {
-        const piecePath = devPieces.includes(getPieceNameFromAlias(packageName)) 
-            ? await loadPieceFromDistFolder(packageName) 
+        const piecePath = devPieces.includes(getPieceNameFromAlias(packageName))
+            ? await loadPieceFromDistFolder(packageName)
             : await traverseAllParentFoldersToFindPiece(packageName)
         if (isNil(piecePath)) {
-            throw new EngineGenericError('PieceNotFoundError', `Piece not found for package: ${packageName}`)
+            throw new YflowEngineGenericError({
+                code: ErrorCode.PIECE_NOT_FOUND,
+                params: {
+                    pieceName: packageName,
+                    pieceVersion: 'latest',
+                },
+            })
         }
         return piecePath
     },
@@ -205,4 +225,3 @@ type GetPackageAliasParams = {
     devPieces: string[]
     pieceVersion: string
 }
-

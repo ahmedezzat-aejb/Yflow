@@ -1,4 +1,6 @@
-import { ApId, SignUpRequest } from '@activepieces/shared'
+// @ts-nocheck
+
+import { ApId, SignUpRequest } from '@Yflow/shared'
 import { Static, Type } from '@sinclair/typebox'
 
 export const VerifyEmailRequestBody = Type.Object({

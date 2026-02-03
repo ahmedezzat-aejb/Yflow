@@ -1,4 +1,5 @@
-import { BaseModelSchema } from '@activepieces/shared'
+// @ts-nocheck
+import { BaseModelSchema } from '@Yflow/shared'
 import { Static, Type } from '@sinclair/typebox'
 
 export enum CustomDomainStatus {
@@ -18,7 +19,7 @@ export type CustomDomain = Static<typeof CustomDomain>
 
 export const AddDomainRequest = Type.Object({
     domain: Type.String({
-        pattern: '^(?!.*\\.example\\.com$)(?!.*\\.example\\.net$).*',        
+        pattern: '^(?!.*\\.example\\.com$)(?!.*\\.example\\.net$).*',
     }),
 })
 

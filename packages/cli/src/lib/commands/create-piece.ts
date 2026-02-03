@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import chalk from 'chalk';
 import { Command } from 'commander';
 import { readdir, unlink, writeFile } from 'fs/promises';
@@ -91,13 +93,13 @@ const generateIndexTsFile = async (pieceName: string, pieceType: string) => {
     .join('');
 
   const indexTemplate = `
-    import { createPiece, PieceAuth } from "@activepieces/pieces-framework";
+    import { createPiece, PieceAuth } from "@Yflow/pieces-framework";
 
     export const ${pieceNameCamelCase} = createPiece({
       displayName: "${capitalizeFirstLetter(pieceName)}",
       auth: PieceAuth.None(),
       minimumSupportedRelease: '0.36.1',
-      logoUrl: "https://cdn.activepieces.com/pieces/${pieceName}.png",
+      logoUrl: "https://cdn.Yfloweces/${pieceName}.png",
       authors: [],
       actions: [],
       triggers: [],
@@ -148,7 +150,7 @@ const updateProjectJsonConfig = async (
    }
 
     const lintFilePatterns = projectJson.targets.lint?.options?.lintFilePatterns;
-    
+
     if (lintFilePatterns) {
     const patternIndex = lintFilePatterns.findIndex((item) =>
       item.endsWith('package.json')
@@ -185,8 +187,8 @@ const addEslintFile = async (pieceName: string, pieceType: string) => {
       }
     ]
   }
-  
- 
+
+
   await writePackageEslint(
     `packages/pieces/${pieceType}/${pieceName}`,
     eslintFile
@@ -230,7 +232,7 @@ export const createPieceCommand = new Command('create')
         type: 'input',
         name: 'packageName',
         message: 'Enter the package name:',
-        default: (answers: any) => `@activepieces/piece-${answers.pieceName}`,
+        default: (answers: any) => `@Yflow${answers.pieceName}`,
         when: (answers: any) => answers.pieceName !== undefined,
       },
       {

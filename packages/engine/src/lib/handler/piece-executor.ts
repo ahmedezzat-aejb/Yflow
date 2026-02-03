@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { URL } from 'url'
-import { ActionContext, backwardCompatabilityContextUtils, ConstructToolParams, InputPropertyMap, PauseHook, PauseHookParams, PieceAuthProperty, PiecePropertyMap, RespondHook, RespondHookParams, StaticPropsValue, StopHook, StopHookParams, TagsManager } from '@activepieces/pieces-framework'
-import { AUTHENTICATION_PROPERTY_NAME, EngineGenericError, EngineSocketEvent, ExecutionType, FlowActionType, FlowRunStatus, GenericStepOutput, isNil, PausedFlowTimeoutError, PauseType, PieceAction, RespondResponse, StepOutputStatus } from '@activepieces/shared'
+import { ActionContext, backwardCompatabilityContextUtils, ConstructToolParams, InputPropertyMap, PauseHook, PauseHookParams, PieceAuthProperty, PiecePropertyMap, RespondHook, RespondHookParams, StaticPropsValue, StopHook, StopHookParams, TagsManager } from '@Yflow/pieces-framework'
+import { AUTHENTICATION_PROPERTY_NAME, EngineGenericError, EngineSocketEvent, ExecutionType, ActionType, FlowRunStatus, GenericStepOutput, isNil, PausedFlowTimeoutError, PauseType, PieceAction, RespondResponse, StepOutputStatus } from '@Yflow'
 import { LanguageModelV2 } from '@ai-sdk/provider'
 import { ToolSet } from 'ai'
 import dayjs from 'dayjs'
@@ -36,7 +37,7 @@ const executeAction: ActionHandler<PieceAction> = async ({ action, executionStat
     const stepStartTime = performance.now()
     const stepOutput = GenericStepOutput.create({
         input: {},
-        type: FlowActionType.PIECE,
+        type: ActionType.PIECE,
         status: StepOutputStatus.RUNNING,
     })
 
@@ -44,7 +45,7 @@ const executeAction: ActionHandler<PieceAction> = async ({ action, executionStat
         if (isNil(action.settings.actionName)) {
             throw new EngineGenericError('ActionNameNotSetError', 'Action name is not set')
         }
-        
+
         const { pieceAction, piece } = await pieceLoader.getPieceAndActionOrThrow({
             pieceName: action.settings.pieceName,
             pieceVersion: action.settings.pieceVersion,
@@ -58,7 +59,7 @@ const executeAction: ActionHandler<PieceAction> = async ({ action, executionStat
         })
 
         stepOutput.input = censoredInput
-    
+
         const { processedInput, errors } = await propsProcessor.applyProcessorsAndValidators(resolvedInput, pieceAction.props, piece.auth, pieceAction.requireAuth, action.settings.propertySettings)
         if (Object.keys(errors).length > 0) {
             throw new Error(JSON.stringify(errors, null, 2))

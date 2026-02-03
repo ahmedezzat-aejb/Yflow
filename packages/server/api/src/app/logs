@@ -1,0 +1,35 @@
+import { Injectable } from '@nestjs/common';
+
+export interface LogEntry {
+  timestamp: Date;
+  level: 'info' | 'warn' | 'error' | 'debug';
+  message: string;
+  context?: string;
+  metadata?: any;
+}
+
+@Injectable()
+export class LogsService {
+  private logs: LogEntry[] = [];
+
+  create(logEntry: Omit<LogEntry, 'timestamp'>): LogEntry {
+    const entry = {
+      ...logEntry,
+      timestamp: new Date(),
+    };
+    this.logs.push(entry);
+    return entry;
+  }
+
+  findAll(): LogEntry[] {
+    return this.logs.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+  }
+
+  findByLevel(level: LogEntry['level']): LogEntry[] {
+    return this.findAll().filter(log => log.level === level);
+  }
+
+  clear(): void {
+    this.logs = [];
+  }
+}

@@ -1,6 +1,6 @@
 {
     "cSpell.words": [
-        "Activepieces",
+        "Yflow",
         "Fastify",
         "mpim",
         "sendgrid"
@@ -13,4 +13,5 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "javascript.preferences.importModuleSpecifier": "relative",
     "nxConsole.generateAiAgentRules": true,
+    "svn.ignoreMissingSvnWarning": true,
 }

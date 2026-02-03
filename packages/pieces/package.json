@@ -1,0 +1,10 @@
+{
+  "name": "@yflow/pieces",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "description": "Yflow individual pieces logic",
+  "dependencies": {
+    "@yflow/pieces-framework": "workspace:*",
+    "@yflow/shared": "workspace:*"
+  }
+}

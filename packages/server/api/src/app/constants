@@ -1,0 +1,18 @@
+export const API_PREFIX = 'api/v1';
+
+export const DATABASE_CONFIG = {
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'postgres',
+  password: 'password',
+  database: 'yflow',
+};
+
+export const APP_CONFIG = {
+  port: 3000,
+  cors: {
+    origin: true,
+    credentials: true,
+  },
+};

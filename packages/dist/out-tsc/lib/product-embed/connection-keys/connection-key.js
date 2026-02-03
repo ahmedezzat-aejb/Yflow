@@ -1,0 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ConnectionKeyType = void 0;
+var ConnectionKeyType;
+(function (ConnectionKeyType) {
+    ConnectionKeyType["SIGNING_KEY"] = "SIGNING_KEY";
+})(ConnectionKeyType || (exports.ConnectionKeyType = ConnectionKeyType = {}));

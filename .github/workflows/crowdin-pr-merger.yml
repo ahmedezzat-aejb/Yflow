@@ -8,11 +8,11 @@ on:
 jobs:
   auto-merge-bot-pr:
     runs-on: ubuntu-latest
-    
+
     if: |
       github.event.pull_request.user.login == 'automated-commits-ap' &&
       github.event.pull_request.head.ref == 'l10n_main'
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,7 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: bun install
-      
+
       - name: Add label to PR
         uses: actions/github-script@v7
         with:
@@ -49,7 +49,7 @@ jobs:
               repo: context.repo.repo,
               labels: ['auto-merge', 'translations','skip-changelog']
             })
-      
+
       - name: Fetch main branch
         run: |
           git fetch origin main:main
@@ -59,32 +59,32 @@ jobs:
           echo "Resetting branch to match remote repository..."
           git reset --hard origin/${{ github.event.pull_request.head.ref }}
           git clean -fd
-      
+
       - name: Run Node.js script
         run: |
           echo "Running Node.js script..."
           npm run bump-translated-pieces
-      
+
       - name: Check for changes and commit
         id: check-changes
         run: |
           # Check if there are any changes
           if [[ -n "$(git status --porcelain)" ]]; then
             echo "Changes detected, committing..."
-            
+
             # Configure git
-            git config --local user.email "abdulyki+automatedcommits@activepieces.com"
+            git config --local user.email "abdulyki+automatedcommits@Yflow.com"
             git config --local user.name "automated-commits-ap"
-            
+
             # Add all changes
             git add .
-            
+
             # Commit with a descriptive message
             git commit -m "chore: auto bump translated pieces"
-            
+
             # Push changes back to the PR branch
             git push origin HEAD:${{ github.event.pull_request.head.ref }}
-            
+
             echo "Changes committed and pushed to PR branch"
             echo "has_changes=true" >> $GITHUB_OUTPUT
           else
@@ -166,14 +166,14 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.issue.number
             });
-            
+
             // Delete the branch
             await github.rest.git.deleteRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: `heads/${pr.data.head.ref}`
             });
-            
+
             console.log(`Deleted branch: ${pr.data.head.ref}`);
 
   notify-failure:

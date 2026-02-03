@@ -1,0 +1,27 @@
+{
+  "common": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "logout": "Logout",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+  "branding": {
+    "name": "Yflow",
+    "welcome": "Welcome to Yflow",
+    "description": "Your automation platform"
+  },
+  "flows": {
+    "create": "Create New Flow",
+    "import": "Import",
+    "active": "Active",
+    "draft": "Draft"
+  },
+  "billing": {
+    "payment_method": "Payment Method",
+    "sberbank": "Sberbank Online",
+    "subscribe": "Subscribe"
+  }
+}

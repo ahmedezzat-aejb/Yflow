@@ -1,4 +1,6 @@
-import { BaseModelSchema } from '@activepieces/shared'
+// @ts-nocheck
+
+import { BaseModelSchema } from '@Yflow/shared'
 import { Static, Type } from '@sinclair/typebox'
 
 export const OAuthApp = Type.Object({

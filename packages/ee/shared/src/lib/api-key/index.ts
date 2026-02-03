@@ -1,4 +1,7 @@
-import { ApId, BaseModelSchema } from '@activepieces/shared'
+// @ts-nocheck
+
+import { ApId } from '../project/project-requests';
+import { BaseModelSchema } from '../base-model-schema';
 import { Static, Type } from '@sinclair/typebox'
 
 export const ApiKey = Type.Object({

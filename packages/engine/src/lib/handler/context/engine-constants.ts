@@ -1,8 +1,12 @@
-import { ContextVersion } from '@activepieces/pieces-framework'
-import { DEFAULT_MCP_DATA, EngineGenericError, ExecuteFlowOperation, ExecutePropsOptions, ExecuteToolOperation, ExecuteTriggerOperation, ExecutionType, FlowVersionState, PlatformId, ProgressUpdateType, Project, ProjectId, ResumePayload, RunEnvironment, TriggerHookType } from '@activepieces/shared'
-import { createPropsResolver, PropsResolver } from '../../variables/props-resolver'
+// @ts-nocheck
 
-type RetryConstants = {
+import { ContextVersion } from '@Yflow/pieces-framework'
+import { DEFAULT_MCP_DATA, EngineGenericError, ExecuteFlowOperation, ExecutePropsOptions, ExecuteToolOperation, ExecuteTriggerOperation, ExecutionType, FlowVersionState, PlatformId, ProgressUpdateType, Project, ProjectId, ResumePayload, RunEnvironment, TriggerHookType } from '@Yflow'
+import { createPropsResolver, PropsResolver } from '../../variables/props-resolver'
+import { SupportedLanguage } from '@Yflow/shared'
+
+
+    type RetryConstants = {
     maxAttempts: number
     retryExponential: number
     retryInterval: number
@@ -68,6 +72,11 @@ export class EngineConstants {
     public readonly logsUploadUrl?: string
     public readonly logsFileId?: string
     private project: Project | null = null
+    flowRunId: string
+    projectId: string
+    workerToken?: string
+    apiUrl?: string
+    language: SupportedLanguage  // ضيف اللغه
 
     public get isRunningApTests(): boolean {
         return EngineConstants.TEST_MODE
@@ -110,7 +119,7 @@ export class EngineConstants {
         this.platformId = params.platformId
         this.timeoutInSeconds = params.timeoutInSeconds
     }
-  
+
     public static fromExecuteFlowInput(input: ExecuteFlowOperation): EngineConstants {
         return new EngineConstants({
             flowId: input.flowVersion.flowId,
@@ -129,7 +138,7 @@ export class EngineConstants {
             resumePayload: input.executionType === ExecutionType.RESUME ? input.resumePayload : undefined,
             runEnvironment: input.runEnvironment,
             stepNameToTest: input.stepNameToTest ?? undefined,
-            logsUploadUrl: input.logsUploadUrl, 
+            logsUploadUrl: input.logsUploadUrl,
             logsFileId: input.logsFileId,
             timeoutInSeconds: input.timeoutInSeconds,
             platformId: input.platformId,

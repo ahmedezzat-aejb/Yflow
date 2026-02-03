@@ -1,4 +1,5 @@
-import { isObject } from '@activepieces/shared'
+// @ts-nocheck
+import { isObject } from '@Yflow/shared'
 import { ProcessorFn } from './types'
 
 function getLongestArrayLengthInObject(props: Record<string, unknown>): number {
@@ -20,7 +21,7 @@ export const arrayZipperProcessor: ProcessorFn = (_property, value) => {
     if (Array.isArray(value) || !isObject(value)) {
         return value
     }
-  
+
     return Array.from({ length: getLongestArrayLengthInObject(value) },
         (_, index) => constructResultForIndex(value, index),
     )

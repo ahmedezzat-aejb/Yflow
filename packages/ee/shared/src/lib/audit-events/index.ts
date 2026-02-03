@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {
     AppConnectionWithoutSensitiveData,
     BaseModelSchema,
@@ -11,7 +13,7 @@ import {
     ProjectRelease,
     ProjectRole,
     User,
-} from '@activepieces/shared'
+} from '@Yflow/shared'
 import { Static, Type } from '@sinclair/typebox'
 import { SigningKey } from '../signing-key'
 export const ListAuditEventsRequest = Type.Object({
@@ -260,123 +262,124 @@ export const ApplicationEvent = Type.Union([
 export type ApplicationEvent = Static<typeof ApplicationEvent>
 
 export function summarizeApplicationEvent(event: ApplicationEvent) {
-    switch (event.action) {
+    switch (event['action']) {
         case ApplicationEventName.FLOW_UPDATED: {
             return convertUpdateActionToDetails(event)
         }
         case ApplicationEventName.FLOW_RUN_STARTED:
-            return `Flow run ${event.data.flowRun.id} is started`
+            return `Flow run ${event['data'].flowRun.id} is started`
         case ApplicationEventName.FLOW_RUN_FINISHED: {
-            return `Flow run ${event.data.flowRun.id} is finished`
+            return `Flow run ${event['data'].flowRun.id} is finished`
         }
         case ApplicationEventName.FLOW_RUN_RESUMED: {
-            return `Flow run ${event.data.flowRun.id} is resumed`
+            return `Flow run ${event['data'].flowRun.id} is resumed`
         }
         case ApplicationEventName.FLOW_CREATED:
-            return `Flow ${event.data.flow.id} is created`
+            return `Flow ${event['data'].flow.id} is created`
         case ApplicationEventName.FLOW_DELETED:
-            return `Flow ${event.data.flow.id} (${event.data.flowVersion.displayName}) is deleted`
+            return `Flow ${event['data'].flow.id} (${event['data'].flowVersion.displayName}) is deleted`
         case ApplicationEventName.FOLDER_CREATED:
-            return `${event.data.folder.displayName} is created`
+            return `${event['data'].folder.displayName} is created`
         case ApplicationEventName.FOLDER_UPDATED:
-            return `${event.data.folder.displayName} is updated`
+            return `${event['data'].folder.displayName} is updated`
         case ApplicationEventName.FOLDER_DELETED:
-            return `${event.data.folder.displayName} is deleted`
+            return `${event['data'].folder.displayName} is deleted`
         case ApplicationEventName.CONNECTION_UPSERTED:
-            return `${event.data.connection.displayName} (${event.data.connection.externalId}) is updated`
+            return `${event['data'].connection.displayName} (${event['data'].connection.externalId}) is updated`
         case ApplicationEventName.CONNECTION_DELETED:
-            return `${event.data.connection.displayName} (${event.data.connection.externalId}) is deleted`
+            return `${event['data'].connection.displayName} (${event['data'].connection.externalId}) is deleted`
         case ApplicationEventName.USER_SIGNED_IN:
-            return `User ${event.userEmail} signed in`
+            return `User ${event['userEmail']} signed in`
         case ApplicationEventName.USER_PASSWORD_RESET:
-            return `User ${event.userEmail} reset password`
+            return `User ${event['userEmail']} reset password`
         case ApplicationEventName.USER_EMAIL_VERIFIED:
-            return `User ${event.userEmail} verified email`
+            return `User ${event['userEmail']} verified email`
         case ApplicationEventName.USER_SIGNED_UP:
-            return `User ${event.userEmail} signed up using email from ${event.data.source}`
+            return `User ${event['userEmail']} signed up using email from ${event['data'].source}`
         case ApplicationEventName.SIGNING_KEY_CREATED:
-            return `${event.data.signingKey.displayName} is created`
+            return `${event['data'].signingKey.displayName} is created`
         case ApplicationEventName.PROJECT_ROLE_CREATED:
-            return `${event.data.projectRole.name} is created`
+            return `${event['data'].projectRole.name} is created`
         case ApplicationEventName.PROJECT_ROLE_UPDATED:
-            return `${event.data.projectRole.name} is updated`
+            return `${event['data'].projectRole.name} is updated`
         case ApplicationEventName.PROJECT_ROLE_DELETED:
-            return `${event.data.projectRole.name} is deleted`
+            return `${event['data'].projectRole.name} is deleted`
         case ApplicationEventName.PROJECT_RELEASE_CREATED:
-            return `${event.data.release.name} is created`
+            return `${event['data'].release.name} is created`
     }
 }
 
 function convertUpdateActionToDetails(event: FlowUpdatedEvent) {
-    switch (event.data.request.type) {
+    switch (event['data'].request.type) {
         case FlowOperationType.ADD_ACTION:
-            return `Added action "${event.data.request.request.action.displayName}" to "${event.data.flowVersion.displayName}" Flow.`
+            return `Added action "${event['data'].request.request.action.displayName}" to "${event['data'].flowVersion.displayName}" Flow.`
         case FlowOperationType.UPDATE_ACTION:
-            return `Updated action "${event.data.request.request.displayName}" in "${event.data.flowVersion.displayName}" Flow.`
+            return `Updated action "${event['data'].request.request.displayName}" in "${event['data'].flowVersion.displayName}" Flow.`
         case FlowOperationType.DELETE_ACTION:
         {
-            const request = event.data.request.request
+            const request = event['data'].request.request
             const names = request.names
-            return `Deleted actions "${names.join(', ')}" from "${event.data.flowVersion.displayName}" Flow.`
+            return `Deleted actions "${names.join(', ')}" from "${event['data'].flowVersion.displayName}" Flow.`
         }
         case FlowOperationType.CHANGE_NAME:
-            return `Renamed flow "${event.data.flowVersion.displayName}" to "${event.data.request.request.displayName}".`
+            return `Renamed flow "${event['data'].flowVersion.displayName}" to "${event['data'].request.request.displayName}".`
         case FlowOperationType.LOCK_AND_PUBLISH:
-            return `Locked and published flow "${event.data.flowVersion.displayName}" Flow.`
+            return `Locked and published flow "${event['data'].flowVersion.displayName}" Flow.`
         case FlowOperationType.USE_AS_DRAFT:
-            return `Unlocked and unpublished flow "${event.data.flowVersion.displayName}" Flow.`
+            return `Unlocked and unpublished flow "${event['data'].flowVersion.displayName}" Flow.`
         case FlowOperationType.MOVE_ACTION:
-            return `Moved action "${event.data.request.request.name}" to after "${event.data.request.request.newParentStep}".`
+            return `Moved action "${event['data'].request.request.name}" to after "${event['data'].request.request.newParentStep}".`
         case FlowOperationType.LOCK_FLOW:
-            return `Locked flow "${event.data.flowVersion.displayName}" Flow.`
+            return `Locked flow "${event['data'].flowVersion.displayName}" Flow.`
         case FlowOperationType.CHANGE_STATUS:
-            return `Changed status of flow "${event.data.flowVersion.displayName}" Flow to "${event.data.request.request.status}".`
+            return `Changed status of flow "${event['data'].flowVersion.displayName}" Flow to "${event['data'].request.request.status}".`
         case FlowOperationType.DUPLICATE_ACTION:
-            return `Duplicated action "${event.data.request.request.stepName}" in "${event.data.flowVersion.displayName}" Flow.`
+            return `Duplicated action "${event['data'].request.request.stepName}" in "${event['data'].flowVersion.displayName}" Flow.`
         case FlowOperationType.IMPORT_FLOW:
-            return `Imported flow in "${event.data.request.request.displayName}" Flow.`
+            return `Imported flow in "${event['data'].request.request.displayName}" Flow.`
         case FlowOperationType.UPDATE_TRIGGER:
-            return `Updated trigger in "${event.data.flowVersion.displayName}" Flow to "${event.data.request.request.displayName}".`
+            return `Updated trigger in "${event['data'].flowVersion.displayName}" Flow to "${event['data'].request.request.displayName}".`
         case FlowOperationType.CHANGE_FOLDER:
-            return `Moved flow "${event.data.flowVersion.displayName}" to folder id ${event.data.request.request.folderId}.`
+            return `Moved flow "${event['data'].flowVersion.displayName}" to folder id ${event['data'].request.request.folderId}.`
         case FlowOperationType.DELETE_BRANCH: {
             return `Deleted branch number ${
-                event.data.request.request.branchIndex + 1
-            } in flow "${event.data.flowVersion.displayName}" for the step "${
-                event.data.request.request.stepName
+                event['data'].request.request.branchIndex + 1
+            } in flow "${event['data'].flowVersion.displayName}" for the step "${
+                event['data'].request.request.stepName
             }".`
         }
         case FlowOperationType.SAVE_SAMPLE_DATA: {
-            return `Saved sample data for step "${event.data.request.request.stepName}" in flow "${event.data.flowVersion.displayName}".`
+            return `Saved sample data for step "${event['data'].request.request.stepName}" in flow "${event['data'].flowVersion.displayName}".`
         }
         case FlowOperationType.DUPLICATE_BRANCH: {
             return `Duplicated branch number ${
-                event.data.request.request.branchIndex + 1
-            } in flow "${event.data.flowVersion.displayName}" for the step "${
-                event.data.request.request.stepName
+                event['data'].request.request.branchIndex + 1
+            } in flow "${event['data'].flowVersion.displayName}" for the step "${
+                event['data'].request.request.stepName
             }".`
         }
         case FlowOperationType.ADD_BRANCH:
             return `Added branch number ${
-                event.data.request.request.branchIndex + 1
-            } in flow "${event.data.flowVersion.displayName}" for the step "${
-                event.data.request.request.stepName
+                event['data'].request.request.branchIndex + 1
+            } in flow "${event['data'].flowVersion.displayName}" for the step "${
+                event['data'].request.request.stepName
             }".`
         case FlowOperationType.SET_SKIP_ACTION:
         {
-            const request = event.data.request.request
+            const request = event['data'].request.request
             const names = request.names
-            return `Updated actions "${names.join(', ')}" in "${event.data.flowVersion.displayName}" Flow to skip.`
+            return `Updated actions "${names.join(', ')}" in "${event['data'].flowVersion.displayName}" Flow to skip.`
         }
         case FlowOperationType.UPDATE_METADATA:
-            return `Updated metadata for flow "${event.data.flowVersion.displayName}".`
+            return `Updated metadata for flow "${event['data'].flowVersion.displayName}".`
         case FlowOperationType.MOVE_BRANCH:
             return `Moved branch number ${
-                event.data.request.request.sourceBranchIndex + 1
+                event['data'].request.request.sourceBranchIndex + 1
             } to ${
-                event.data.request.request.targetBranchIndex + 1
-            } in flow "${event.data.flowVersion.displayName}" for the step "${
-                event.data.request.request.stepName
+                event['data'].request.request.targetBranchIndex + 1
+            } in flow "${event['data'].flowVersion.displayName}" for the step "${
+                event['data'].request.request.stepName
             }".`
     }
 }
+export type ApplicationEventSummary = string

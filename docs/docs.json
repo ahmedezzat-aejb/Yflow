@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Activepieces",
+  "name": "Yflow",
   "colors": {
     "primary": "#6e41e2",
     "light": "#c5b3f3",
@@ -483,7 +483,7 @@
   "logo": {
     "light": "./resources/logo/light.svg",
     "dark": "./resources/logo/dark.svg",
-    "href": "https://www.activepieces.com"
+    "href": "https://www.Yflow.com"
   },
   "api": {
     "openapi": [
@@ -499,29 +499,29 @@
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/activepieces/activepieces"
+        "href": "https://github.com/Yflow/Yflow"
       },
       {
         "label": "Pieces",
-        "href": "https://www.activepieces.com/pieces"
+        "href": "https://www.Yflow.com/pieces"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "https://www.activepieces.com/plans"
+      "href": "https://www.Yflow.com/get-started"
     }
   },
   "seo": {
     "metatags": {
-      "description": "Open source no-code business automation· Zapier open source alternative"
+      "description": "Open source no-code business automation platform"
     },
     "indexing": "navigable"
   },
   "footer": {
     "socials": {
-      "website": "https://www.activepieces.com",
-      "github": "https://github.com/activepieces/activepieces",
+      "website": "https://www.Yflow.com",
+      "github": "https://github.com/Yflow/Yflow",
       "discord": "https://discord.gg/2jUXBKDdP8"
     }
   },

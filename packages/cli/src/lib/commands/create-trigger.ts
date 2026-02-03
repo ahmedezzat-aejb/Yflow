@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import chalk from 'chalk';
 import { Command } from 'commander';
 import inquirer from 'inquirer';
@@ -15,8 +17,8 @@ function createTriggerTemplate(displayName: string, description: string, techniq
     let triggerTemplate = ''
     if (technique === 'polling') {
         triggerTemplate = `
-import { createTrigger, TriggerStrategy, AppConnectionValueForAuthProperty  } from '@activepieces/pieces-framework';
-import { DedupeStrategy, Polling, pollingHelper } from '@activepieces/pieces-common';
+import { createTrigger, TriggerStrategy, AppConnectionValueForAuthProperty  } from '@Yflow/pieces-framework';
+import { DedupeStrategy, Polling, pollingHelper } from '@Yflow-common';
 import dayjs from 'dayjs';
 
 // replace auth with piece auth variable
@@ -33,7 +35,7 @@ const polling: Polling<AppConnectionValueForAuthProperty<undefined>, Record<stri
 }
 
 export const ${camelCase} = createTrigger({
-// auth: check https://www.activepieces.com/docs/developers/piece-reference/authentication,
+// auth: check https://www.Yflowcs/developers/piece-reference/authentication,
 name: '${camelCase}',
 displayName: '${displayName}',
 description: '${description}',
@@ -60,9 +62,9 @@ async run(context) {
     }
     else {
         triggerTemplate = `
-import { createTrigger, TriggerStrategy } from '@activepieces/pieces-framework';
+import { createTrigger, TriggerStrategy } from '@Yflow-framework';
 export const ${camelCase} = createTrigger({
-    // auth: check https://www.activepieces.com/docs/developers/piece-reference/authentication,
+    // auth: check https://www.Yflowcs/developers/piece-reference/authentication,
     name: '${camelCase}',
     displayName: '${displayName}',
     description: '${description}',

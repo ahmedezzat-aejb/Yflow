@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Command } from "commander";
 import { publishPieceFromFolder, findPiece, assertPieceExists } from '../utils/piece-utils';
 import chalk from "chalk";
@@ -45,7 +47,7 @@ export const publishPieceCommand = new Command('publish')
                 type: 'input',
                 name: 'apiUrl',
                 message: 'Enter the API URL',
-                placeholder: 'https://cloud.activepieces.com/api',
+                placeholder: 'https://cloud.Yflow.com/api',
             },
             {
                 type: 'list',

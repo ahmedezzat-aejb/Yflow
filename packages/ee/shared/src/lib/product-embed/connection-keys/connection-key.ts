@@ -1,4 +1,4 @@
-import { BaseModel, ProjectId } from '@activepieces/shared'
+import { BaseModel, ProjectId } from '@Yflow/shared'
 
 export type ConnectionKeyId = string
 

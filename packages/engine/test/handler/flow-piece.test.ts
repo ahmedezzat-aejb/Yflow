@@ -1,4 +1,4 @@
-import { FlowAction, FlowRunStatus } from '@activepieces/shared'
+import { FlowAction, FlowRunStatus } from '@Yflow/shared'
 import { FlowExecutorContext } from '../../src/lib/handler/context/flow-execution-context'
 import { flowExecutor } from '../../src/lib/handler/flow-executor'
 import { pieceExecutor } from '../../src/lib/handler/piece-executor'
@@ -10,7 +10,7 @@ describe('pieceExecutor', () => {
         const result = await pieceExecutor.handle({
             action: buildPieceAction({
                 name: 'data_mapper',
-                pieceName: '@activepieces/piece-data-mapper',
+                pieceName: '@Yflowdata-mapper',
                 actionName: 'advanced_mapping',
                 input: {
                     mapping: {
@@ -29,10 +29,10 @@ describe('pieceExecutor', () => {
         const result = await pieceExecutor.handle({
             action: buildPieceAction({
                 name: 'send_http',
-                pieceName: '@activepieces/piece-http',
+                pieceName: '@Yflowhttp',
                 actionName: 'send_request',
                 input: {
-                    'url': 'https://cloud.activepieces.com/api/v1/asd',
+                    'url': 'https://cloud.Yflowi/v1/asd',
                     'method': 'GET',
                     'headers': {},
                     'body_type': 'none',
@@ -71,7 +71,7 @@ describe('pieceExecutor', () => {
                 name: 'data_mapper',
                 input: {},
                 skip: true,
-                pieceName: '@activepieces/piece-data-mapper',
+                pieceName: '@Yflowdata-mapper',
                 actionName: 'advanced_mapping',
             }), executionState: FlowExecutorContext.empty(), constants: generateMockEngineConstants(),
         })
@@ -90,13 +90,13 @@ describe('pieceExecutor', () => {
                     },
                 },
                 skip: false,
-                pieceName: '@activepieces/piece-data-mapper',
+                pieceName: '@Yflowdata-mapper',
                 actionName: 'advanced_mapping',
             }),
             nextAction: {
                 ...buildPieceAction({
                     name: 'send_http',
-                    pieceName: '@activepieces/piece-http',
+                    pieceName: '@Yflowhttp',
                     actionName: 'send_request',
                     input: {},
                     skip: true,

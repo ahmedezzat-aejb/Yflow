@@ -1,18 +1,18 @@
 ---
 title: "Technical Limits"
 icon: "ban"
-description: "Technical limits for Activepieces execution"
+description: "Technical limits for Yflow execution"
 ---
 
 
 ### Execution Limits
 
-- **Flow Execution Time**  
-  Maximum: **600 seconds (10 minutes)**  
+- **Flow Execution Time**
+  Maximum: **600 seconds (10 minutes)**
   Flows exceeding this limit will be marked as timed out.
 
-- **Memory Usage**  
-  Maximum: **1 GB RAM**  
+- **Memory Usage**
+  Maximum: **1 GB RAM**
   (Self hosted can be configured via `AP_SANDBOX_MEMORY_LIMIT`)
 
 <Note>
@@ -24,9 +24,9 @@ The memory usage is measured for the entire Node.js process running the flow. Th
 </Tip>
 
 <Tip>
-**Note 2:** To handle longer processes, split them into multiple flows.  
-For example:  
-- Have one flow call another via **webhook**.  
+**Note 2:** To handle longer processes, split them into multiple flows.
+For example:
+- Have one flow call another via **webhook**.
 - Process smaller **batches of items** in separate flows.
 </Tip>
 
@@ -38,14 +38,14 @@ For example:
 Files from actions or triggers are stored in the database/S3 to support retries for certain steps.
 </Info>
 
-- **Maximum File Size**: **10 MB**  
+- **Maximum File Size**: **10 MB**
   (Configurable via `AP_MAX_FILE_SIZE_MB`, default: **4 MB**)
 
 ---
 
 ### Key / Value Storage Limits
 
-Some pieces use the built-in Activepieces key store (e.g., **Store Piece**, **Queue Piece**).
+Some pieces use the built-in Yflow key store (e.g., **Store Piece**, **Queue Piece**).
 
-- **Maximum Key Length**: **128 characters**  
+- **Maximum Key Length**: **128 characters**
 - **Maximum Value Size**: **512 KB**

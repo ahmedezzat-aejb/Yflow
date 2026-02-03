@@ -31,7 +31,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/activepieces/activepieces:dev-testing
+          tags: ghcr.io/Yflow/Yflow:dev-testing
 
   Dev-Testing:
     needs: Build
@@ -53,7 +53,7 @@ jobs:
           SSH_USER: ${{ secrets.PRE_PROD_USERNAME }}
           SSH_KEY: ${{ secrets.PRE_PROD_SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.PRE_PROD_HOST }}
-          
+
       - name: Deploy with Docker Compose
         run: |
-          ssh pre-prod -t -t 'bash -ic "cd dev-testing-activepieces && IMAGE_TAG=dev-testing docker compose pull && IMAGE_TAG=dev-testing docker compose up -d --force-recreate dev-testing-activepieces; exit"' 
+          ssh pre-prod -t -t 'bash -ic "cd dev-testing-Yflow && IMAGE_TAG=dev-testing docker compose pull && IMAGE_TAG=dev-testing docker compose up -d --force-recreate dev-testing-Yflow; exit"'

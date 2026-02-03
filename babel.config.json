@@ -1,0 +1,4 @@
+{
+  "babelrcRoots": ["*"],
+  "presets": ["@nx/react/babel"]
+}

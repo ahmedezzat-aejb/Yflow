@@ -1,0 +1,28 @@
+{
+  "name": "dashboard-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "packages/dashboard-ui/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "root": "packages/dashboard-ui",
+        "outputPath": "dist/packages/dashboard-ui",
+        "main": "packages/dashboard-ui/src/main.tsx",
+        "index": "packages/dashboard-ui/src/index.html",
+        "tsConfig": "packages/dashboard-ui/tsconfig.app.json",
+        "assets": ["packages/dashboard-ui/src/assets"],
+        "webpackConfig": "packages/dashboard-ui/webpack.config.js"
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "options": {
+        "buildTarget": "dashboard-ui:build",
+        "port": 4201
+      }
+    }
+  }
+}

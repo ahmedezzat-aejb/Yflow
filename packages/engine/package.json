@@ -1,6 +1,16 @@
 {
-  "name": "@activepieces/engine",
+  "name": "@yflow/engine",
   "version": "0.7.0",
-  "type": "commonjs"
+  "type": "commonjs",
+  "dependencies": {
+    "@yflow/shared": "workspace:*",
+    "@yflow/pieces-framework": "workspace:*",
+    "@yflow/import-fresh-webpack": "workspace:*",
+    "yflow-core": "workspace:*",
+    "dayjs": "^1.11.9",
+    "nanoid": "^3.3.6",
+    "bullmq": "^5.12.0",
+    "ioredis": "^5.3.2",
+    "axios": "^1.6.0"
+  }
 }
-

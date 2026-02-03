@@ -97,6 +97,13 @@
             font-size: 0.9rem;
             margin-bottom: 8px;
             box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .trial-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(57, 255, 20, 0.6);
         }
 
         .trial-desc {
@@ -297,7 +304,7 @@
         </div>
 
         <div class="trial-info" id="trialInfo">
-            <div class="trial-badge">🎯 FREE TRIAL: 10 POINTS/MONTH</div>
+            <div class="trial-badge" onclick="activateTrial()" style="cursor: pointer;">🎯 FREE TRIAL: 10 POINTS/MONTH</div>
             <div class="trial-desc" id="trialDesc">Try any workflow with 10 free points every month!</div>
         </div>
     </div>
@@ -392,6 +399,10 @@
             document.getElementById('trialBadge').textContent = lang.trialBadge;
             document.getElementById('trialDesc').textContent = lang.trialDesc;
 
+            // Make trial badge clickable
+            document.getElementById('trialBadge').onclick = activateTrial;
+            document.getElementById('trialBadge').style.cursor = 'pointer';
+
             const projectsGrid = document.getElementById('projectsGrid');
             projectsGrid.innerHTML = '';
 
@@ -425,12 +436,43 @@
                 </div>
                 <div class="price-display">${project.price}</div>
                 <div class="action-buttons">
-                    <button class="btn btn-primary">Upgrade</button>
-                    <button class="btn btn-secondary">Configure</button>
+                    <button class="btn btn-primary" onclick="handleAction('upgrade', '${project.name}')">Upgrade</button>
+                    <button class="btn btn-secondary" onclick="handleAction('configure', '${project.name}')">Configure</button>
                 </div>
             `;
 
             return card;
+        }
+
+        function handleAction(action, projectName) {
+            const messages = {
+                upgrade: {
+                    en: `🚀 Ready to upgrade ${projectName}?\n\nWith your 10 free trial points, you can:\n• Test all workflows\n• Experience full features\n• No credit card required\n\nWould you like to proceed?`,
+                    ar: `🚀 هل أنت مستعد لترقية ${projectName}؟\n\nمع نقاطك التجريبية المجانية، يمكنك:\n• اختبار جميع سير العمل\n• تجربة المميزات الكاملة\n• لا حاجة لبطاقة ائتمان\n\nهل تريد المتابعة؟`,
+                    ru: `🚀 Готовы обновить ${projectName}?\n\nС вашими 10 бесплатными очками вы можете:\n• Тестировать все рабочие процессы\n• Испытать все функции\n• Не требуется кредитная карта\n\nХотите продолжить?`,
+                    zh: `🚀 准备升级 ${projectName}？\n\n使用您的10个免费积分，您可以：\n• 测试所有工作流程\n• 体验完整功能\n• 无需信用卡\n\n是否要继续？`
+                },
+                configure: {
+                    en: `⚙️ Configure ${projectName}\n\nAvailable settings:\n• Workflow customization\n• Integration options\n• Performance tuning\n• Security settings\n\nOpen configuration panel?`,
+                    ar: `⚙️ تكوين ${projectName}\n\nالإعدادات المتاحة:\n• تخصيص سير العمل\n• خيارات التكامل\n• ضبط الأداء\n• إعدادات الأمان\n\nفتح لوحة التكوين؟`,
+                    ru: `⚙️ Настроить ${projectName}\n\nДоступные настройки:\n• Настройка рабочих процессов\n• Варианты интеграции\n• Настройка производительности\n• Настройки безопасности\n\nОткрыть панель настроек?`,
+                    zh: `⚙️ 配置 ${projectName}\n\n可用设置：\n• 工作流程自定义\n• 集成选项\n• 性能调优\n• 安全设置\n\n打开配置面板？`
+                }
+            };
+
+            const message = messages[action][currentLanguage];
+            alert(message);
+        }
+
+        function activateTrial() {
+            const messages = {
+                en: `🎯 FREE TRIAL ACTIVATED!\n\nYou now have 10 points to use:\n• Test any workflow\n• Experience full features\n• No credit card required\n• Points renew every month\n\nEnjoy your Yflow experience!`,
+                ar: `🎯 تم تفعيل التجربة المجانية!\n\nلديك الآن 10 نقاط للاستخدام:\n• اختبر أي سير عمل\n• جرب المميزات الكاملة\n• لا حاجة لبطاقة ائتمان\n• النقاط تتجدد كل شهر\n\nاستمتع بتجربة Yflow!`,
+                ru: `🎯 БЕСПЛАТНАЯ ПРОБКА АКТИВИРОВАНА!\n\nУ вас теперь есть 10 очков для использования:\n• Тестируйте любые рабочие процессы\n• Испытывайте все функции\n• Не требуется кредитная карта\n• Очки обновляются каждый месяц\n\nНаслаждайтесь Yflow!`,
+                zh: `🎯 免费试用已激活！\n\n您现在有10个积分可使用：\n• 测试任何工作流程\n• 体验完整功能\n• 无需信用卡\n• 积分每月续期\n\n享受Yflow体验！`
+            };
+
+            alert(messages[currentLanguage]);
         }
 
         // Initialize with English

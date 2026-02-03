@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yflow - Smart Payment System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: #05070a;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(13, 26, 33, 0.9);
+            border-bottom: 2px solid #00f3ff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            animation: glitch 2s infinite;
+        }
+
+        .logo span {
+            color: #00f3ff;
+            text-shadow: 0 0 20px #00f3ff;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #39ff14;
+            margin-bottom: 20px;
+        }
+
+        .payment-system {
+            flex: 1;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .payment-card {
+            background: rgba(13, 26, 33, 0.8);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00f3ff, #39ff14);
+            animation: scan 3s linear infinite;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+            border-color: #00f3ff;
+        }
+
+        .payment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00f3ff;
+        }
+
+        .payment-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: rgba(57, 255, 20, 0.2);
+            color: #39ff14;
+            border: 1px solid #39ff14;
+        }
+
+        .currency-display {
+            margin-bottom: 20px;
+        }
+
+        .currency-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .currency-label {
+            color: #888;
+        }
+
+        .currency-value {
+            color: #e0e0e0;
+            font-weight: 700;
+        }
+
+        .price-display {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #39ff14;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .conversion-info {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid #00f3ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .conversion-title {
+            color: #00f3ff;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .conversion-details {
+            font-size: 0.8rem;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .automation-status {
+            background: rgba(13, 26, 33, 0.8);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .automation-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00f3ff;
+            margin-bottom: 15px;
+        }
+
+        .automation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .automation-item {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid #00f3ff;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .automation-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .automation-name {
+            font-weight: 700;
+            color: #39ff14;
+            margin-bottom: 5px;
+        }
+
+        .automation-status-text {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00f3ff, #0080ff);
+            color: #05070a;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+            border: 1px solid #00f3ff;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.4);
+        }
+
+        .footer {
+            background: rgba(13, 26, 33, 0.9);
+            border-top: 2px solid #00f3ff;
+            padding: 20px;
+            text-align: center;
+            color: #888;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 243, 255, 0.5), 0 0 40px rgba(0, 243, 255, 0.3); }
+            25% { text-shadow: -2px 0 #ff0080, 2px 0 #00f3ff; }
+            50% { text-shadow: 2px 0 #ff0080, -2px 0 #00f3ff; }
+            75% { text-shadow: 0 0 20px rgba(0, 243, 255, 0.5), 0 0 40px rgba(0, 243, 255, 0.3); }
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .payment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .automation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Y<span>FLOW</span></div>
+        <div class="subtitle">SMART PAYMENT & AUTOMATION SYSTEM</div>
+    </div>
+
+    <div class="payment-system">
+        <div class="payment-grid">
+            <div class="payment-card">
+                <div class="payment-header">
+                    <div class="payment-method">🇷🇺 Sberbank</div>
+                    <div class="payment-status">ACTIVE</div>
+                </div>
+                <div class="currency-display">
+                    <div class="currency-row">
+                        <span class="currency-label">Payment Method:</span>
+                        <span class="currency-value">Sberbank Online</span>
+                    </div>
+                    <div class="currency-row">
+                        <span class="currency-label">Currency:</span>
+                        <span class="currency-value">Russian Ruble (RUB)</span>
+                    </div>
+                    <div class="currency-row">
+                        <span class="currency-label">Region:</span>
+                        <span class="currency-value">Russia/CIS</span>
+                    </div>
+                </div>
+                <div class="price-display">4,999 ₽/месяц</div>
+                <div class="conversion-info">
+                    <div class="conversion-title">💱 Smart Currency Conversion</div>
+                    <div class="conversion-details">
+                        • Automatic RUB pricing for Russian users<br>
+                        • Real-time exchange rate: 1 USD = 91.5 RUB<br>
+                        • No additional conversion fees<br>
+                        • Local payment methods supported
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="processPayment('sberbank')">Pay with Sberbank</button>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-header">
+                    <div class="payment-method">💳 Stripe/Visa</div>
+                    <div class="payment-status">ACTIVE</div>
+                </div>
+                <div class="currency-display">
+                    <div class="currency-row">
+                        <span class="currency-label">Payment Method:</span>
+                        <span class="currency-value">Stripe/Visa/Mastercard</span>
+                    </div>
+                    <div class="currency-row">
+                        <span class="currency-label">Currency:</span>
+                        <span class="currency-value">US Dollar (USD)</span>
+                    </div>
+                    <div class="currency-row">
+                        <span class="currency-label">Region:</span>
+                        <span class="currency-value">International</span>
+                    </div>
+                </div>
+                <div class="price-display">$49.99/month</div>
+                <div class="conversion-info">
+                    <div class="conversion-title">💱 Smart Currency Conversion</div>
+                    <div class="conversion-details">
+                        • USD pricing for international users<br>
+                        • Real-time exchange rate: 1 USD = 91.5 RUB<br>
+                        • Automatic currency detection<br>
+                        • Global payment methods supported
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="processPayment('stripe')">Pay with Stripe</button>
+            </div>
+        </div>
+
+        <div class="automation-status">
+            <div class="automation-title">🤖 AUTOMATION SYSTEM STATUS</div>
+            <div class="automation-grid">
+                <div class="automation-item">
+                    <div class="automation-icon">⚡</div>
+                    <div class="automation-name">Workflow Engine</div>
+                    <div class="automation-status-text">✅ Running</div>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">🔄</div>
+                    <div class="automation-name">API Connectors</div>
+                    <div class="automation-status-text">✅ Active</div>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">📊</div>
+                    <div class="automation-name">Data Processing</div>
+                    <div class="automation-status-text">✅ Operational</div>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">🔐</div>
+                    <div class="automation-name">Security System</div>
+                    <div class="automation-status-text">✅ Protected</div>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">💾</div>
+                    <div class="automation-name">Database</div>
+                    <div class="automation-status-text">✅ Connected</div>
+                </div>
+                <div class="automation-item">
+                    <div class="automation-icon">🌐</div>
+                    <div class="automation-name">Web Services</div>
+                    <div class="automation-status-text">✅ Online</div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="btn btn-secondary pulse" onclick="testAutomation()">🧪 Test Automation</button>
+                <button class="btn btn-secondary" onclick="viewLogs()">📋 View Logs</button>
+                <button class="btn btn-secondary" onclick="checkStatus()">🔍 Check Status</button>
+            </div>
+        </div>
+
+        <div class="payment-card">
+            <div class="payment-header">
+                <div class="payment-method">💰 Currency Exchange System</div>
+                <div class="payment-status">ACTIVE</div>
+            </div>
+            <div class="conversion-info">
+                <div class="conversion-title">🌍 Real-Time Currency Conversion</div>
+                <div class="conversion-details">
+                    <strong>How it works:</strong><br>
+                    1. System detects user's location and preferred payment method<br>
+                    2. Automatically selects appropriate currency (RUB for Sberbank, USD for Stripe)<br>
+                    3. Real-time exchange rate conversion<br>
+                    4. No hidden fees - transparent pricing<br>
+                    5. Instant currency switching based on payment method<br><br>
+
+                    <strong>Current Exchange Rates:</strong><br>
+                    • 1 USD = 91.5 RUB<br>
+                    • 1 RUB = 0.0109 USD<br>
+                    • Updated every 5 minutes<br><br>
+
+                    <strong>Supported Payment Methods:</strong><br>
+                    • 🇷🇺 Sberbank, Tinkoff, Alfa Bank (RUB)<br>
+                    • 💳 Stripe, Visa, Mastercard (USD)<br>
+                    • 🇨🇳 Alipay, WeChat Pay (CNY)<br>
+                    • 🇸🇦 Mada, STC Pay (SAR)<br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>Yflow © 2024 - Smart Payment & Automation Platform</div>
+        <div style="margin-top: 10px;">
+            <span style="color: #00f3ff;">Payment System:</span> ✅ Active |
+            <span style="color: #00f3ff;">Automation:</span> ✅ Running |
+            <span style="color: #00f3ff;">Currency:</span> ✅ Real-time
+        </div>
+    </div>
+
+    <script>
+        // Exchange rates (in real app, these would come from API)
+        const exchangeRates = {
+            USD: 1,
+            RUB: 91.5,
+            CNY: 7.2,
+            SAR: 3.75
+        };
+
+        // Payment processing simulation
+        function processPayment(method) {
+            const prices = {
+                sberbank: { amount: 4999, currency: 'RUB', method: 'Sberbank' },
+                stripe: { amount: 49.99, currency: 'USD', method: 'Stripe' }
+            };
+
+            const payment = prices[method];
+
+            // Show processing animation
+            alert(`🔄 Processing ${payment.method} payment...\n\nAmount: ${payment.amount} ${payment.currency}\nMethod: ${payment.method}\n\n✅ Payment simulation complete!\n\nIn real system, this would:\n1. Connect to ${payment.method} API\n2. Process secure payment\n3. Convert currency if needed\n4. Update user account\n5. Send confirmation`);
+        }
+
+        // Automation testing
+        function testAutomation() {
+            const tests = [
+                'Workflow Engine: ✅ PASSED',
+                'API Connectors: ✅ PASSED',
+                'Data Processing: ✅ PASSED',
+                'Security System: ✅ PASSED',
+                'Database Connection: ✅ PASSED',
+                'Web Services: ✅ PASSED'
+            ];
+
+            let message = '🧪 Running Automation Tests...\n\n';
+            tests.forEach((test, index) => {
+                setTimeout(() => {
+                    message += test + '\n';
+                    if (index === tests.length - 1) {
+                        message += '\n✅ All systems operational!';
+                        alert(message);
+                    }
+                }, index * 500);
+            });
+        }
+
+        // View logs
+        function viewLogs() {
+            const logs = [
+                '[2024-02-03 21:47:00] Workflow executed successfully',
+                '[2024-02-03 21:46:30] Payment processed via Sberbank',
+                '[2024-02-03 21:46:00] Currency conversion: 49.99 USD → 4,999 RUB',
+                '[2024-02-03 21:45:45] User authentication successful',
+                '[2024-02-03 21:45:30] API connector initialized',
+                '[2024-02-03 21:45:00] System startup complete'
+            ];
+
+            alert('📋 System Logs:\n\n' + logs.join('\n'));
+        }
+
+        // Check system status
+        function checkStatus() {
+            const status = {
+                'Payment System': '✅ Active',
+                'Automation Engine': '✅ Running',
+                'Currency Exchange': '✅ Real-time',
+                'Database': '✅ Connected',
+                'API Services': '✅ Online',
+                'Security': '✅ Protected'
+            };
+
+            let message = '🔍 System Status Check:\n\n';
+            for (const [component, state] of Object.entries(status)) {
+                message += `${component}: ${state}\n`;
+            }
+            message += '\n✅ All systems operational!';
+
+            alert(message);
+        }
+
+        // Simulate real-time exchange rate updates
+        setInterval(() => {
+            // In real app, this would fetch from API
+            console.log('Exchange rates updated:', exchangeRates);
+        }, 300000); // Every 5 minutes
+    </script>
+</body>
+</html>

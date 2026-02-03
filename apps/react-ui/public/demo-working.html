@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yflow - Cyber Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #0f1419 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #00f3ff;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00f3ff, #39ff14);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            letter-spacing: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .logo-y {
+            display: inline-block;
+            position: relative;
+            width: 60px;
+            height: 80px;
+            margin-right: 10px;
+        }
+        
+        .logo-y::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00f3ff, #39ff14);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        
+        .logo-y::after {
+            content: 'Y';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00f3ff, #39ff14);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            text-align: center;
+        }
+        
+        .logo span {
+            color: #00f3ff;
+            -webkit-text-fill-color: #00f3ff;
+        }
+        
+        .subtitle {
+            color: #39ff14;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .lang-btn {
+            padding: 10px 20px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 2px solid #00f3ff;
+            color: #00f3ff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: #00f3ff;
+            color: #0a0e1a;
+            transform: translateY(-2px);
+        }
+        
+        .trial-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #39ff14, #00f3ff);
+            color: #0a0e1a;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+        }
+        
+        .trial-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 30px rgba(57, 255, 20, 0.6);
+        }
+        
+        .trial-desc {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .project-card {
+            background: rgba(20, 25, 35, 0.9);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.3);
+            border-color: #00f3ff;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .project-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #00f3ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .project-icon {
+            font-size: 1.5rem;
+            color: #39ff14;
+        }
+        
+        .project-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            background: rgba(57, 255, 20, 0.2);
+            color: #39ff14;
+            border: 1px solid #39ff14;
+        }
+        
+        .project-details {
+            margin-bottom: 20px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .detail-label {
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .detail-value {
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+        
+        .price-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #39ff14;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #00f3ff, #0080ff);
+            color: #0a0e1a;
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 243, 255, 0.6);
+        }
+        
+        .btn-secondary {
+            background: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+            border: 2px solid #00f3ff;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 2px solid #00f3ff;
+            color: #888;
+        }
+        
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .link {
+            color: #00f3ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .link:hover {
+            color: #39ff14;
+            text-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+                letter-spacing: 5px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-y">Y</div>
+                <span>FLOW</span>
+            </div>
+            <div class="subtitle" id="subtitle">CYBERNETIC AUTOMATION PLATFORM</div>
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="changeLanguage('en')">
+                    <i class="fas fa-globe"></i> EN
+                </button>
+                <button class="lang-btn" onclick="changeLanguage('ar')">
+                    <i class="fas fa-moon"></i> AR
+                </button>
+                <button class="lang-btn" onclick="changeLanguage('ru')">
+                    <i class="fas fa-star"></i> RU
+                </button>
+                <button class="lang-btn" onclick="changeLanguage('zh')">
+                    <i class="fas fa-yin-yang"></i> ZH
+                </button>
+            </div>
+            
+            <div class="trial-info">
+                <div class="trial-badge" onclick="activateTrial()">
+                    <i class="fas fa-rocket"></i> FREE TRIAL: 10 POINTS/MONTH
+                </div>
+                <div class="trial-desc" id="trialDesc">Try any workflow with 10 free points every month!</div>
+            </div>
+        </div>
+        
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Projects will be loaded here -->
+        </div>
+        
+        <div class="footer">
+            <div class="footer-text" id="footerText">Yflow © 2024 - Open Source Automation Platform</div>
+            <div class="links">
+                <a href="https://github.com/ahmedezzat-aejb/Yflow" class="link" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://gitlab.com/ahmedezzat-aejb/yflow" class="link" target="_blank">
+                    <i class="fab fa-gitlab"></i> GitLab
+                </a>
+                <a href="https://github.com/ahmedezzat-aejb/Yflow/blob/initial-setup/PROJECT_DETAILS_RU.md" class="link" target="_blank">
+                    <i class="fas fa-file-alt"></i> Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const translations = {
+            en: {
+                subtitle: "CYBERNETIC AUTOMATION PLATFORM",
+                footerText: "Yflow © 2024 - Open Source Automation Platform",
+                trialBadge: "🎯 FREE TRIAL: 10 POINTS/MONTH",
+                trialDesc: "Try any workflow with 10 free points every month!",
+                projects: [
+                    { name: "Neural Flow", status: "active", flows: 42, executions: 15847, price: "$49.99/month", icon: "brain" },
+                    { name: "Quantum Process", status: "active", flows: 28, executions: 8921, price: "$39.99/month", icon: "atom" },
+                    { name: "Cyber Pipeline", status: "active", flows: 35, executions: 8921, price: "$44.99/month", icon: "network-wired" },
+                    { name: "Digital Matrix", status: "active", flows: 67, executions: 25432, price: "$79.99/month", icon: "cube" }
+                ]
+            },
+            ar: {
+                subtitle: "منصة الأتمتة السيبرانية",
+                footerText: "Yflow © 2024 - منصة الأتمتة مفتوحة المصدر",
+                trialBadge: "🎯 تجربة مجانية: 10 نقاط/شهر",
+                trialDesc: "جرب أي سير عمل مع 10 نقاط مجانية كل شهر!",
+                projects: [
+                    { name: "التدفق العصبي", status: "active", flows: 42, executions: 15847, price: "199.96 ريال/شهر", icon: "brain" },
+                    { name: "عملية الكم", status: "active", flows: 28, executions: 8921, price: "159.96 ريال/شهر", icon: "atom" },
+                    { name: "خط الأنابيب السيبراني", status: "active", flows: 35, executions: 8921, price: "179.96 ريال/شهر", icon: "network-wired" },
+                    { name: "المصفوفة الرقمية", status: "active", flows: 67, executions: 25432, price: "319.96 ريال/شهر", icon: "cube" }
+                ]
+            },
+            ru: {
+                subtitle: "КИБЕРНЕТИЧЕСКАЯ ПЛАТФОРМА АВТОМАТИЗАЦИИ",
+                footerText: "Yflow © 2024 - Платформа автоматизации с открытым исходным кодом",
+                trialBadge: "🎯 БЕСПЛАТНАЯ ПРОБКА: 10 ОЧКОВ/МЕСЯЦ",
+                trialDesc: "Попробуйте любой рабочий процесс с 10 бесплатными очками каждый месяц!",
+                projects: [
+                    { name: "Нейронный Поток", status: "active", flows: 42, executions: 15847, price: "4999 ₽/месяц", icon: "brain" },
+                    { name: "Квантовый Процесс", status: "active", flows: 28, executions: 8921, price: "3999 ₽/месяц", icon: "atom" },
+                    { name: "Кибер Трубопровод", status: "active", flows: 35, executions: 8921, price: "4499 ₽/месяц", icon: "network-wired" },
+                    { name: "Цифровая Матрица", status: "active", flows: 67, executions: 25432, price: "7999 ₽/месяц", icon: "cube" }
+                ]
+            },
+            zh: {
+                subtitle: "网络自动化平台",
+                footerText: "Yflow © 2024 - 开源自动化平台",
+                trialBadge: "🎯 免费试用：每月10积分",
+                trialDesc: "每月10个免费积分试用任何工作流程！",
+                projects: [
+                    { name: "神经流", status: "active", flows: 42, executions: 15847, price: "349元/月", icon: "brain" },
+                    { name: "量子过程", status: "active", flows: 28, executions: 8921, price: "279元/月", icon: "atom" },
+                    { name: "网络管道", status: "active", flows: 35, executions: 8921, price: "314元/月", icon: "network-wired" },
+                    { name: "数字矩阵", status: "active", flows: 67, executions: 25432, price: "559元/月", icon: "cube" }
+                ]
+            }
+        };
+        
+        let currentLanguage = 'en';
+        
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update content
+            updateContent();
+        }
+        
+        function updateContent() {
+            const lang = translations[currentLanguage];
+            
+            document.getElementById('subtitle').textContent = lang.subtitle;
+            document.getElementById('footerText').textContent = lang.footerText;
+            document.querySelector('.trial-badge').innerHTML = `<i class="fas fa-rocket"></i> ${lang.trialBadge}`;
+            document.getElementById('trialDesc').textContent = lang.trialDesc;
+            
+            const projectsGrid = document.getElementById('projectsGrid');
+            projectsGrid.innerHTML = '';
+            
+            lang.projects.forEach(project => {
+                const card = createProjectCard(project);
+                projectsGrid.appendChild(card);
+            });
+        }
+        
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            card.innerHTML = `
+                <div class="project-header">
+                    <div class="project-name">
+                        <i class="fas fa-${project.icon} project-icon"></i>
+                        ${project.name}
+                    </div>
+                    <div class="project-status">
+                        <i class="fas fa-check-circle"></i>
+                        ACTIVE
+                    </div>
+                </div>
+                <div class="project-details">
+                    <div class="detail-row">
+                        <span class="detail-label">
+                            <i class="fas fa-project-diagram"></i>
+                            Flows:
+                        </span>
+                        <span class="detail-value">${project.flows}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">
+                            <i class="fas fa-play-circle"></i>
+                            Executions:
+                        </span>
+                        <span class="detail-value">${project.executions.toLocaleString()}</span>
+                    </div>
+                </div>
+                <div class="price-display">${project.price}</div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="handleAction('upgrade', '${project.name}')">
+                        <i class="fas fa-rocket"></i>
+                        Upgrade
+                    </button>
+                    <button class="btn btn-secondary" onclick="handleAction('configure', '${project.name}')">
+                        <i class="fas fa-cog"></i>
+                        Configure
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        function handleAction(action, projectName) {
+            const messages = {
+                upgrade: {
+                    en: `🚀 Ready to upgrade ${projectName}?\n\nWith your 10 free trial points, you can:\n• Test all workflows\n• Experience full features\n• No credit card required\n\nWould you like to proceed?`,
+                    ar: `🚀 هل أنت مستعد لترقية ${projectName}؟\n\nمع نقاطك التجريبية المجانية، يمكنك:\n• اختبار جميع سير العمل\n• تجربة المميزات الكاملة\n• لا حاجة لبطاقة ائتمان\n\nهل تريد المتابعة؟`,
+                    ru: `🚀 Готовы обновить ${projectName}?\n\nС вашими 10 бесплатными очками вы можете:\n• Тестировать все рабочие процессы\n• Испытать все функции\n• Не требуется кредитная карта\n\nХотите продолжить?`,
+                    zh: `🚀 准备升级 ${projectName}？\n\n使用您的10个免费积分，您可以：\n• 测试所有工作流程\n• 体验完整功能\n• 无需信用卡\n\n是否要继续？`
+                },
+                configure: {
+                    en: `⚙️ Configure ${projectName}\n\nAvailable settings:\n• Workflow customization\n• Integration options\n• Performance tuning\n• Security settings\n\nOpen configuration panel?`,
+                    ar: `⚙️ تكوين ${projectName}\n\nالإعدادات المتاحة:\n• تخصيص سير العمل\n• خيارات التكامل\n• ضبط الأداء\n• إعدادات الأمان\n\nفتح لوحة التكوين؟`,
+                    ru: `⚙️ Настроить ${projectName}\n\nДоступные настройки:\n• Настройка рабочих процессов\n• Варианты интеграции\n• Настройка производительности\n• Настройки безопасности\n\nОткрыть панель настроек?`,
+                    zh: `⚙️ 配置 ${projectName}\n\n可用设置：\n• 工作流程自定义\n• 集成选项\n• 性能调优\n• 安全设置\n\n打开配置面板？`
+                }
+            };
+            
+            const message = messages[action][currentLanguage];
+            alert(message);
+        }
+        
+        function activateTrial() {
+            const messages = {
+                en: `🎯 FREE TRIAL ACTIVATED!\n\nYou now have 10 points to use:\n• Test any workflow\n• Experience full features\n• No credit card required\n• Points renew every month\n\nEnjoy your Yflow experience!`,
+                ar: `🎯 تم تفعيل التجربة المجانية!\n\nلديك الآن 10 نقاط للاستخدام:\n• اختبر أي سير عمل\n• جرب المميزات الكاملة\n• لا حاجة لبطاقة ائتمان\n• النقاط تتجدد كل شهر\n\nاستمتع بتجربة Yflow!`,
+                ru: `🎯 БЕСПЛАТНАЯ ПРОБКА АКТИВИРОВАНА!\n\nУ вас теперь есть 10 очков для использования:\n• Тестируйте любые рабочие процессы\n• Испытывайте все функции\n• Не требуется кредитная карта\n• Очки обновляются каждый месяц\n\nНаслаждайтесь Yflow!`,
+                zh: `🎯 免费试用已激活！\n\n您现在有10个积分可使用：\n• 测试任何工作流程\n• 体验完整功能\n• 无需信用卡\n• 积分每月续期\n\n享受Yflow体验！`
+            };
+            
+            alert(messages[currentLanguage]);
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateContent();
+        });
+    </script>
+</body>
+</html>

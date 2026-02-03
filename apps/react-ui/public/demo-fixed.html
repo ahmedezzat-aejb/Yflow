@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yflow - Professional Cyber Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1f2e 50%, #0f1419 100%);
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00f3ff;
+            border-radius: 50%;
+            animation: particleFloat 10s infinite linear;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid #00f3ff;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 243, 255, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 12px;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00f3ff, #39ff14, #ff0080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logoGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+        }
+
+        .logo span {
+            color: #00f3ff;
+            -webkit-text-fill-color: #00f3ff;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            color: #39ff14;
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            padding: 12px 20px;
+            background: rgba(0, 243, 255, 0.1);
+            border: 2px solid #00f3ff;
+            color: #00f3ff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: #00f3ff;
+            color: #0a0e1a;
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Trial Section */
+        .trial-info {
+            margin-top: 25px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        .trial-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #39ff14, #00f3ff);
+            color: #0a0e1a;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trial-badge::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .trial-badge:hover::after {
+            animation: shine 0.5s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .trial-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 35px rgba(57, 255, 20, 0.7);
+        }
+
+        .trial-desc {
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 20px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(20, 25, 35, 0.9);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00f3ff, #39ff14, #ff0080);
+            animation: scan 3s linear infinite;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 243, 255, 0.05) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 243, 255, 0.3);
+            border-color: #00f3ff;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .project-name {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00f3ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            color: #39ff14;
+        }
+
+        .project-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-active {
+            background: rgba(57, 255, 20, 0.2);
+            color: #39ff14;
+            border: 1px solid #39ff14;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+
+        .status-inactive {
+            background: rgba(255, 0, 128, 0.2);
+            color: #ff0080;
+            border: 1px solid #ff0080;
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.3);
+        }
+
+        .project-details {
+            margin-bottom: 25px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-label {
+            color: #888;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-value {
+            color: #e0e0e0;
+            font-weight: 600;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .price-display {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #39ff14;
+            margin-bottom: 25px;
+            text-align: center;
+            background: linear-gradient(45deg, #39ff14, #00f3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00f3ff, #0080ff);
+            color: #0a0e1a;
+            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 243, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+            border: 2px solid #00f3ff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 243, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 2px solid #00f3ff;
+            padding: 25px 20px;
+            text-align: center;
+            color: #888;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .link {
+            color: #00f3ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .link:hover {
+            color: #39ff14;
+            text-shadow: 0 0 15px rgba(57, 255, 20, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+                letter-spacing: 8px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .language-selector {
+                gap: 10px;
+            }
+
+            .lang-btn {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0e1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            background: linear-gradient(45deg, #00f3ff, #39ff14);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: logoGlow 1s ease-in-out infinite;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            color: #888;
+            font-size: 1rem;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-logo">Y<span>FLOW</span></div>
+            <div class="loading-text">Initializing Cyber Dashboard<span class="loading-dots">...</span></div>
+        </div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-grid"></div>
+        <div class="bg-particles" id="particles"></div>
+    </div>
+
+    <div class="header">
+        <div class="logo">Y<span>FLOW</span></div>
+        <div class="subtitle" id="subtitle">CYBERNETIC AUTOMATION PLATFORM</div>
+        <div class="language-selector">
+            <button class="lang-btn active" onclick="changeLanguage('en')">
+                <i class="fas fa-globe"></i> EN
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('ar')">
+                <i class="fas fa-moon"></i> AR
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('ru')">
+                <i class="fas fa-star"></i> RU
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('zh')">
+                <i class="fas fa-yin-yang"></i> ZH
+            </button>
+        </div>
+
+        <div class="trial-info" id="trialInfo">
+            <div class="trial-badge" onclick="activateTrial()">
+                <i class="fas fa-rocket"></i> FREE TRIAL: 10 POINTS/MONTH
+            </div>
+            <div class="trial-desc" id="trialDesc">Try any workflow with 10 free points every month!</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="projects-grid" id="projectsGrid">
+            <!-- Projects will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-text" id="footerText">Yflow © 2024 - Open Source Automation Platform</div>
+            <div class="links">
+                <a href="https://github.com/ahmedezzat-aejb/Yflow" class="link" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://gitlab.com/ahmedezzat-aejb/yflow" class="link" target="_blank">
+                    <i class="fab fa-gitlab"></i> GitLab
+                </a>
+                <a href="https://github.com/ahmedezzat-aejb/Yflow/blob/initial-setup/PROJECT_DETAILS_RU.md" class="link" target="_blank">
+                    <i class="fas fa-file-alt"></i> Documentation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate particles
+        function generateParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Translations
+        const translations = {
+            en: {
+                subtitle: "CYBERNETIC AUTOMATION PLATFORM",
+                footerText: "Yflow © 2024 - Open Source Automation Platform",
+                trialBadge: "🎯 FREE TRIAL: 10 POINTS/MONTH",
+                trialDesc: "Try any workflow with 10 free points every month!",
+                projects: [
+                    { name: "Neural Flow", status: "active", flows: 42, executions: 15847, price: "$49.99/month", icon: "brain" },
+                    { name: "Quantum Process", status: "active", flows: 28, executions: 8921, price: "$39.99/month", icon: "atom" },
+                    { name: "Cyber Pipeline", status: "active", flows: 35, executions: 8921, price: "$44.99/month", icon: "network-wired" },
+                    { name: "Digital Matrix", status: "active", flows: 67, executions: 25432, price: "$79.99/month", icon: "cube" }
+                ]
+            },
+            ar: {
+                subtitle: "منصة الأتمتة السيبرانية",
+                footerText: "Yflow © 2024 - منصة الأتمتة مفتوحة المصدر",
+                trialBadge: "🎯 تجربة مجانية: 10 نقاط/شهر",
+                trialDesc: "جرب أي سير عمل مع 10 نقاط مجانية كل شهر!",
+                projects: [
+                    { name: "التدفق العصبي", status: "active", flows: 42, executions: 15847, price: "199.96 ريال/شهر", icon: "brain" },
+                    { name: "عملية الكم", status: "active", flows: 28, executions: 8921, price: "159.96 ريال/شهر", icon: "atom" },
+                    { name: "خط الأنابيب السيبراني", status: "active", flows: 35, executions: 8921, price: "179.96 ريال/شهر", icon: "network-wired" },
+                    { name: "المصفوفة الرقمية", status: "active", flows: 67, executions: 25432, price: "319.96 ريال/شهر", icon: "cube" }
+                ]
+            },
+            ru: {
+                subtitle: "КИБЕРНЕТИЧЕСКАЯ ПЛАТФОРМА АВТОМАТИЗАЦИИ",
+                footerText: "Yflow © 2024 - Платформа автоматизации с открытым исходным кодом",
+                trialBadge: "🎯 БЕСПЛАТНАЯ ПРОБКА: 10 ОЧКОВ/МЕСЯЦ",
+                trialDesc: "Попробуйте любой рабочий процесс с 10 бесплатными очками каждый месяц!",
+                projects: [
+                    { name: "Нейронный Поток", status: "active", flows: 42, executions: 15847, price: "4999 ₽/месяц", icon: "brain" },
+                    { name: "Квантовый Процесс", status: "active", flows: 28, executions: 8921, price: "3999 ₽/месяц", icon: "atom" },
+                    { name: "Кибер Трубопровод", status: "active", flows: 35, executions: 8921, price: "4499 ₽/месяц", icon: "network-wired" },
+                    { name: "Цифровая Матрица", status: "active", flows: 67, executions: 25432, price: "7999 ₽/месяц", icon: "cube" }
+                ]
+            },
+            zh: {
+                subtitle: "网络自动化平台",
+                footerText: "Yflow © 2024 - 开源自动化平台",
+                trialBadge: "🎯 免费试用：每月10积分",
+                trialDesc: "每月10个免费积分试用任何工作流程！",
+                projects: [
+                    { name: "神经流", status: "active", flows: 42, executions: 15847, price: "349元/月", icon: "brain" },
+                    { name: "量子过程", status: "active", flows: 28, executions: 8921, price: "279元/月", icon: "atom" },
+                    { name: "网络管道", status: "active", flows: 35, executions: 8921, price: "314元/月", icon: "network-wired" },
+                    { name: "数字矩阵", status: "active", flows: 67, executions: 25432, price: "559元/月", icon: "cube" }
+                ]
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update content
+            updateContent();
+        }
+
+        function updateContent() {
+            const lang = translations[currentLanguage];
+
+            document.getElementById('subtitle').textContent = lang.subtitle;
+            document.getElementById('footerText').textContent = lang.footerText;
+            document.getElementById('trialBadge').innerHTML = `<i class="fas fa-rocket"></i> ${lang.trialBadge}`;
+            document.getElementById('trialDesc').textContent = lang.trialDesc;
+
+            // Make trial badge clickable
+            document.getElementById('trialBadge').onclick = activateTrial;
+            document.getElementById('trialBadge').style.cursor = 'pointer';
+
+            const projectsGrid = document.getElementById('projectsGrid');
+            projectsGrid.innerHTML = '';
+
+            lang.projects.forEach((project, index) => {
+                setTimeout(() => {
+                    const card = createProjectCard(project);
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    projectsGrid.appendChild(card);
+
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 100);
+            });
+        }
+
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+
+            const statusClass = project.status === 'active' ? 'status-active' : 'status-inactive';
+            const statusText = project.status === 'active' ? 'ACTIVE' : 'INACTIVE';
+            const statusIcon = project.status === 'active' ? 'check-circle' : 'times-circle';
+
+            card.innerHTML = `
+                <div class="project-header">
+                    <div class="project-name">
+                        <i class="fas fa-${project.icon} project-icon"></i>
+                        ${project.name}
+                    </div>
+                    <div class="project-status ${statusClass}">
+                        <i class="fas fa-${statusIcon}"></i>
+                        ${statusText}
+                    </div>
+                </div>
+                <div class="project-details">
+                    <div class="detail-row">
+                        <span class="detail-label">
+                            <i class="fas fa-project-diagram"></i>
+                            Flows:
+                        </span>
+                        <span class="detail-value">${project.flows}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">
+                            <i class="fas fa-play-circle"></i>
+                            Executions:
+                        </span>
+                        <span class="detail-value">${project.executions.toLocaleString()}</span>
+                    </div>
+                </div>
+                <div class="price-display">${project.price}</div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="handleAction('upgrade', '${project.name}')">
+                        <i class="fas fa-rocket"></i>
+                        Upgrade
+                    </button>
+                    <button class="btn btn-secondary" onclick="handleAction('configure', '${project.name}')">
+                        <i class="fas fa-cog"></i>
+                        Configure
+                    </button>
+                </div>
+            `;
+
+            return card;
+        }
+
+        function handleAction(action, projectName) {
+            const messages = {
+                upgrade: {
+                    en: `🚀 Ready to upgrade ${projectName}?\n\nWith your 10 free trial points, you can:\n• Test all workflows\n• Experience full features\n• No credit card required\n\nWould you like to proceed?`,
+                    ar: `🚀 هل أنت مستعد لترقية ${projectName}؟\n\nمع نقاطك التجريبية المجانية، يمكنك:\n• اختبار جميع سير العمل\n• تجربة المميزات الكاملة\n• لا حاجة لبطاقة ائتمان\n\nهل تريد المتابعة؟`,
+                    ru: `🚀 Готовы обновить ${projectName}?\n\nС вашими 10 бесплатными очками вы можете:\n• Тестировать все рабочие процессы\n• Испытать все функции\n• Не требуется кредитная карта\n\nХотите продолжить?`,
+                    zh: `🚀 准备升级 ${projectName}？\n\n使用您的10个免费积分，您可以：\n• 测试所有工作流程\n• 体验完整功能\n• 无需信用卡\n\n是否要继续？`
+                },
+                configure: {
+                    en: `⚙️ Configure ${projectName}\n\nAvailable settings:\n• Workflow customization\n• Integration options\n• Performance tuning\n• Security settings\n\nOpen configuration panel?`,
+                    ar: `⚙️ تكوين ${projectName}\n\nالإعدادات المتاحة:\n• تخصيص سير العمل\n• خيارات التكامل\n• ضبط الأداء\n• إعدادات الأمان\n\nفتح لوحة التكوين؟`,
+                    ru: `⚙️ Настроить ${projectName}\n\nДоступные настройки:\n• Настройка рабочих процессов\n• Варианты интеграции\n• Настройка производительности\n• Настройки безопасности\n\nОткрыть панель настроек?`,
+                    zh: `⚙️ 配置 ${projectName}\n\n可用设置：\n• 工作流程自定义\n• 集成选项\n• 性能调优\n• 安全设置\n\n打开配置面板？`
+                }
+            };
+
+            const message = messages[action][currentLanguage];
+            alert(message);
+        }
+
+        function activateTrial() {
+            const messages = {
+                en: `🎯 FREE TRIAL ACTIVATED!\n\nYou now have 10 points to use:\n• Test any workflow\n• Experience full features\n• No credit card required\n• Points renew every month\n\nEnjoy your Yflow experience!`,
+                ar: `🎯 تم تفعيل التجربة المجانية!\n\nلديك الآن 10 نقاط للاستخدام:\n• اختبر أي سير عمل\n• جرب المميزات الكاملة\n• لا حاجة لبطاقة ائتمان\n• النقاط تتجدد كل شهر\n\nاستمتع بتجربة Yflow!`,
+                ru: `🎯 БЕСПЛАТНАЯ ПРОБКА АКТИВИРОВАНА!\n\nУ вас теперь есть 10 очков для использования:\n• Тестируйте любые рабочие процессы\n• Испытывайте все функции\n• Не требуется кредитная карта\n• Очки обновляются каждый месяц\n\nНаслаждайтесь Yflow!`,
+                zh: `🎯 免费试用已激活！\n\n您现在有10个积分可使用：\n• 测试任何工作流程\n• 体验完整功能\n• 无需信用卡\n• 积分每月续期\n\n享受Yflow体验！`
+            };
+
+            alert(messages[currentLanguage]);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            generateParticles();
+
+            // Hide loading overlay
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loadingOverlay');
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500);
+            }, 2000);
+
+            // Initialize with English
+            updateContent();
+        });
+    </script>
+</body>
+</html>

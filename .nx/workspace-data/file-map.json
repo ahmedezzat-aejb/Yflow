@@ -75,622 +75,6 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
-      "react-ui": [
-        {
-          "file": "apps/react-ui/README.md",
-          "hash": "13119026631257497901"
-        },
-        {
-          "file": "apps/react-ui/jest.config.ts",
-          "hash": "7845270477905434933"
-        },
-        {
-          "file": "apps/react-ui/package-lock.json",
-          "hash": "17165928269670292688"
-        },
-        {
-          "file": "apps/react-ui/package.json",
-          "hash": "16216428488914181151",
-          "deps": [
-            "npm:@types/react@18.3.1",
-            "npm:@types/react-dom@18.3.0",
-            "npm:react@18.3.1",
-            "npm:react-dom@18.3.1",
-            "npm:@tiptap/react@2.27.2",
-            "npm:@tiptap/starter-kit@2.27.2",
-            "npm:react-i18next@15.0.1",
-            "npm:i18next",
-            "npm:axios@1.6.0"
-          ]
-        },
-        {
-          "file": "apps/react-ui/project.json",
-          "hash": "15295153045616331779"
-        },
-        {
-          "file": "apps/react-ui/public/index.html",
-          "hash": "5813608836259016973"
-        },
-        {
-          "file": "apps/react-ui/src/App.css",
-          "hash": "18183693775825351305"
-        },
-        {
-          "file": "apps/react-ui/src/App.tsx",
-          "hash": "8533869596501424870",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/app.test.tsx",
-          "hash": "3331387342689278051"
-        },
-        {
-          "file": "apps/react-ui/src/app/app.tsx",
-          "hash": "16101243886819036887",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/components/ErrorBoundary.tsx",
-          "hash": "3267533634298800360",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/components/LoadingSpinner.tsx",
-          "hash": "17322267710643262034"
-        },
-        {
-          "file": "apps/react-ui/src/app/components/Navbar.tsx",
-          "hash": "10336880294490533840"
-        },
-        {
-          "file": "apps/react-ui/src/app/components/ProjectCard.tsx",
-          "hash": "11517835914831478811",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/components/SearchFilter.tsx",
-          "hash": "2491787144812033206",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/components/Sidebar.tsx",
-          "hash": "12488079254517886732"
-        },
-        {
-          "file": "apps/react-ui/src/app/components/StatsCard.tsx",
-          "hash": "2996671243005533233",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/components/StatusBadge.tsx",
-          "hash": "1792065160642081547",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/components/layout.tsx",
-          "hash": "15041449176962215288",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/Logs.tsx",
-          "hash": "12534204662749392314",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/Templates.tsx",
-          "hash": "11327320128688005584",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/apps.tsx",
-          "hash": "11482223665131449775",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/dashboard.tsx",
-          "hash": "11639768459063049297",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/explore.tsx",
-          "hash": "8184961313237650715",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/flows.tsx",
-          "hash": "1780923966472442103",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/projects.tsx",
-          "hash": "9863138647786140718",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/app/pages/utility.tsx",
-          "hash": "10152842923277521440",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/assets/.gitkeep",
-          "hash": "1071176764001721604"
-        },
-        {
-          "file": "apps/react-ui/src/components/CyberDashboard/CyberDashboard.css",
-          "hash": "90750778682305981"
-        },
-        {
-          "file": "apps/react-ui/src/components/CyberDashboard/index.tsx",
-          "hash": "6213099893661333481",
-          "deps": [
-            "npm:react@18.3.1",
-            "npm:react-i18next@15.0.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/components/FlowBuilder/FlowBuilder.tsx",
-          "hash": "2909450345093642280",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/components/FlowBuilder/SimpleFlowBuilder.tsx",
-          "hash": "14148193062952180293",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/components/FlowBuilder/fixed-flow-builder.css",
-          "hash": "12434060530950798443"
-        },
-        {
-          "file": "apps/react-ui/src/components/FlowBuilder/fixed-flow-builder.tsx",
-          "hash": "9450534338110985720",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/components/FlowBuilder/simple-flow-builder.tsx",
-          "hash": "13252508977370789433",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/index.css",
-          "hash": "178711878091738084"
-        },
-        {
-          "file": "apps/react-ui/src/index.tsx",
-          "hash": "2064152548022706614",
-          "deps": [
-            "npm:react@18.3.1",
-            "npm:react-dom@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/locales/ar.json",
-          "hash": "14314817866651110284"
-        },
-        {
-          "file": "apps/react-ui/src/locales/en.json",
-          "hash": "18367781237028737538"
-        },
-        {
-          "file": "apps/react-ui/src/locales/index.ts",
-          "hash": "10491019435724459258",
-          "deps": [
-            "npm:i18next",
-            "npm:react-i18next@15.0.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/locales/ru.json",
-          "hash": "5036795999516037435"
-        },
-        {
-          "file": "apps/react-ui/src/locales/zh.json",
-          "hash": "10701991854583161465"
-        },
-        {
-          "file": "apps/react-ui/src/main.tsx",
-          "hash": "4889222126425572872",
-          "deps": [
-            "npm:react@18.3.1",
-            "npm:react-dom@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/pages/Dashboard.css",
-          "hash": "4677415821746958068"
-        },
-        {
-          "file": "apps/react-ui/src/pages/Dashboard.tsx",
-          "hash": "17151037771576028826",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/pages/FlowBuilderPage.tsx",
-          "hash": "5534301950000847924",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/pages/simple-flow-builder-page.tsx",
-          "hash": "17990181765332780254",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/services/api.ts",
-          "hash": "7823773953690035270",
-          "deps": [
-            "npm:axios@1.6.0"
-          ]
-        },
-        {
-          "file": "apps/react-ui/src/services/mockApi.ts",
-          "hash": "6479921328338094883"
-        },
-        {
-          "file": "apps/react-ui/start.bat",
-          "hash": "2305980807508173545"
-        },
-        {
-          "file": "apps/react-ui/start.sh",
-          "hash": "15391064330419399333"
-        },
-        {
-          "file": "apps/react-ui/tsconfig.app.json",
-          "hash": "15105353629800667577"
-        },
-        {
-          "file": "apps/react-ui/tsconfig.json",
-          "hash": "5574024494305596465"
-        },
-        {
-          "file": "apps/react-ui/tsconfig.spec.json",
-          "hash": "12936314499624572807"
-        },
-        {
-          "file": "apps/react-ui/vite.config.ts",
-          "hash": "7495066423288699122",
-          "deps": [
-            "npm:vite@7.3.1",
-            "npm:@vitejs/plugin-react@5.1.2"
-          ]
-        }
-      ],
-      "cli": [
-        {
-          "file": "packages/cli/.eslintrc.json",
-          "hash": "14921153827776288937"
-        },
-        {
-          "file": "packages/cli/README.md",
-          "hash": "7817960514080549567"
-        },
-        {
-          "file": "packages/cli/assets/db.json",
-          "hash": "646759191961725782"
-        },
-        {
-          "file": "packages/cli/jest.config.ts",
-          "hash": "3222697048089124194"
-        },
-        {
-          "file": "packages/cli/package.json",
-          "hash": "14425860881032509406"
-        },
-        {
-          "file": "packages/cli/project.json",
-          "hash": "16877735950890924899"
-        },
-        {
-          "file": "packages/cli/src/index.ts",
-          "hash": "15258384388764458463",
-          "deps": [
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/build-piece.ts",
-          "hash": "5544215242099592363",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/create-action.ts",
-          "hash": "11565358914642756551",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/create-piece.ts",
-          "hash": "3457898983749467486",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/create-trigger.ts",
-          "hash": "13716194531148600512",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-payment.ts",
-          "hash": "14602445312506454921",
-          "deps": [
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-sber-link.ts",
-          "hash": "14643456953116644691",
-          "deps": [
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-translation-file-for-piece.ts",
-          "hash": "11170097751862833451",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-worker-token.ts",
-          "hash": "15825353715188720693",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2",
-            "npm:inquirer@8.2.7",
-            "npm:nanoid@3.3.11",
-            "npm:jsonwebtoken@9.0.2"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/publish-piece.ts",
-          "hash": "17853673122916967668",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2",
-            "npm:inquirer@8.2.7",
-            "npm:dotenv@17.2.3"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/sync-pieces.ts",
-          "hash": "10472317050483191473",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/utils/exec.ts",
-          "hash": "4773711772162872980"
-        },
-        {
-          "file": "packages/cli/src/lib/utils/files.ts",
-          "hash": "3128150742361470820"
-        },
-        {
-          "file": "packages/cli/src/lib/utils/piece-utils.ts",
-          "hash": "16110908793029715608",
-          "deps": [
-            "npm:axios@1.6.0",
-            "npm:chalk@4.1.2",
-            "npm:form-data@4.0.5"
-          ]
-        },
-        {
-          "file": "packages/cli/tsconfig.json",
-          "hash": "5719531055726810956"
-        },
-        {
-          "file": "packages/cli/tsconfig.lib.json",
-          "hash": "18381553193633845202"
-        },
-        {
-          "file": "packages/cli/tsconfig.spec.json",
-          "hash": "10297288436140226647"
-        }
-      ],
-      "dashboard-ui": [
-        {
-          "file": "packages/dashboard-ui/index.html",
-          "hash": "11166002315304972027"
-        },
-        {
-          "file": "packages/dashboard-ui/package.json",
-          "hash": "11055085000496265314",
-          "deps": [
-            "npm:@types/react@18.3.1",
-            "npm:@types/react-dom@18.3.0",
-            "npm:react@18.3.1",
-            "npm:react-dom@18.3.1",
-            "npm:axios@1.6.0"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/project.json",
-          "hash": "14385182013033803234"
-        },
-        {
-          "file": "packages/dashboard-ui/src/assets/.gitkeep",
-          "hash": "1071176764001721604"
-        },
-        {
-          "file": "packages/dashboard-ui/src/components/Dashboard.tsx",
-          "hash": "7869290786922965016",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/components/Navbar.tsx",
-          "hash": "18439375204432932770"
-        },
-        {
-          "file": "packages/dashboard-ui/src/components/Sidebar.tsx",
-          "hash": "2182772617713434284"
-        },
-        {
-          "file": "packages/dashboard-ui/src/index.html",
-          "hash": "48375089704250940"
-        },
-        {
-          "file": "packages/dashboard-ui/src/main.tsx",
-          "hash": "5924897865428057984",
-          "deps": [
-            "npm:react@18.3.1",
-            "npm:react-dom@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/Apps.tsx",
-          "hash": "3108657737783375090",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/Explore.tsx",
-          "hash": "16603709590158029743",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/FlowBuilder.tsx",
-          "hash": "2124829610368321708",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/Flows.tsx",
-          "hash": "3821604468380748007",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/Logs.tsx",
-          "hash": "3869693742122740244",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/Projects.tsx",
-          "hash": "18247521586518949748",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/Templates.tsx",
-          "hash": "7112144816768642131",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/pages/Utility.tsx",
-          "hash": "11846417587271517040",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/services/api.ts",
-          "hash": "11688584575399505969",
-          "deps": [
-            "npm:axios@1.6.0"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/services/pieces.ts",
-          "hash": "14834352275258620417",
-          "deps": [
-            "npm:react@18.3.1"
-          ]
-        },
-        {
-          "file": "packages/dashboard-ui/src/styles.css",
-          "hash": "12441070312546613490"
-        },
-        {
-          "file": "packages/dashboard-ui/tsconfig.app.json",
-          "hash": "7843958190003489787"
-        },
-        {
-          "file": "packages/dashboard-ui/tsconfig.json",
-          "hash": "1644948860376235902"
-        },
-        {
-          "file": "packages/dashboard-ui/webpack.config.js",
-          "hash": "11080620000154573295",
-          "deps": [
-            "npm:@nx/webpack",
-            "npm:@nx/react@22.0.1"
-          ]
-        }
-      ],
       "server-api": [
         {
           "file": "packages/server/api/package.json",
@@ -1230,6 +614,428 @@
           ]
         }
       ],
+      "dashboard-ui": [
+        {
+          "file": "packages/dashboard-ui/index.html",
+          "hash": "11166002315304972027"
+        },
+        {
+          "file": "packages/dashboard-ui/package.json",
+          "hash": "11055085000496265314",
+          "deps": [
+            "npm:@types/react@18.3.1",
+            "npm:@types/react-dom@18.3.0",
+            "npm:react@18.3.1",
+            "npm:react-dom@18.3.1",
+            "npm:axios@1.6.0"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/project.json",
+          "hash": "14385182013033803234"
+        },
+        {
+          "file": "packages/dashboard-ui/src/assets/.gitkeep",
+          "hash": "1071176764001721604"
+        },
+        {
+          "file": "packages/dashboard-ui/src/components/Dashboard.tsx",
+          "hash": "7869290786922965016",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/components/Navbar.tsx",
+          "hash": "18439375204432932770"
+        },
+        {
+          "file": "packages/dashboard-ui/src/components/Sidebar.tsx",
+          "hash": "2182772617713434284"
+        },
+        {
+          "file": "packages/dashboard-ui/src/index.html",
+          "hash": "48375089704250940"
+        },
+        {
+          "file": "packages/dashboard-ui/src/main.tsx",
+          "hash": "5924897865428057984",
+          "deps": [
+            "npm:react@18.3.1",
+            "npm:react-dom@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/Apps.tsx",
+          "hash": "3108657737783375090",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/Explore.tsx",
+          "hash": "16603709590158029743",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/FlowBuilder.tsx",
+          "hash": "2124829610368321708",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/Flows.tsx",
+          "hash": "3821604468380748007",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/Logs.tsx",
+          "hash": "3869693742122740244",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/Projects.tsx",
+          "hash": "18247521586518949748",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/Templates.tsx",
+          "hash": "7112144816768642131",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/pages/Utility.tsx",
+          "hash": "11846417587271517040",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/services/api.ts",
+          "hash": "11688584575399505969",
+          "deps": [
+            "npm:axios@1.6.0"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/services/pieces.ts",
+          "hash": "14834352275258620417",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "packages/dashboard-ui/src/styles.css",
+          "hash": "12441070312546613490"
+        },
+        {
+          "file": "packages/dashboard-ui/tsconfig.app.json",
+          "hash": "7843958190003489787"
+        },
+        {
+          "file": "packages/dashboard-ui/tsconfig.json",
+          "hash": "1644948860376235902"
+        },
+        {
+          "file": "packages/dashboard-ui/webpack.config.js",
+          "hash": "11080620000154573295",
+          "deps": [
+            "npm:@nx/webpack",
+            "npm:@nx/react@22.0.1"
+          ]
+        }
+      ],
+      "ee-embed-sdk": [
+        {
+          "file": "packages/ee/ui/embed-sdk/.eslintrc.json",
+          "hash": "12072634996764484457"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/README.md",
+          "hash": "17385590138684578282"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/package.json",
+          "hash": "10613050466286485515"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/project.json",
+          "hash": "1721643359190274220"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/src/index.ts",
+          "hash": "7669336022412663267"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/tsconfig.json",
+          "hash": "12687870742232189124"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/tsconfig.lib.json",
+          "hash": "8678990946548861222"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/webpack.config.js",
+          "hash": "5963316538992183300",
+          "deps": [
+            "npm:@nx/webpack"
+          ]
+        }
+      ],
+      "@Yflow/shared": [
+        {
+          "file": "packages/ee/shared/.eslintrc.json",
+          "hash": "11150441543335554924"
+        },
+        {
+          "file": "packages/ee/shared/README.md",
+          "hash": "1109823117096156462"
+        },
+        {
+          "file": "packages/ee/shared/package.json",
+          "hash": "10989705270479188595"
+        },
+        {
+          "file": "packages/ee/shared/project.json",
+          "hash": "11860521023747243649"
+        },
+        {
+          "file": "packages/ee/shared/src/index.ts",
+          "hash": "3591414825824865789",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/alerts/alerts-dto.ts",
+          "hash": "13867320900071103163",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/alerts/alerts-requests.ts",
+          "hash": "16102958985265457581",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/alerts/index.ts",
+          "hash": "13664895013410440200"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/api-key/index.ts",
+          "hash": "13593954239248445091",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/audit-events/index.ts",
+          "hash": "7506240599519224578",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/authn/access-control-list.ts",
+          "hash": "10994443971322105494"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/authn/enterprise-local-authn/index.ts",
+          "hash": "7568778360657473184"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/authn/enterprise-local-authn/requests.ts",
+          "hash": "15139143728054088909",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/authn/index.ts",
+          "hash": "1140180290629964903"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/base-model-schema.ts",
+          "hash": "7666913089707590371",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/billing/index.ts",
+          "hash": "17586477328205326191",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/billing/sberbank.service.ts",
+          "hash": "652811618878941756",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/custom-domains/index.ts",
+          "hash": "9534619497414403770",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/flow-templates/index.ts",
+          "hash": "11040501619271368298",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/git-repo/index.ts",
+          "hash": "5092336696757327328",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/managed-authn/index.ts",
+          "hash": "6374849503694823237"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/managed-authn/managed-authn-requests.ts",
+          "hash": "3855103428672904868",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/oauth-apps/index.ts",
+          "hash": "7530638265062951227"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/oauth-apps/oauth-app.ts",
+          "hash": "9452986655527217501",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/otp/index.ts",
+          "hash": "17697853817016864378"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/otp/otp-model.ts",
+          "hash": "12989215974441227441",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/otp/otp-requests.ts",
+          "hash": "14608467167895646925",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/otp/otp-type.ts",
+          "hash": "5735609086048421379"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/product-embed/app-credentials/app-credentials-requests.ts",
+          "hash": "5723623651481136517",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/product-embed/app-credentials/app-credentials.ts",
+          "hash": "13997282229687350438"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/product-embed/app-credentials/index.ts",
+          "hash": "542770777658345343"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/product-embed/connection-keys/connection-key.ts",
+          "hash": "1726797325385175855"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/product-embed/connection-keys/connection-requests.ts",
+          "hash": "15875835846555752201",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/product-embed/connection-keys/index.ts",
+          "hash": "1968516513233106466"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/project-members/project-member-request.ts",
+          "hash": "17371823367519129395",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/project-members/project-member.ts",
+          "hash": "2573244878765220921",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/project/project-requests.ts",
+          "hash": "17853840605544511952",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/signing-key/index.ts",
+          "hash": "12986460214430232266"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/signing-key/signing-key-model.ts",
+          "hash": "13029662699436535356",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/src/lib/signing-key/signing-key-response.ts",
+          "hash": "13793937797375322422"
+        },
+        {
+          "file": "packages/ee/shared/src/lib/signing-key/signing-key.request.ts",
+          "hash": "2529875375540208387",
+          "deps": [
+            "npm:@sinclair/typebox@0.34.47"
+          ]
+        },
+        {
+          "file": "packages/ee/shared/tsconfig.json",
+          "hash": "11694468379504486425"
+        },
+        {
+          "file": "packages/ee/shared/tsconfig.lib.json",
+          "hash": "16390009519926921953"
+        }
+      ],
       "engine": [
         {
           "file": "packages/engine/.eslintrc.json",
@@ -1572,283 +1378,521 @@
           ]
         }
       ],
-      "@Yflow/shared": [
+      "cli": [
         {
-          "file": "packages/ee/shared/.eslintrc.json",
-          "hash": "11150441543335554924"
+          "file": "packages/cli/.eslintrc.json",
+          "hash": "14921153827776288937"
         },
         {
-          "file": "packages/ee/shared/README.md",
-          "hash": "1109823117096156462"
+          "file": "packages/cli/README.md",
+          "hash": "7817960514080549567"
         },
         {
-          "file": "packages/ee/shared/package.json",
-          "hash": "10989705270479188595"
+          "file": "packages/cli/assets/db.json",
+          "hash": "646759191961725782"
         },
         {
-          "file": "packages/ee/shared/project.json",
-          "hash": "11860521023747243649"
+          "file": "packages/cli/jest.config.ts",
+          "hash": "3222697048089124194"
         },
         {
-          "file": "packages/ee/shared/src/index.ts",
-          "hash": "3591414825824865789",
+          "file": "packages/cli/package.json",
+          "hash": "14425860881032509406"
+        },
+        {
+          "file": "packages/cli/project.json",
+          "hash": "16877735950890924899"
+        },
+        {
+          "file": "packages/cli/src/index.ts",
+          "hash": "15258384388764458463",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:commander@11.1.0"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/alerts/alerts-dto.ts",
-          "hash": "13867320900071103163",
+          "file": "packages/cli/src/lib/commands/build-piece.ts",
+          "hash": "5544215242099592363",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2",
+            "npm:inquirer@8.2.7"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/alerts/alerts-requests.ts",
-          "hash": "16102958985265457581",
+          "file": "packages/cli/src/lib/commands/create-action.ts",
+          "hash": "11565358914642756551",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0",
+            "npm:inquirer@8.2.7"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/alerts/index.ts",
-          "hash": "13664895013410440200"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/api-key/index.ts",
-          "hash": "13593954239248445091",
+          "file": "packages/cli/src/lib/commands/create-piece.ts",
+          "hash": "3457898983749467486",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0",
+            "npm:inquirer@8.2.7"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/audit-events/index.ts",
-          "hash": "7506240599519224578",
+          "file": "packages/cli/src/lib/commands/create-trigger.ts",
+          "hash": "13716194531148600512",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0",
+            "npm:inquirer@8.2.7"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/authn/access-control-list.ts",
-          "hash": "10994443971322105494"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/authn/enterprise-local-authn/index.ts",
-          "hash": "7568778360657473184"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/authn/enterprise-local-authn/requests.ts",
-          "hash": "15139143728054088909",
+          "file": "packages/cli/src/lib/commands/generate-payment.ts",
+          "hash": "14602445312506454921",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:commander@11.1.0"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/authn/index.ts",
-          "hash": "1140180290629964903"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/base-model-schema.ts",
-          "hash": "7666913089707590371",
+          "file": "packages/cli/src/lib/commands/generate-sber-link.ts",
+          "hash": "14643456953116644691",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:commander@11.1.0"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/billing/index.ts",
-          "hash": "17586477328205326191",
+          "file": "packages/cli/src/lib/commands/generate-translation-file-for-piece.ts",
+          "hash": "11170097751862833451",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/billing/sberbank.service.ts",
-          "hash": "652811618878941756",
+          "file": "packages/cli/src/lib/commands/generate-worker-token.ts",
+          "hash": "15825353715188720693",
           "deps": [
-            "npm:@nestjs/common"
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2",
+            "npm:inquirer@8.2.7",
+            "npm:nanoid@3.3.11",
+            "npm:jsonwebtoken@9.0.2"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/custom-domains/index.ts",
-          "hash": "9534619497414403770",
+          "file": "packages/cli/src/lib/commands/publish-piece.ts",
+          "hash": "17853673122916967668",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2",
+            "npm:inquirer@8.2.7",
+            "npm:dotenv@17.2.3"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/flow-templates/index.ts",
-          "hash": "11040501619271368298",
+          "file": "packages/cli/src/lib/commands/sync-pieces.ts",
+          "hash": "10472317050483191473",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/git-repo/index.ts",
-          "hash": "5092336696757327328",
+          "file": "packages/cli/src/lib/utils/exec.ts",
+          "hash": "4773711772162872980"
+        },
+        {
+          "file": "packages/cli/src/lib/utils/files.ts",
+          "hash": "3128150742361470820"
+        },
+        {
+          "file": "packages/cli/src/lib/utils/piece-utils.ts",
+          "hash": "16110908793029715608",
           "deps": [
-            "npm:@sinclair/typebox@0.34.47"
+            "npm:axios@1.6.0",
+            "npm:chalk@4.1.2",
+            "npm:form-data@4.0.5"
           ]
         },
         {
-          "file": "packages/ee/shared/src/lib/managed-authn/index.ts",
-          "hash": "6374849503694823237"
+          "file": "packages/cli/tsconfig.json",
+          "hash": "5719531055726810956"
         },
         {
-          "file": "packages/ee/shared/src/lib/managed-authn/managed-authn-requests.ts",
-          "hash": "3855103428672904868",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
+          "file": "packages/cli/tsconfig.lib.json",
+          "hash": "18381553193633845202"
         },
         {
-          "file": "packages/ee/shared/src/lib/oauth-apps/index.ts",
-          "hash": "7530638265062951227"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/oauth-apps/oauth-app.ts",
-          "hash": "9452986655527217501",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/otp/index.ts",
-          "hash": "17697853817016864378"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/otp/otp-model.ts",
-          "hash": "12989215974441227441",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/otp/otp-requests.ts",
-          "hash": "14608467167895646925",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/otp/otp-type.ts",
-          "hash": "5735609086048421379"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/product-embed/app-credentials/app-credentials-requests.ts",
-          "hash": "5723623651481136517",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/product-embed/app-credentials/app-credentials.ts",
-          "hash": "13997282229687350438"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/product-embed/app-credentials/index.ts",
-          "hash": "542770777658345343"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/product-embed/connection-keys/connection-key.ts",
-          "hash": "1726797325385175855"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/product-embed/connection-keys/connection-requests.ts",
-          "hash": "15875835846555752201",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/product-embed/connection-keys/index.ts",
-          "hash": "1968516513233106466"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/project-members/project-member-request.ts",
-          "hash": "17371823367519129395",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/project-members/project-member.ts",
-          "hash": "2573244878765220921",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/project/project-requests.ts",
-          "hash": "17853840605544511952",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/signing-key/index.ts",
-          "hash": "12986460214430232266"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/signing-key/signing-key-model.ts",
-          "hash": "13029662699436535356",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/src/lib/signing-key/signing-key-response.ts",
-          "hash": "13793937797375322422"
-        },
-        {
-          "file": "packages/ee/shared/src/lib/signing-key/signing-key.request.ts",
-          "hash": "2529875375540208387",
-          "deps": [
-            "npm:@sinclair/typebox@0.34.47"
-          ]
-        },
-        {
-          "file": "packages/ee/shared/tsconfig.json",
-          "hash": "11694468379504486425"
-        },
-        {
-          "file": "packages/ee/shared/tsconfig.lib.json",
-          "hash": "16390009519926921953"
+          "file": "packages/cli/tsconfig.spec.json",
+          "hash": "10297288436140226647"
         }
       ],
-      "ee-embed-sdk": [
+      "react-ui": [
         {
-          "file": "packages/ee/ui/embed-sdk/.eslintrc.json",
-          "hash": "12072634996764484457"
+          "file": "apps/react-ui/README.md",
+          "hash": "13119026631257497901"
         },
         {
-          "file": "packages/ee/ui/embed-sdk/README.md",
-          "hash": "17385590138684578282"
+          "file": "apps/react-ui/jest.config.ts",
+          "hash": "7845270477905434933"
         },
         {
-          "file": "packages/ee/ui/embed-sdk/package.json",
-          "hash": "10613050466286485515"
+          "file": "apps/react-ui/package-lock.json",
+          "hash": "17165928269670292688"
         },
         {
-          "file": "packages/ee/ui/embed-sdk/project.json",
-          "hash": "1721643359190274220"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/src/index.ts",
-          "hash": "7669336022412663267"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/tsconfig.json",
-          "hash": "12687870742232189124"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/tsconfig.lib.json",
-          "hash": "8678990946548861222"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/webpack.config.js",
-          "hash": "5963316538992183300",
+          "file": "apps/react-ui/package.json",
+          "hash": "16216428488914181151",
           "deps": [
-            "npm:@nx/webpack"
+            "npm:@types/react@18.3.1",
+            "npm:@types/react-dom@18.3.0",
+            "npm:react@18.3.1",
+            "npm:react-dom@18.3.1",
+            "npm:@tiptap/react@2.27.2",
+            "npm:@tiptap/starter-kit@2.27.2",
+            "npm:react-i18next@15.0.1",
+            "npm:i18next",
+            "npm:axios@1.6.0"
+          ]
+        },
+        {
+          "file": "apps/react-ui/project.json",
+          "hash": "15295153045616331779"
+        },
+        {
+          "file": "apps/react-ui/public/demo-final.html",
+          "hash": "489533842790288123"
+        },
+        {
+          "file": "apps/react-ui/public/demo-fixed.html",
+          "hash": "753538989189975141"
+        },
+        {
+          "file": "apps/react-ui/public/demo-professional.html",
+          "hash": "4447789986879147032"
+        },
+        {
+          "file": "apps/react-ui/public/demo-simple.html",
+          "hash": "8874294729087599335"
+        },
+        {
+          "file": "apps/react-ui/public/demo-ultimate.html",
+          "hash": "4909638508036637628"
+        },
+        {
+          "file": "apps/react-ui/public/demo-working.html",
+          "hash": "468981322919823458"
+        },
+        {
+          "file": "apps/react-ui/public/demo.html",
+          "hash": "8493680430307481691"
+        },
+        {
+          "file": "apps/react-ui/public/index.html",
+          "hash": "5813608836259016973"
+        },
+        {
+          "file": "apps/react-ui/public/payment-demo.html",
+          "hash": "12342939577250787706"
+        },
+        {
+          "file": "apps/react-ui/public/payment-professional.html",
+          "hash": "12686138258527754385"
+        },
+        {
+          "file": "apps/react-ui/public/yflow-automation-studio.html",
+          "hash": "10631621466624266361"
+        },
+        {
+          "file": "apps/react-ui/public/yflow-complete.html",
+          "hash": "9848941017804758274"
+        },
+        {
+          "file": "apps/react-ui/src/App.css",
+          "hash": "18183693775825351305"
+        },
+        {
+          "file": "apps/react-ui/src/App.tsx",
+          "hash": "8533869596501424870",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/app.test.tsx",
+          "hash": "3331387342689278051"
+        },
+        {
+          "file": "apps/react-ui/src/app/app.tsx",
+          "hash": "16101243886819036887",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/components/ErrorBoundary.tsx",
+          "hash": "3267533634298800360",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/components/LoadingSpinner.tsx",
+          "hash": "17322267710643262034"
+        },
+        {
+          "file": "apps/react-ui/src/app/components/Navbar.tsx",
+          "hash": "10336880294490533840"
+        },
+        {
+          "file": "apps/react-ui/src/app/components/ProjectCard.tsx",
+          "hash": "11517835914831478811",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/components/SearchFilter.tsx",
+          "hash": "2491787144812033206",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/components/Sidebar.tsx",
+          "hash": "12488079254517886732"
+        },
+        {
+          "file": "apps/react-ui/src/app/components/StatsCard.tsx",
+          "hash": "2996671243005533233",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/components/StatusBadge.tsx",
+          "hash": "1792065160642081547",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/components/layout.tsx",
+          "hash": "15041449176962215288",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/Logs.tsx",
+          "hash": "12534204662749392314",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/Templates.tsx",
+          "hash": "11327320128688005584",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/apps.tsx",
+          "hash": "11482223665131449775",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/dashboard.tsx",
+          "hash": "11639768459063049297",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/explore.tsx",
+          "hash": "8184961313237650715",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/flows.tsx",
+          "hash": "1780923966472442103",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/projects.tsx",
+          "hash": "9863138647786140718",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/app/pages/utility.tsx",
+          "hash": "10152842923277521440",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/assets/.gitkeep",
+          "hash": "1071176764001721604"
+        },
+        {
+          "file": "apps/react-ui/src/components/CyberDashboard/CyberDashboard.css",
+          "hash": "90750778682305981"
+        },
+        {
+          "file": "apps/react-ui/src/components/CyberDashboard/index.tsx",
+          "hash": "6213099893661333481",
+          "deps": [
+            "npm:react@18.3.1",
+            "npm:react-i18next@15.0.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/components/FlowBuilder/FlowBuilder.tsx",
+          "hash": "2909450345093642280",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/components/FlowBuilder/SimpleFlowBuilder.tsx",
+          "hash": "14148193062952180293",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/components/FlowBuilder/fixed-flow-builder.css",
+          "hash": "12434060530950798443"
+        },
+        {
+          "file": "apps/react-ui/src/components/FlowBuilder/fixed-flow-builder.tsx",
+          "hash": "9450534338110985720",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/components/FlowBuilder/simple-flow-builder.tsx",
+          "hash": "13252508977370789433",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/index.css",
+          "hash": "178711878091738084"
+        },
+        {
+          "file": "apps/react-ui/src/index.tsx",
+          "hash": "2064152548022706614",
+          "deps": [
+            "npm:react@18.3.1",
+            "npm:react-dom@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/locales/ar.json",
+          "hash": "14314817866651110284"
+        },
+        {
+          "file": "apps/react-ui/src/locales/en.json",
+          "hash": "18367781237028737538"
+        },
+        {
+          "file": "apps/react-ui/src/locales/index.ts",
+          "hash": "10491019435724459258",
+          "deps": [
+            "npm:i18next",
+            "npm:react-i18next@15.0.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/locales/ru.json",
+          "hash": "5036795999516037435"
+        },
+        {
+          "file": "apps/react-ui/src/locales/zh.json",
+          "hash": "10701991854583161465"
+        },
+        {
+          "file": "apps/react-ui/src/main.tsx",
+          "hash": "4889222126425572872",
+          "deps": [
+            "npm:react@18.3.1",
+            "npm:react-dom@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/pages/Dashboard.css",
+          "hash": "4677415821746958068"
+        },
+        {
+          "file": "apps/react-ui/src/pages/Dashboard.tsx",
+          "hash": "17151037771576028826",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/pages/FlowBuilderPage.tsx",
+          "hash": "5534301950000847924",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/pages/simple-flow-builder-page.tsx",
+          "hash": "17990181765332780254",
+          "deps": [
+            "npm:react@18.3.1"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/services/api.ts",
+          "hash": "7823773953690035270",
+          "deps": [
+            "npm:axios@1.6.0"
+          ]
+        },
+        {
+          "file": "apps/react-ui/src/services/mockApi.ts",
+          "hash": "6479921328338094883"
+        },
+        {
+          "file": "apps/react-ui/start.bat",
+          "hash": "2305980807508173545"
+        },
+        {
+          "file": "apps/react-ui/start.sh",
+          "hash": "15391064330419399333"
+        },
+        {
+          "file": "apps/react-ui/tsconfig.app.json",
+          "hash": "15105353629800667577"
+        },
+        {
+          "file": "apps/react-ui/tsconfig.json",
+          "hash": "5574024494305596465"
+        },
+        {
+          "file": "apps/react-ui/tsconfig.spec.json",
+          "hash": "12936314499624572807"
+        },
+        {
+          "file": "apps/react-ui/vite.config.ts",
+          "hash": "7495066423288699122",
+          "deps": [
+            "npm:vite@7.3.1",
+            "npm:@vitejs/plugin-react@5.1.2"
           ]
         }
       ]
@@ -1952,7 +1996,7 @@
       },
       {
         "file": ".github/pull_request_template.md",
-        "hash": "14862689504118724588"
+        "hash": "4441750311385499480"
       },
       {
         "file": ".github/release-drafter.yml",
@@ -2001,6 +2045,10 @@
       {
         "file": ".github/workflows/generate-translations.yml",
         "hash": "523156396222794424"
+      },
+      {
+        "file": ".github/workflows/pages.yml",
+        "hash": "6175837750548500262"
       },
       {
         "file": ".github/workflows/pre-release-changelog.yml",
@@ -2127,8 +2175,28 @@
         "hash": "17314635272594840263"
       },
       {
+        "file": "AUTOMATION_STUDIO_GUIDE.md",
+        "hash": "3088902123547669843"
+      },
+      {
+        "file": "AUTOMATION_SYSTEM.md",
+        "hash": "7994209760712682720"
+      },
+      {
         "file": "CONTRIBUTING.md",
         "hash": "11328595706150522870"
+      },
+      {
+        "file": "CREATE_PR.md",
+        "hash": "17773007446812019088"
+      },
+      {
+        "file": "DEMO_LINKS.md",
+        "hash": "1847474178267342845"
+      },
+      {
+        "file": "DEPLOYMENT_STATUS.md",
+        "hash": "974827789493677425"
       },
       {
         "file": "Dockerfile",
@@ -2143,6 +2211,10 @@
         "hash": "12364771566148274351"
       },
       {
+        "file": "GITLAB_STATUS.md",
+        "hash": "15219639803223231518"
+      },
+      {
         "file": "IMPLEMENTATION_SUMMARY.md",
         "hash": "6598882079117189641"
       },
@@ -2155,6 +2227,14 @@
         "hash": "7013199289675163191"
       },
       {
+        "file": "PROFESSIONAL_UPDATE.md",
+        "hash": "1696213515663911136"
+      },
+      {
+        "file": "PROJECT_DETAILS_RU.md",
+        "hash": "10716847697889219590"
+      },
+      {
         "file": "QUICK_LINKS.md",
         "hash": "16208012444462802356"
       },
@@ -2165,6 +2245,14 @@
       {
         "file": "SECURITY.md",
         "hash": "1128161223152921807"
+      },
+      {
+        "file": "SYSTEM_COMPARISON.md",
+        "hash": "6603268272337195538"
+      },
+      {
+        "file": "UPDATE_SUMMARY.md",
+        "hash": "9495079371013823871"
       },
       {
         "file": "assets/ap-logo.PNG",

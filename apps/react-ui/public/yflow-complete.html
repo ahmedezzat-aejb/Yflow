@@ -409,6 +409,9 @@
                 <button class="nav-btn" onclick="showIntegrations()">
                     <i class="fas fa-plug"></i> Integrations
                 </button>
+                <button class="nav-btn" onclick="showPricing()">
+                    <i class="fas fa-tag"></i> Pricing
+                </button>
                 <button class="nav-btn" onclick="showMonitor()">
                     <i class="fas fa-chart-line"></i> Monitor
                 </button>
@@ -568,6 +571,10 @@
 
         function showIntegrations() {
             alert('Integrations hub - Connect and manage all your favorite apps and services');
+        }
+
+        function showPricing() {
+            window.location.href = 'yflow-pricing.html';
         }
 
         function showMonitor() {

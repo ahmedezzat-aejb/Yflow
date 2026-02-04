@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yflow - Pricing Plans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #00ffff;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .pricing-card {
+            background: rgba(30, 30, 40, 0.8);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price {
+            font-size: 2rem;
+            color: #ff00ff;
+            margin-bottom: 20px;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .plan-features li {
+            margin-bottom: 10px;
+        }
+        
+        .plan-button {
+            background: #00ffff;
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .plan-button:hover {
+            background: #ff00ff;
+        }
+        
+        .duration-selector {
+            background: rgba(30, 30, 40, 0.8);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .duration-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .duration-option {
+            background: rgba(20, 20, 30, 0.6);
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .duration-option:hover {
+            background: rgba(0, 255, 255, 0.2);
+        }
+        
+        .duration-option.selected {
+            background: rgba(0, 255, 255, 0.3);
+            border-color: #ff00ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Yflow Pricing Plans</h1>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price">$9/month</div>
+                <ul class="plan-features">
+                    <li>100 executions/month</li>
+                    <li>10 active workflows</li>
+                    <li>Basic integrations</li>
+                    <li>Email support</li>
+                </ul>
+                <button class="plan-button" onclick="selectPlan('Starter', 9)">Choose Starter</button>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="plan-name">Professional</div>
+                <div class="plan-price">$29/month</div>
+                <ul class="plan-features">
+                    <li>1000 executions/month</li>
+                    <li>50 active workflows</li>
+                    <li>All integrations</li>
+                    <li>Priority support</li>
+                </ul>
+                <button class="plan-button" onclick="selectPlan('Professional', 29)">Choose Professional</button>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price">$99/month</div>
+                <ul class="plan-features">
+                    <li>Unlimited executions</li>
+                    <li>Unlimited workflows</li>
+                    <li>All integrations + custom</li>
+                    <li>24/7 phone support</li>
+                </ul>
+                <button class="plan-button" onclick="selectPlan('Enterprise', 99)">Choose Enterprise</button>
+            </div>
+        </div>
+        
+        <div class="duration-selector">
+            <h2>Choose Duration</h2>
+            <div class="duration-options">
+                <div class="duration-option" onclick="selectDuration(1, this)">
+                    <div>1 Month</div>
+                    <small>No discount</small>
+                </div>
+                <div class="duration-option" onclick="selectDuration(3, this)">
+                    <div>3 Months</div>
+                    <small>Save 5%</small>
+                </div>
+                <div class="duration-option" onclick="selectDuration(6, this)">
+                    <div>6 Months</div>
+                    <small>Save 10%</small>
+                </div>
+                <div class="duration-option selected" onclick="selectDuration(12, this)">
+                    <div>12 Months</div>
+                    <small>Save 20%</small>
+                </div>
+                <div class="duration-option" onclick="selectDuration(24, this)">
+                    <div>24 Months</div>
+                    <small>Save 30%</small>
+                </div>
+            </div>
+        </div>
+        
+        <div id="payment-info" style="background: rgba(30, 30, 40, 0.8); border: 1px solid #00ffff; border-radius: 10px; padding: 20px; text-align: center;">
+            <h3>Payment Summary</h3>
+            <p>Plan: <span id="selected-plan">Professional</span></p>
+            <p>Duration: <span id="selected-duration">12 months</span></p>
+            <p>Monthly Price: $<span id="monthly-price">29</span></p>
+            <p>Discount: <span id="discount">20%</span></p>
+            <p><strong>Total: $<span id="total-price">278.40</span></strong></p>
+            
+            <h4>Payment Methods:</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 20px;">
+                <button onclick="selectPayment('card')" style="padding: 10px; background: #00ffff; color: #0a0a0a; border: none; border-radius: 5px; cursor: pointer;">Credit Card</button>
+                <button onclick="selectPayment('paypal')" style="padding: 10px; background: #00ffff; color: #0a0a0a; border: none; border-radius: 5px; cursor: pointer;">PayPal</button>
+                <button onclick="selectPayment('crypto')" style="padding: 10px; background: #00ffff; color: #0a0a0a; border: none; border-radius: 5px; cursor: pointer;">Crypto</button>
+                <button onclick="selectPayment('rubles')" style="padding: 10px; background: #00ffff; color: #0a0a0a; border: none; border-radius: 5px; cursor: pointer;">Russian Rubles</button>
+                <button onclick="selectPayment('bank')" style="padding: 10px; background: #00ffff; color: #0a0a0a; border: none; border-radius: 5px; cursor: pointer;">Bank Transfer</button>
+            </div>
+            
+            <button onclick="confirmPayment()" style="margin-top: 20px; padding: 15px 30px; background: #ff00ff; color: #0a0a0a; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 1.1rem;">Complete Payment</button>
+        </div>
+    </div>
+    
+    <script>
+        let selectedPlan = 'Professional';
+        let selectedPrice = 29;
+        let selectedDuration = 12;
+        let selectedPaymentMethod = 'card';
+        
+        const discounts = {
+            1: 0,
+            3: 0.05,
+            6: 0.10,
+            12: 0.20,
+            24: 0.30
+        };
+        
+        function selectPlan(plan, price) {
+            selectedPlan = plan;
+            selectedPrice = price;
+            updateSummary();
+        }
+        
+        function selectDuration(months, element) {
+            selectedDuration = months;
+            
+            // Update UI
+            document.querySelectorAll('.duration-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            updateSummary();
+        }
+        
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            alert(`Payment method selected: ${method}`);
+        }
+        
+        function updateSummary() {
+            const discount = discounts[selectedDuration];
+            const discountedPrice = selectedPrice * (1 - discount);
+            const totalPrice = discountedPrice * selectedDuration;
+            
+            document.getElementById('selected-plan').textContent = selectedPlan;
+            document.getElementById('selected-duration').textContent = selectedDuration + ' months';
+            document.getElementById('monthly-price').textContent = selectedPrice;
+            document.getElementById('discount').textContent = discount > 0 ? (discount * 100) + '%' : 'No discount';
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+        
+        function confirmPayment() {
+            const discount = discounts[selectedDuration];
+            const discountedPrice = selectedPrice * (1 - discount);
+            let totalPrice = discountedPrice * selectedDuration;
+            let currency = 'USD';
+            let currencySymbol = '$';
+            
+            if (selectedPaymentMethod === 'rubles') {
+                currency = 'RUB';
+                currencySymbol = '₽';
+                totalPrice = totalPrice * 90;
+            }
+            
+            alert(`Payment Successful!\n\nPlan: ${selectedPlan}\nDuration: ${selectedDuration} months\nTotal: ${currencySymbol}${totalPrice.toFixed(2)} ${currency}\nPayment Method: ${selectedPaymentMethod}\n\nYour subscription is now active!`);
+        }
+        
+        // Initialize
+        updateSummary();
+    </script>
+</body>
+</html>

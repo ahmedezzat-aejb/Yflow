@@ -857,6 +857,192 @@
           "hash": "16390009519926921953"
         }
       ],
+      "ee-embed-sdk": [
+        {
+          "file": "packages/ee/ui/embed-sdk/.eslintrc.json",
+          "hash": "12072634996764484457"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/README.md",
+          "hash": "17385590138684578282"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/package.json",
+          "hash": "10613050466286485515"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/project.json",
+          "hash": "1721643359190274220"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/src/index.ts",
+          "hash": "7669336022412663267"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/tsconfig.json",
+          "hash": "12687870742232189124"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/tsconfig.lib.json",
+          "hash": "8678990946548861222"
+        },
+        {
+          "file": "packages/ee/ui/embed-sdk/webpack.config.js",
+          "hash": "5963316538992183300",
+          "deps": [
+            "npm:@nx/webpack"
+          ]
+        }
+      ],
+      "cli": [
+        {
+          "file": "packages/cli/.eslintrc.json",
+          "hash": "14921153827776288937"
+        },
+        {
+          "file": "packages/cli/README.md",
+          "hash": "7817960514080549567"
+        },
+        {
+          "file": "packages/cli/assets/db.json",
+          "hash": "646759191961725782"
+        },
+        {
+          "file": "packages/cli/jest.config.ts",
+          "hash": "3222697048089124194"
+        },
+        {
+          "file": "packages/cli/package.json",
+          "hash": "14425860881032509406"
+        },
+        {
+          "file": "packages/cli/project.json",
+          "hash": "16877735950890924899"
+        },
+        {
+          "file": "packages/cli/src/index.ts",
+          "hash": "15258384388764458463",
+          "deps": [
+            "npm:commander@11.1.0"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/build-piece.ts",
+          "hash": "5544215242099592363",
+          "deps": [
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2",
+            "npm:inquirer@8.2.7"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/create-action.ts",
+          "hash": "11565358914642756551",
+          "deps": [
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0",
+            "npm:inquirer@8.2.7"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/create-piece.ts",
+          "hash": "3457898983749467486",
+          "deps": [
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0",
+            "npm:inquirer@8.2.7"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/create-trigger.ts",
+          "hash": "13716194531148600512",
+          "deps": [
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0",
+            "npm:inquirer@8.2.7"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/generate-payment.ts",
+          "hash": "14602445312506454921",
+          "deps": [
+            "npm:commander@11.1.0"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/generate-sber-link.ts",
+          "hash": "14643456953116644691",
+          "deps": [
+            "npm:commander@11.1.0"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/generate-translation-file-for-piece.ts",
+          "hash": "11170097751862833451",
+          "deps": [
+            "npm:chalk@4.1.2",
+            "npm:commander@11.1.0"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/generate-worker-token.ts",
+          "hash": "15825353715188720693",
+          "deps": [
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2",
+            "npm:inquirer@8.2.7",
+            "npm:nanoid@3.3.11",
+            "npm:jsonwebtoken@9.0.2"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/publish-piece.ts",
+          "hash": "17853673122916967668",
+          "deps": [
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2",
+            "npm:inquirer@8.2.7",
+            "npm:dotenv@17.2.3"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/commands/sync-pieces.ts",
+          "hash": "10472317050483191473",
+          "deps": [
+            "npm:commander@11.1.0",
+            "npm:chalk@4.1.2"
+          ]
+        },
+        {
+          "file": "packages/cli/src/lib/utils/exec.ts",
+          "hash": "4773711772162872980"
+        },
+        {
+          "file": "packages/cli/src/lib/utils/files.ts",
+          "hash": "3128150742361470820"
+        },
+        {
+          "file": "packages/cli/src/lib/utils/piece-utils.ts",
+          "hash": "16110908793029715608",
+          "deps": [
+            "npm:axios@1.6.0",
+            "npm:chalk@4.1.2",
+            "npm:form-data@4.0.5"
+          ]
+        },
+        {
+          "file": "packages/cli/tsconfig.json",
+          "hash": "5719531055726810956"
+        },
+        {
+          "file": "packages/cli/tsconfig.lib.json",
+          "hash": "18381553193633845202"
+        },
+        {
+          "file": "packages/cli/tsconfig.spec.json",
+          "hash": "10297288436140226647"
+        }
+      ],
       "react-ui": [
         {
           "file": "apps/react-ui/README.md",
@@ -1235,43 +1421,6 @@
           "deps": [
             "npm:vite@7.3.1",
             "npm:@vitejs/plugin-react@5.1.2"
-          ]
-        }
-      ],
-      "ee-embed-sdk": [
-        {
-          "file": "packages/ee/ui/embed-sdk/.eslintrc.json",
-          "hash": "12072634996764484457"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/README.md",
-          "hash": "17385590138684578282"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/package.json",
-          "hash": "10613050466286485515"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/project.json",
-          "hash": "1721643359190274220"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/src/index.ts",
-          "hash": "7669336022412663267"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/tsconfig.json",
-          "hash": "12687870742232189124"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/tsconfig.lib.json",
-          "hash": "8678990946548861222"
-        },
-        {
-          "file": "packages/ee/ui/embed-sdk/webpack.config.js",
-          "hash": "5963316538992183300",
-          "deps": [
-            "npm:@nx/webpack"
           ]
         }
       ],
@@ -1757,155 +1906,6 @@
           "deps": [
             "npm:@nx/webpack"
           ]
-        }
-      ],
-      "cli": [
-        {
-          "file": "packages/cli/.eslintrc.json",
-          "hash": "14921153827776288937"
-        },
-        {
-          "file": "packages/cli/README.md",
-          "hash": "7817960514080549567"
-        },
-        {
-          "file": "packages/cli/assets/db.json",
-          "hash": "646759191961725782"
-        },
-        {
-          "file": "packages/cli/jest.config.ts",
-          "hash": "3222697048089124194"
-        },
-        {
-          "file": "packages/cli/package.json",
-          "hash": "14425860881032509406"
-        },
-        {
-          "file": "packages/cli/project.json",
-          "hash": "16877735950890924899"
-        },
-        {
-          "file": "packages/cli/src/index.ts",
-          "hash": "15258384388764458463",
-          "deps": [
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/build-piece.ts",
-          "hash": "5544215242099592363",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/create-action.ts",
-          "hash": "11565358914642756551",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/create-piece.ts",
-          "hash": "3457898983749467486",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/create-trigger.ts",
-          "hash": "13716194531148600512",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0",
-            "npm:inquirer@8.2.7"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-payment.ts",
-          "hash": "14602445312506454921",
-          "deps": [
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-sber-link.ts",
-          "hash": "14643456953116644691",
-          "deps": [
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-translation-file-for-piece.ts",
-          "hash": "11170097751862833451",
-          "deps": [
-            "npm:chalk@4.1.2",
-            "npm:commander@11.1.0"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/generate-worker-token.ts",
-          "hash": "15825353715188720693",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2",
-            "npm:inquirer@8.2.7",
-            "npm:nanoid@3.3.11",
-            "npm:jsonwebtoken@9.0.2"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/publish-piece.ts",
-          "hash": "17853673122916967668",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2",
-            "npm:inquirer@8.2.7",
-            "npm:dotenv@17.2.3"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/commands/sync-pieces.ts",
-          "hash": "10472317050483191473",
-          "deps": [
-            "npm:commander@11.1.0",
-            "npm:chalk@4.1.2"
-          ]
-        },
-        {
-          "file": "packages/cli/src/lib/utils/exec.ts",
-          "hash": "4773711772162872980"
-        },
-        {
-          "file": "packages/cli/src/lib/utils/files.ts",
-          "hash": "3128150742361470820"
-        },
-        {
-          "file": "packages/cli/src/lib/utils/piece-utils.ts",
-          "hash": "16110908793029715608",
-          "deps": [
-            "npm:axios@1.6.0",
-            "npm:chalk@4.1.2",
-            "npm:form-data@4.0.5"
-          ]
-        },
-        {
-          "file": "packages/cli/tsconfig.json",
-          "hash": "5719531055726810956"
-        },
-        {
-          "file": "packages/cli/tsconfig.lib.json",
-          "hash": "18381553193633845202"
-        },
-        {
-          "file": "packages/cli/tsconfig.spec.json",
-          "hash": "10297288436140226647"
         }
       ]
     },

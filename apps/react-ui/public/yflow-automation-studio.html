@@ -475,6 +475,9 @@
                 <button class="btn" onclick="testWorkflow()">
                     <i class="fas fa-play"></i> Test
                 </button>
+                <button class="btn" onclick="showIntegrations()">
+                    <i class="fas fa-plug"></i> Integrations
+                </button>
                 <button class="btn" onclick="showPricing()">
                     <i class="fas fa-tag"></i> Pricing
                 </button>
@@ -931,6 +934,10 @@
                     <p>Select a node to configure its properties</p>
                 </div>
             `;
+        }
+
+        function showIntegrations() {
+            window.location.href = 'yflow-integration-hub.html';
         }
 
         function showPricing() {
